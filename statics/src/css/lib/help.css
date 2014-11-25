@@ -1,0 +1,52 @@
+/**
+ *description:辅助类-for-pc
+ *author:fanwei
+ *date:2014/11/03
+ */
+/**
+ *description:网站全局less变量-配置
+ *author:fanwei
+ *date:2014/10/30
+ */
+/* use-most-var */
+/* color */
+/* a-link */
+/* font-family */
+/* h-size */
+/* btn */
+/* layer */
+/* site-config */
+/**
+ *description:网站全局less函数-pc
+ *author:fanwei
+ *date:2014/10/30
+ */
+/* line-height */
+/* font-size */
+/* margin */
+/* padding */
+/* opacity */
+/* trangle */
+.trangle {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-top: 4px solid #000000;
+  border-right: 4px solid transparent;
+  border-left: 4px solid transparent;
+}
+.close {
+  font-size: 21px;
+  line-height: 1;
+  color: #000;
+  text-shadow: 0 1px 0 #fff;
+  cursor: pointer;
+  font-weight: 700;
+  display: inline-block;
+  opacity: 0.1;
+  filter: alpha(opacity=10);
+}
+.close:hover {
+  opacity: 1;
+  filter: alpha(opacity=100);
+}

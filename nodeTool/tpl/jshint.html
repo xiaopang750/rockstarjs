@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>jshint-检测报告</title>
+<style>
+	* {
+		margin:0;
+		padding:0;
+	}
+
+	ul,ol,li {
+		list-style: none;
+	}
+
+	img {
+		border:none;
+	}
+
+	body {
+		font-size: 18px;
+		word-break:break-all;
+		font-family: "Microsoft Yahei";
+	}
+
+
+	a {
+		text-decoration: none;
+	}
+	
+	/* list */
+	#list {
+		width: 200px;
+		height: 100%;
+		position: fixed;
+		right:0;
+		top:0;
+		background: #fff;
+		overflow-y:auto;
+	}
+
+	#list  a {
+		display: block;
+		text-align: center;
+		padding:5px;
+		color:#f00;
+	}
+
+	/* content */
+	#content li {
+		padding: 10px;
+	}
+
+	#content li:nth-child(even) {
+		background: #ccc;
+		color:#f00;
+	}
+
+	#content li:nth-child(odd) {
+		background: orange;
+		color:#000;
+	}
+
+	#content li div {
+		border-bottom: 1px dashed #000;
+		line-height: 30px;
+		padding:20px;
+	}
+
+	#content li h3 {
+		font-size: 30px;
+	}
+</style>
+</head>
+
+<body>
+
+	<div id="list">
+		{{each data}}
+			<a href="#{{$value.file}}">
+				{{$index + 1}}:&nbsp;&nbsp;{{$value.file}}
+			</a>
+		{{/each}}
+	</div>
+
+	<ul id="content">
+		{{each data}}
+			{{if $value.errors}}
+				<li id="{{$value.file}}">
+					<h3>
+						fileName：{{$value.file}}
+					</h3>
+					{{each $value.errors as value2 index2}}
+						<div>
+							<p>
+								reason:{{value2.reason}}
+							</p>
+							<p>
+								code:{{value2.code}}
+							</p>
+							<p>
+								line:{{value2.line}}
+							</p>
+							<p>
+								character:{{value2.character}}
+							</p>
+							<p>
+								scope:{{value2.scope}}
+							</p>
+							<p>
+								a:{{value2.a}}
+							</p>
+							<p>
+								b:{{value2.b}}
+							</p>
+							<p>
+								c:{{value2.c}}
+							</p>
+							<p>
+								d:{{value2.d}}
+							</p>
+						</div>
+					{{/each}}
+				</li>
+			{{/if}}
+		{{/each}}
+	</ul>
+</body>
+</html>

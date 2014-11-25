@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<link rel="stylesheet" href="/static/css/rockstar.css">
+<link rel="stylesheet" href="/static/css/one.css">
+</head>
+<body>
+
+<div class="document yue" id="wrap">	
+  <%=content%>
+</div>
+<script>
+	window.onload = function() {
+
+		var oWrap = document.getElementById('wrap');
+		var w = oWrap.offsetWidth;
+		var h = oWrap.offsetHeight;
+
+		if(window.parent) {
+
+			var oParentFrame = window.parent.document.getElementById('frame');
+			oParentFrame.style.width = w + 'px';
+			oParentFrame.style.height = h + 'px';
+
+		}
+
+	};
+</script> 
+</body>
+</html>

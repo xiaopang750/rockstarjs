@@ -1,0 +1,79 @@
+/**
+ *description:网站重置样式-pc
+ *author:fanwei
+ *date:2014/10/30
+ */
+@import "../config/config.less";
+@import "../config/func.less";
+
+* {
+	margin:0;
+	padding:0;
+}
+
+body {
+	font-family: @base-font-family;
+	.font-s(@base-size);
+	background: @base-bg;
+	color:@base-color;
+}
+
+a {
+	color:@a-color;
+	text-decoration: none;
+}
+
+a:hover {
+	color:@a-color-hover;
+	text-decoration: underline;
+}
+
+ul,ol,li {
+	list-style: none;
+}
+
+img {
+	border:none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-weight: normal;
+}
+h1 {
+	font-size: @h1-size
+}
+h2 {
+	font-size: @h2-size
+}
+h3 {
+	font-size: @h3-size
+}
+h4 {
+	font-size: @h4-size
+}
+h5 {
+	font-size: @h5-size
+}
+h6 {
+	font-size: @h6-size
+}
+
+select {
+	vertical-align: middle;
+	border: none;
+}
+
+textarea {
+	resize: none;
+	outline: none;
+	overflow: auto;
+}
+
+input {
+	vertical-align: middle;
+	outline: none;
+}
+
+
+
+

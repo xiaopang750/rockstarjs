@@ -1,0 +1,15 @@
+{
+  "name": "罗格斯达",
+  "version": "1.0.0",
+  "devDependencies": {
+  	"grunt": "",
+  	"grunt-contrib-uglify": "",
+  	"grunt-contrib-concat": "",
+    "grunt-replace": "",
+    "grunt-contrib-cssmin": "",
+    "grunt-cmd-transport": "",
+    "grunt-cmd-concat": "",
+    "grunt-contrib-clean": "",
+    "grunt-contrib-copy": ""
+  }
+}

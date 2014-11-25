@@ -1,0 +1,30 @@
+/**
+ *description:辅助类-for-pc
+ *author:fanwei
+ *date:2014/11/03
+ */
+
+@import "../config/config.less";
+@import "../config/func.less";
+
+//向下的三角
+.trangle {
+	.tran-d(4px; #000)
+}  
+
+//关闭按钮
+.close {
+	font-size: 21px;
+	font-weight: 700;
+	line-height: 1;
+	color: #000;
+	text-shadow: 0 1px 0 #fff;
+	cursor: pointer;
+	font-weight: 700;
+	display: inline-block;
+	.opa(0.1);
+
+	&:hover {
+		.opa(1);
+	}
+}
