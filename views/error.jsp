@@ -98,7 +98,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="right">
 				<p>对不起，无法处理您</p>
 				<p>的请求，请重试...</p>
-				<a href="<%=basePath%>loginSys/toLoginPage.do">返回首页</a>
+				<a href="<%=basePath%>loginSys/toLoginPage.do">返回</a>
 			</div>
 		</div>
 	</div>
