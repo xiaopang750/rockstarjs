@@ -1,0 +1,13 @@
+<!-- 订货商品详情查看 -->
+{{each list}}
+	<tr list pkProductBookB={{$value.pkProductBookB}}>
+		<td>{{$value.productname}}</td>
+		<td>{{$value.productnum}}</td>
+		<td data="approvenum">{{$value.approvenum}}</td>
+		<td data="realnum">{{$value.realnum}}</td>
+		<td>{{$value.productunit}}</td>
+		<td>{{$value.productcapacity}}</td>
+		<td data="productprice">{{$value.productprice}}</td>
+		<td></td>
+	</tr>
+{{/each}}

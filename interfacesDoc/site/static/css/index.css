@@ -1,0 +1,158 @@
+body {
+	padding-bottom: 0;
+}
+
+.wrap {
+	width: 1200px;
+	margin: 0 auto;
+	overflow: hidden;
+}
+
+#leftNav {
+	background-color: #fff0b5;
+	width: 225px;
+	font-size: 13px;
+	color:#333;
+	float: left;
+	height: 100%;
+	border:1px solid #ddd;
+	border-top:none;
+}
+
+iframe {
+	margin-left: 130px;
+}
+
+#leftNav a {
+	color:#999;
+	display: block;
+	padding: 2px 0;
+}
+
+#leftNav > ul > li {
+	line-height: 20px;
+}
+
+#leftNav > ul > li ul {
+	display: none;
+}
+
+#leftNav > ul > li ul li {
+	padding-left:20px;
+}
+
+#leftNav span {
+	background: #de682a;
+	border-top: 1px solid #ddd !important;
+	display: block;
+	position: relative;
+	margin: 0;
+	border: 0px;
+	padding: 10px 15px;
+	font-size: 14px;
+	font-weight: 300;
+	cursor: pointer;
+	font-weight: bold;
+}
+
+
+#leftNav > ul > li  ul  span {
+	background: none;
+	border-bottom:none!important;
+	border-top:none!important;
+	padding-left: 0;
+	padding: 5px 0;
+	cursor: default;
+}
+
+#leftNav em {
+	position: absolute;
+	right:10px;
+	top:10px;
+}
+
+#content {
+	float: right;
+	width: 900px;
+	border:1px solid #ddd;
+	min-height: 600px;
+}
+
+#content iframe {
+	padding-top: 20px;
+}
+
+
+#leftNav a.active {
+	color:#de682a;
+	font-weight: bold;
+}
+
+.header {
+	margin-bottom: 30px;
+}
+
+.header .inner-wrap {
+	width: 1200px;
+	margin:0 auto;
+}
+
+
+.header .main {
+	margin: 0 auto;
+	padding-top: 30px;
+	width: 800px;
+	text-align: center;
+	height: 105px;
+	position: relative;
+}
+
+.header .search input {
+	margin-left: 2em;
+	padding: 6px 8px;
+	font-size: 18px;
+	outline: none;
+	border: 3px solid #de682a;
+	color: #888;
+	width: 180px;
+	transition: all 0.3s ease-out 0s;
+	position: relative;
+	z-index: 10;
+	margin-top:10px;
+}
+
+.header .search input.active {
+	border: 3px solid #fb7833;
+	width: 400px;
+	box-shadow: 2px 2px 2px #ccc;
+}
+
+.auto  {
+	border: 1px solid #ddd;
+	border-top: none;
+	background: #fff;
+	padding: 0;
+	width: 420px;
+	margin-top: -1px;
+	box-shadow: 0 10px 16px #ccc;
+}
+
+.auto li {
+	padding: 6px 12px;
+	list-style: none;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	font-size: 18px;
+	cursor: pointer;
+	border-top: 4px solid #fff;
+}
+
+.auto li.active {
+	background: #4B9A60;
+	color: #fff;
+	text-shadow: none;
+	border-top: 4px solid #FFD11E;
+}
+
+

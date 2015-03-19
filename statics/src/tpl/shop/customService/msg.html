@@ -1,0 +1,11 @@
+<!-- 客服管理消息 -->
+{{each data}}
+<li>
+	<p class="ba-mb-10">
+		<span>{{$value.ts}}</span>
+	</p>
+	<p class="ba-ml-10">
+		{{$value.lastmessage}}
+	</p>
+</li>
+{{/each}}

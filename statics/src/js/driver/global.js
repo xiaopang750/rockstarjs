@@ -7,5 +7,7 @@ define(function(require, exports, module){
 	
 	require('./R');
 	require('../lib/json/json2');
+	require('./page');
+	require('../util/holder/holder');
 	
 });

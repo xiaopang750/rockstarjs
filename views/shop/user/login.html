@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>{{title}}</title>
+{{include '../include/meta'}}
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+<link rel="stylesheet" href="{{cssPath}}core/rockstar.css">
+<link rel="stylesheet" href="{{cssPath}}main/shop/user/login.css">
+</head>
+
+<body>
+    <div class="logo">
+        <img src="{{imgPath}}lib/logo/chorHair.png" alt="欢迎使用虫二美发管理平台">
+        <p class="ba-tc ba-white ba-mt-30">
+            欢迎使用虫二美发管理平台
+        </p>
+    </div>
+
+	<div class="box-wrap" script-bound="form-check">
+        <div class="ba-mb-15" script-role="check-wrap">
+            <input type="text" class="form-control" enter-do form_check="sys" ischeck="true" name="usercode" tip="此项为必填" wrong="用户编号格式不正确" re="(.{6,16})" -value="rs03000001" text="请输入用户编号">
+        </div>
+        <div class="ba-mb-13" script-role="check-wrap">
+            <input type="password" class="form-control" enter-do form_check="sys" ischeck="true" name="loginpassword" tip="此项为必填" wrong="密码为6-16位" re="(.{6,16})" -value="abc.com" text="请输入密码">
+        </div>
+        <div class="ba-mb-27 ba-clearfix">
+            <span class="ba-fr ba-white">
+                <input type="checkbox" remember id="remember">
+                <label for="remember">记住账号</label>
+            </span>
+        </div>
+        <div class="ba-tc">
+            <button class="btn btn-primary login-btn" script-role = confirm-btn>
+                登录
+            </button>
+        </div>
+	</div>
+    <!-- footer -->
+    <div class="footer ba-tc">
+        技术支持 <a href="http://www.rockstars.com.cn/" target="_blank">罗格斯达（天津）数据信息服务有限公司</a>
+    </div>
+{{include '../include/siteConfig'}}
+<script src="{{seaPath}}seajs/sea.js"></script>	
+<script src="{{seaPath}}seajs/config.js"></script>
+<script>
+	seajs.use('main/shop/user/login');
+</script>
+</body>
+</html>

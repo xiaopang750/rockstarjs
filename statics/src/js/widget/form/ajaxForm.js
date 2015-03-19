@@ -47,23 +47,23 @@
 
 
 	如:form: 
-	<div script-bound="form_check">
+	<div script-bound="form-check">
 		<form>
 
 			//input
-			<div script-role="check_wrap">
+			<div script-role="check-wrap">
 				<input type="text" form_check="sys" ischeck="true" name="goodsname" tip="此项为必填" wrong="商品名称不能超过60个字" re="(.{1,60})">
 			</div>
 			
 			//select
-			<div script-role="check_wrap">
+			<div script-role="check-wrap">
 				<select name="class_id" form_check="sys" ischeck="true" tip="子类别不能为空" wrong="" re=".+">
 					<option value="" id="">请选择子品类</option>
 				</select>
 			</div>
 			
 			//textarea
-			<div script-role="check_wrap">
+			<div script-role="check-wrap">
 				<textarea form_check="sys" ischeck="true" name="goodsname" tip="此项为必填" wrong="商品名称不能超过60个字" re="(.{1,60})"></textarea>
 			</div>
 
@@ -141,12 +141,12 @@
 
 define(function(require, exports, module) {
 
-	var request = require('../../lib/http/request');
-	var bodyParse = require('../../lib/http/bodyParse');
+	var request = require('../../util/http/request');
+	var bodyParse = require('../../util/http/bodyParse');
 
 	function AjaxForm(options) {
 
-		this.oWrap = options.boundName ? $('[script-bound = '+ options.boundName +']') : $('[script-bound = form_check]');
+		this.oWrap = options.boundName ? $('[script-bound = '+ options.boundName +']') : $('[script-bound = form-check]');
 
 		this.oSub = options.btnName ? this.oWrap.find('[script-role = '+ options.btnName +']') : this.oWrap.find('[script-role = confirm-btn]');
 
@@ -186,6 +186,21 @@ define(function(require, exports, module) {
 
 	AjaxForm.prototype = {
 
+		reload: function(options) {
+
+			options = options || {};
+
+			this.oWrap = options.boundName ? $('[script-bound = '+ options.boundName +']') : $('[script-bound = form-check]');
+
+			this.oSub = options.btnName ? this.oWrap.find('[script-role = '+ options.btnName +']') : this.oWrap.find('[script-role = confirm-btn]');
+
+			this.oSub.unbind('click');
+
+			this.getEle();
+			
+			this.subMitEvent();
+
+		},
 		upload: function() {
 
 			//this.clear();
@@ -206,7 +221,6 @@ define(function(require, exports, module) {
 
 				if(aChildren.eq(i).attr('form_check'))
 				{	
-
 					_this.makeWrapTip(aChildren.eq(i));
 
 					_this.judgeType(aChildren.eq(i));
@@ -325,7 +339,7 @@ define(function(require, exports, module) {
 
 			oTip.attr('iswrong','true');
 			
-			ele.parents('[script-role = check_wrap]').addClass('has-error');
+			ele.parents('[script-role = check-wrap]').addClass('has-error');
 		},
 		tipRight: function(ele, oTip) {
 			
@@ -333,7 +347,7 @@ define(function(require, exports, module) {
 
 			oTip.attr('iswrong','false');
 
-			ele.parents('[script-role = check_wrap]').removeClass('has-error');
+			ele.parents('[script-role = check-wrap]').removeClass('has-error');
 		},
 		checkText: function(ele) {
 
@@ -357,24 +371,6 @@ define(function(require, exports, module) {
 					_this.inputJude($(this));
 
 				});
-			}
-			else {
-
-				var _pid = bodyParse().pid;
-
-				/* 即时验证 */
-				ele.keyup(function(){
-
-					_this.pressInput($(this), _pid);
-
-				});
-
-				ele.blur(function(){
-
-					_this.pressInput($(this), _pid);
-
-				});
-
 			}					
 
 			ele.focus(function(){
@@ -384,6 +380,11 @@ define(function(require, exports, module) {
 				_this.tipRight(ele,oTip);
 
 			});
+		},
+		getTip: function(oTarget) {
+
+			return oTarget.parent().find('[script-role = wrong_area]');
+
 		},
 		pressInput: function(ele, sId) {
 
@@ -543,6 +544,8 @@ define(function(require, exports, module) {
 		},
 		radioJudge: function(ele) {
 
+			var _this = this;
+
 			if(this.closeCheck) return;
 
 			var aRadio = ele.find('input[type = radio]');
@@ -550,23 +553,28 @@ define(function(require, exports, module) {
 			var oTip =  ele.parent().find('[script-role = wrong_area]');
 			var sTip = ele.attr('tip');
 
-			aRadio.each(function(i){
+			//延迟解决label点击问题
+			setTimeout(function(){
 
-				if(aRadio.eq(i).attr('checked')) {	
-					result = true;
+				aRadio.each(function(i){
+
+					if(aRadio.eq(i).attr('checked')) {	
+						result = true;
+					}
+
+				});
+
+				if(ele.attr('ischeck') == 'true' || ele.attr('ischeck') == 'free') {
+
+					if(result) {	
+						_this.tipRight(ele,oTip);
+					}
+					else {	
+						_this.tipWrong(ele, oTip, sTip);
+					}
 				}
 
-			});
-
-			if(ele.attr('ischeck') == 'true' || ele.attr('ischeck') == 'free') {
-
-				if(result) {	
-					this.tipRight(ele,oTip);
-				}
-				else {	
-					this.tipWrong(ele, oTip, sTip);
-				}
-			}	
+			},1)	
 		},
 		checkBox: function(ele) {	
 			var _this = this;
@@ -637,9 +645,22 @@ define(function(require, exports, module) {
 
 			this.oSub.click(function(){
 
+				var isDisabled = $(this).attr('disabled');
+
+				if(isDisabled == 'disabled') return;
+
 				_this.subMit($(this));
 
 			});
+		},
+		refresh: function() {
+
+			//刷新表单状态
+			var aWrong = this.oWrap.find('[script-role = wrong_area]');
+			aWrong.attr('iswrong', 'false');
+			aWrong.removeClass('wrong');
+			$('[script-role = check-wrap]').removeClass('has-error');
+
 		},
 		subMit: function(oThis) {
 
@@ -761,7 +782,7 @@ define(function(require, exports, module) {
 
 			if(this.noSub) {
 
-				this.noSub();
+				this.noSub(this.param);
 
 				return;
 			}
@@ -769,6 +790,9 @@ define(function(require, exports, module) {
 			if(this.fnSumbit) {
 
 				var newJson = this.fnSumbit(this.param);
+				if(newJson == false) {
+					return;
+				}
 				this.param = {};
 				for(key in newJson) {
 
@@ -787,7 +811,7 @@ define(function(require, exports, module) {
 
 					_this.loadingHide();
 
-					_this.sucDo && _this.sucDo(data, oThis);
+					_this.sucDo && _this.sucDo(data, oThis, _this.param);
 				},
 				noDataDo: function(data) {
 

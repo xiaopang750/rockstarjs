@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>使用</title>
+<link rel="stylesheet" href="../src/css/core/rockstar.css">
+</head>
+<body>
+  <div class="wrap">
+
+    <!-- header -->
+    <div class="header" header>
+      <!-- header -->
+<div class="inner ba-clearfix">
+	<div class="title-wrap ba-fl ba-mr-20">
+		<a class="title" href="./">RockstarJs</a>
+		<div class="ba-gray">
+			<p>
+				构建灵活轻量的互联网应用 - for pc
+			</p>
+		</div>
+	</div>
+	<img src="../assets/lib/logo/xiaopang.jpg" class="title-img ba-fl">
+</div>
+    </div>
+
+    <!-- nav -->
+    <div class="nav" nav>
+      <!-- nav -->
+<div class="inner">
+	<ul class="ba-clearfix ba-pt-20">
+		
+			<li>
+				<a href="./index.html">
+					
+						<span class="fa fa-home ba-font-18"></span>
+					
+					首页
+				</a>
+			</li>
+		
+			<li>
+				<a href="./about.html">
+					
+					关于 RockstarJs
+				</a>
+			</li>
+		
+			<li>
+				<a href="./use.html">
+					
+					使用
+				</a>
+			</li>
+		
+			<li>
+				<a href="./rule.html">
+					
+					开发规范
+				</a>
+			</li>
+		
+			<li>
+				<a href="./organization.html">
+					
+					代码组织实践
+				</a>
+			</li>
+		
+			<li>
+				<a href="./tool.html">
+					
+					工具
+				</a>
+			</li>
+		
+	</ul>
+</div>
+    </div>
+    
+    <!-- content -->
+    <div class="content ba-clearfix">
+      <div class="nav-left" nav-left-wrap>
+        <ul nav-left>
+          <!-- left-nav -->
+
+<li>
+	<a href="#目录结构设计思路">
+		目录结构设计思路
+	</a>
+</li>
+
+<li>
+	<a href="#目录结构">
+		目录结构
+	</a>
+</li>
+
+<li>
+	<a href="#使用">
+		使用
+	</a>
+</li>
+
+<li>
+	<a href="#创建一个组件">
+		创建一个组件
+	</a>
+</li>
+
+<li>
+	<a href="#扩展一个模块">
+		扩展一个模块
+	</a>
+</li>
+
+        </ul>
+      </div>
+      <div class="content-right" content-right>
+          <h1 id="-">使用</h1>
+<h2 id="目录结构设计思路">目录结构设计思路</h2>
+
+<blockquote>
+<p>把seajs作为类似php ci框架的index.php入口文件，把所有请求交给他。seajs作为入口文件，他不遵循cmd规范，所以在部署时不需要处理它，就是不需要把他就行cmd-transport。config.js作为他的配置项。seajs,config.js每个页面都需要加载所以目录结构尽量在最外层。</p>
+<p>每个页面一个加载一个seajs, config.js, 一个页面主文件main.js类似一个控制器文件，用来体现页面的逻辑和流程, 具体的方法，例如详细验证过程，合并加工数据的，拖拽等类似的详细流程，应该分发到组件或者 sub目录里面，主文件的main.js应该清晰的体现逻辑。 config.js最好每个页面单独加载，以备不同的页面需要加载不同配置项的需要。</p>
+<p>把js细分为libary, widget, driver, box, main, sub。基础库，组件库，网站全局load模块库(driver), 弹出框(box), 主文件, 次文件。</p>
+<p>main由模块网站细分的模块决定。比如： user下面的个人信息页。而与之目录结构相对应的 main目录有less目录， assets目录，views(动态页面目录)。main的目录结构关系着很多东西，所以项目开始模块目录的确定十分重要。当user目录下的info.jsp或者info.php出现问题时，与之关联的有 less/user/info.less  assets/main/user/...jpg  js/main/user/info.js  js/sub/user/...js 总之我们需要通过这种对应关系，去管理我们的文件。这样在某个页面出问题时我们能迅速找到位置。</p>
+<p>把需要需要部署的文件放一起，比如less需要编译压缩，js需要转换成amd格式和合并压缩,配置文件里的路径需要替换。我们不对图片处理所以把他分开放置。</p>
+<p>考虑动静分离，js  css  前台模板 等 分服务器放置。 </p>
+</blockquote>
+<div>
+    <a href="../assets/main/use/flow.png" target="_blank">
+        <img src="../assets/main/use/flow.png" alt="flow">
+    </a>
+</div>
+
+
+<h2 id="目录结构">目录结构</h2>
+
+<blockquote>
+<p>由seajs构建的项目，由于一切都是模块，自然js文件会比普通开发要多很多，所以文件必须合并，不然开发是模块化了，但http请求会过多。</p>
+<p>http请求大家应该知道，http请求会带请求头，而服务端也会有响应头。静态文件从远程服务器下载的速度取决于硬件速度，网络和服务器的负载，请求头和响应头的尺寸，以及客户端和服务端之间的距离。在其他方面都差不多的情况下，请求头的增多必然会导静态文件的响应速度慢。而当访问数量增大时，服务器负载自然大，那么静态文件的响应速度自然会更慢。所以我们设计的目录结构，和模块必须为合并考虑。</p>
+<p>目录结构总览:</p>
+</blockquote>
+<pre><code>
+    + nodeTool -(项目部署工具)
+    + statics 
+        + assets -(静态图片资源)
+        + seajs -(模块化js)
+        + src
+            + js 
+            + css -(由less生成的目录)
+            + less -(less目录,动态样式)
+            + tpl -(前台模板,用于ajax的方式渲染页面)
+            + views -(静态页面)
+        + test    - (用于测试的文件)
+        + build    - (构建后的目录)
+        + doc -(文档)
+    + views - (动态页面)</code></pre>
+<blockquote>
+<p>nodeTool</p>
+</blockquote>
+<pre><code>+ nodeTool
+    - 其他项目工具 例如：雪碧图合并工具，json格式化工具
+    - node_modules - (nodejs模块)
+    - Grunfile.js - (部署脚本,实时编译脚本)</code></pre>
+<blockquote>
+<p>assets</p>
+</blockquote>
+<pre><code>+ assets - (静态资源图片)
+    + error    -     (404 500 类的图片)
+    + lib -     (libary 库)
+          - banner - (静态banner)
+          - bg -     (静态背景)
+          - box    -     (弹出框所需的图片)
+          - button -     (按钮合并的背景图)
+          - form -     (和表单相关的图片)
+          - holder -     (站位图 1*1 用于在没图的情况下 占位 （ie下没图会有个X）
+          - ico -     (网站ico)
+          - icon -     (网站icon)
+          - loading -     (loaing 图)
+          - logo -     (网站logo) 
+      + widget -     (组件)
+        - calendar
+        - formCheck
+    ...    
+    + main 
+        - (和views里面目录结构相对应,对应页面里面单独使用的一些独立的图片)
+    + downloads -(用户下载的一些表格模板等..)</code></pre>
+<blockquote>
+<p>seajs</p>
+</blockquote>
+<pre><code>- sea.js (2.1.1)  - 这里我们选用2.1.1。
+- config.js    - (js全局配置文件)</code></pre>
+<blockquote>
+<p>css</p>
+</blockquote>
+<pre><code>+ css 
+    - 和less目录相同,编译后的结果</code></pre>
+<blockquote>
+<p>js</p>
+</blockquote>
+<pre><code>+ box - (弹框)
++ driver - (驱动，类似公共类的js可以放里面，因为每个页面都要加载)
++ lib    - (基础库)
+    + backbone -(mvc框架)
+    + event    -(自定义事件，如mousewheel, 等一些事件jquery并没有提供)
+    + http    - (和http相关的工具库)
+        - bodyParse  -(解析url参数成json)
+        - queryString - (json还原成url形式的参数)
+        ...
+    + jquery - (各版本的jquery可通过seajs里面的config.js进行配置)
+        + jquery1.7.1
+            - jquery.js    
+    + json
+        - json2.js - (模拟实现JSON.parse, JSON.stringify)
+    + platform
+        - detector.js -(客户端平台检测)
+    + template
+        - artTemplate.js -(模板)
+    + underscore
+        - underscore.js 用于作数据处理
+    + util
+        - 工具类库
+        - Class.js 模拟实现OO面向对象的写法
++ main
+    - (每个页面的单独的样式,按模块划分,例如：)
+    - (每个js相当于一个控制层,里面只体现逻辑，小的功能可以分发到sub对应的目录)
+    + user
+        - login.js
+        - info.js
+    + data
+        - list.js 
++ sub
+    - 承载main文件夹目录里面的方法
++ tpl
+    - 模板文件，由编译工具生成
++ widget
+    - 组件库</code></pre>
+<blockquote>
+<p>less</p>
+</blockquote>
+<pre><code>+ config
+    - config.less - (网站样式基础配置)
+    - func.less - (样式基础函数)
++ core
+    - rockstar.less build合并后的less文件
++ extend
+    - css3.less - (扩展less)
++ font-icon
+    - icon.less
+    - icon.ie7.less - (ie7兼容写法)
++ lib
+    - base.less - (基础类样式: 例如margin, padding, font)
+    - bg.less - (背景样式)
+    - button.less - (无需图片的按钮)
+    - form.less - (表单按钮)
+    - help.less - (辅助类样式，例如三角，关闭按钮)
+    - img.less - (图片样式: 例如圆角)
+    - img-button.less - (图片按钮)
+    - img-icon.less - (图片icon)
+    - layer.less - (网站布局样式，例如导航，侧导航等公共的结构)
+    - reset.less - (网站重置样式表)
+    - size.less - (尺寸)
+    - table.less - (表格)    
++ main
+    - (每个页面的单独的样式,按模块划分,例如：)
+    + user
+        - login.less
+        - info.less
+    + data
+        - list.less
++ widget
+    - (组件)
+    + calendar
+        - calendar.less</code></pre>
+<blockquote>
+<p>tpl</p>
+</blockquote>
+<pre><code>- (前台模板 - .html文件 artTemplate语法,用tmodjs编译成cmd格式的js文件，供require引入)
+- (结构按模块名划分例如:)
++ user
+    - login.html
+    - info.html
++ data
+    - list.html</code></pre>
+<blockquote>
+<p>views</p>
+</blockquote>
+<pre><code>- 静态html文件 -(可按模块名称划分例如)
++ user
+    - login.html
+    - info.html
++ data
+    - list.html</code></pre>
+<blockquote>
+<p>test</p>
+</blockquote>
+<pre><code>- 代码和 src相同 用于测试生成doc</code></pre>
+<blockquote>
+<p>buid</p>
+</blockquote>
+<pre><code>- 部署后用于生产环境的代码</code></pre>
+<blockquote>
+<p>doc</p>
+</blockquote>
+<pre><code>- 测试文档
+- 说明文档</code></pre>
+<h2 id="使用">使用</h2>
+
+<blockquote>
+<p>页面引入seajs,config.js,入口文件</p>
+<p>以下所说的模块在首页中会有api说明</p>
+</blockquote>
+<pre><code>
+&lt;script src=&quot;../seajs/sea.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;../seajs/config.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+  seajs.use(&#39;example/main.js&#39;);
+&lt;/script&gt; 
+
+首先加载seajs
+然后加载网站配置config.js
+最后加载页面入口文件
+
+建议使用相对路径或者，或者使用后台配置的静态文件路径。
+如果静态文件和服务端文件不在一台服务器上，那么通过修改
+配置文件就可以达到替换路径的功能。</code></pre>
+<blockquote>
+<p>config.js</p>
+</blockquote>
+<pre><code>seajs.config({
+    base: &#39;../src/js&#39;,
+    alias: {
+        &#39;jquery&#39;: &#39;lib/jquery/jquery&#39;
+        &#39;global&#39;: &#39;driver/global&#39;
+
+      },
+      preload: [&#39;jquery&#39;]
+});
+
+配置js的base目录
+配置别名
+preload 加载网站全局都需要加载的库</code></pre>
+<blockquote>
+<p>global.js</p>
+</blockquote>
+<pre><code>var R = require(&#39;./R&#39;);
+require(&#39;../lib/json/json2&#39;);
+
+加载一些全局模块比如R.js
+比如json2.js</code></pre>
+<blockquote>
+<p>R.js</p>
+</blockquote>
+<pre><code>
+var Class = require(&#39;../lib/until/class&#39;);
+var until = require(&#39;../lib/until/until&#39;);
+var R = R || {};
+
+R.uri = {
+    domain: &quot;/index.php/&quot;,
+    assets: &quot;../statics/assets/&quot;,
+    css: &quot;../statics/src/css/&quot;
+}
+
+R.interfaces = {
+    ...
+}
+
+R.Class = Class;
+R.until = until;
+
+window.R = R; 
+
+1. require Class.js 让js变成一个oo面向对象的语言
+2. 加载一个工具类，整个网站都需要使用的方法
+3. 配置接口前缀 
+4. 配置静态资源前缀
+5. 配置css前缀
+6. 配置全局ajax接口
+7. 把R对象暴露在window上</code></pre>
+<blockquote>
+<p>创建一个模块example.js</p>
+</blockquote>
+<pre><code>define(function(require, exports, module){
+
+    var calendar = require(&#39;../widget/calendar&#39;);
+
+    var Example = R.Class.create(R.until, {
+
+        initialize: function() {
+
+
+
+        },
+        events: function() {
+
+
+
+        }
+
+    });
+
+    module.exports = Example;
+
+});
+
+让所有create出的job 继承自工具类
+以便添加公用方法。</code></pre>
+<blockquote>
+<p>使用方式很简单，主要是对基础库和组件库的以及业务逻辑库的熟悉。而组件库，和业务逻辑库我们希望尽量使用自己的代码，因为这样可控性和扩展性都会比较强。</p>
+</blockquote>
+<h2 id="创建一个组件">创建一个组件</h2>
+
+<pre><code>
+和main.js使用方式一样，目前从工具类继承，后期会写一个专门的组件类
+，然后从组件类继承。</code></pre>
+<h2 id="扩展一个模块">扩展一个模块</h2>
+
+<pre><code>
+Class.js提供了extend方法
+
+自然扩展我们调用extend就行。
+
+这就需要我们在写模块的时候尽量不要把方法的执行放在initalize里面
+
+不然继承的模块也会执行。
+
+参数尽量通过json传进去，最好不要写死。
+
+
+var Example2 = R.Class.extend(Example1, {
+    initalize: function() {
+
+    }
+});</code></pre>
+
+      </div>
+    </div>
+
+    <!-- footer -->
+    <div class="footer" footer>
+      <!-- footer -->
+<div class="footer-inner ba-font-14 ba-tr ba-mt-20">
+	<a href="http://www.rockstars.com.cn" target="_blank">罗格斯达</a>&nbsp;&nbsp;
+	<a href="http://seajs.org" target="_blank">seajs</a>,
+	<a href="http://backbonejs.org" target="_blank">backbone</a>,
+	<a href="http://aralejs.org/class" target="_blank">class</a>,
+	<a href="https://code.csdn.net/Tencent/tmodjs" target="_blank">tmod</a>,
+	<a href="http://lab.lepture.com/nico/zh" target="_blank">nico</a>,
+	<a href="http://nodejs.org/" target="_blank">nodejs</a>,
+	<a href="http://www.expressjs.com.cn" target="_blank">express</a>,
+	<a href="http://koa.bootcss.com" target="_blank">koa</a>,
+	<a href="http://www.gruntjs.org" target="_blank">grunt</a>
+</div>
+    </div>
+  </div>
+
+<script src="../seajs/sea.js"></script>
+<script src="../seajs/config.js"></script>
+<script>
+  seajs.use('driver/R');
+</script>   
+</body>
+</html>

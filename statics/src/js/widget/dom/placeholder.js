@@ -5,86 +5,115 @@
  */
 
 /*
-	placeholder(aEle,{color:"#ccc"});
+	placeholder(oInput,{color:"#ccc"});
 
 	如果浏览器支持placeholder则用加上placeholder属性;
 */
 
 define(function(require, exports, module) {
 
-	function placeholder(aInput, options) {	
+	function Placeholder(oInput, options) {	
 
-		if ( "placeholder" in aInput.get(0) ) {
+		this.oInput = oInput;
+		this.options = options || {};
+		if(!this.oInput.length) return;
+		this.start();
+	}
 
-			var name;
+	Placeholder.prototype = {
 
-			aInput.each(function(i){
+		start: function() {
 
-				name = aInput.eq(i).attr('text');
+			var _this = this;
 
-				aInput.eq(i).attr('placeholder', name);
+			var hasProperty = this.hasProperty();
+
+			var name = this.oInput.attr('text');
+
+			/*if(hasProperty) {
+				
+				this.oInput.attr('placeholder', name);
+
+			} else {*/
+				
+				var nowParent = this.oInput.parent();
+				this.oHolder = $('<span style="color:#a9a9a9">'+ name +'</span>');
+				nowParent.append(this.oHolder);
+
+				if(this.oInput[0].offsetParent != nowParent[0]) {
+
+					//父级没有定位
+					nowParent.css('position', 'relative');
+
+				}
+				
+				var pl = parseInt( this.oInput.css('paddingLeft') );
+				var l = this.oInput.position().left + pl;
+				var t = this.oInput.position().top + (this.oInput.outerHeight(true) - this.oHolder.outerHeight(true))/2;
+				var sValue = this.oInput.val();
+
+				this.oHolder.css({
+					position: 'absolute',
+					left: l,
+					top: t,
+					visibility: 'hidden'
+				});
+
+				if(!sValue) {
+					this.show();
+				}
+
+				this.events();
+
+			/*}*/
+
+		},
+		events: function() {
+
+			var _this = this;
+
+			this.oInput.focus(function(){
+
+				_this.hide();
 
 			});
 
-		} else {
+			this.oInput.blur(function(){
 
-			var name,
-			aText,
-			color;
+				if(!_this.oInput.val()) {
+					_this.show();
+				}
+			});
 
-			if(!options) options = {};
+			this.oHolder.click(function(){
 
-			color = options.color || '#bbb'	
-
-			aInput.each(function(i){
-
-				name = aInput.eq(i).attr('text');
-
-				var oSpan = $('<span></span>');
-				var left = aInput.eq(i).offset().left + 'px';
-				var top = aInput.eq(i).offset().top  + 'px';
-				var oInput = aInput.eq(i);
-
-				if(aInput.eq(i).val()) oSpan.hide();
-
-				oSpan.html(name);
-				oSpan.css('color',color);
-
-				oSpan.css({
-					position:'absolute',
-					top: top,
-					left: left
-				});
-
-				$('body').append( oSpan );
-
-				oInput.focus(function(){
-
-					oSpan.css({visibility: 'hidden'})
-
-				});
-
-				oInput.blur(function(){
-
-					if(!oInput.val()) {
-						oSpan.css({visibility: 'visible'});	
-					}
-				});
-
-				oSpan.click(function(){
-
-					oInput.trigger('focus');
-
-				});
+				_this.oInput.trigger('focus');
 
 			});
+
+		},
+		hasProperty: function() {
+
+			if ( ("placeholder" in this.oInput.get(0)) ) { 
+				return true;
+			} else {
+				return false;
+			}
+
+		},
+		hide: function() {
+
+			this.oHolder && this.oHolder.css({visibility: 'hidden'});	
+
+		},
+		show: function() {
+
+			this.oHolder && this.oHolder.css({visibility: 'visible'});
 
 		}
 
-		
-
 	}
 
-	return placeholder;
+	module.exports = Placeholder;
 
 });

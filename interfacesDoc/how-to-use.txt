@@ -1,0 +1,8 @@
+1. 安装nodejs  成功后 node-v 显示nodejs版本
+2. 打开cmd     
+3. 执行npm -g install grunt
+4. 执行npm -g install grunt-cli
+5. 打开nodeTool目录执行 执行 builder.bat
+
+文档服务器端口 默认为 9999 如有程序占用请关闭;
+如需自动刷新功能,请把livereload 添加到chrome扩展程序

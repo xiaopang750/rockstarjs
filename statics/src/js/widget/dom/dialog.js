@@ -25,12 +25,12 @@ define(function(require, exports, module){
 		this.index = opts.index || 4000;
 		this.box = null;
 
-		this.boxStr = opts.boxStr || '<div class=\"confirmbox '+ this.type +'\" sc="confirm-box" sc="box">'+
-			'<h2 class="tc font-18 red mt-20" sc="box-title">'+ this.title +'</h2>'+
-			'<p class="font-20 tc mt-30 mb-40" sc="box-content">'+ this.content +'</p>'+
-			'<div class="tc">'+
-				'<a href="javascript:;" class="btn btn-primary mr-15" sc="confirm">确定</a>'+
-				'<a href="javascript:;" class="btn btn-danger" sc="close">取消</a>'+
+		this.boxStr = opts.boxStr || '<div class=\"confirmbox out-box '+ this.type +'\" sc="confirm-box" sc="box">'+
+			'<h2 class="ba-tc ba-font-18 ba-red ba-mt-20" sc="box-title">'+ this.title +'</h2>'+
+			'<p class="ba-font-20 ba-tc ba-mt-10 ba-mb-10" sc="box-content">'+ this.content +'</p>'+
+			'<div class="ba-tc">'+
+				'<a href="javascript:;" class="btn btn-danger ba-mr-10" sc="confirm">确定</a>'+
+				'<a href="javascript:;" class="btn btn-primary" sc="close">取消</a>'+
 			'</div>'+
 		'</div>';
 
@@ -159,13 +159,17 @@ define(function(require, exports, module){
 
 			}
 
+			oBox.wrap('<div dialog-wrap></div>');
+
 			w = oBox.outerWidth(true);
 
 			h = oBox.outerHeight(true);
 
 			this.oBox = oBox;
 
-			return {box:oBox, w:w, h:h};
+			this.oWrap = this.oBox.parents('[dialog-wrap]');
+
+			return {box:this.oWrap, w:w, h:h};
 		},
 		events: function() {
 
@@ -214,7 +218,7 @@ define(function(require, exports, module){
 		},
 		show: function() {
 
-			this.box.show();
+			this.oWrap.show();
 
 			this.oLay.show();
 
@@ -223,7 +227,7 @@ define(function(require, exports, module){
 		},
 		close: function(isCb) {
 
-			this.box.hide();
+			this.oWrap.hide();
 
 			this.oLay.hide();
 
@@ -249,6 +253,13 @@ define(function(require, exports, module){
 		boxContent: function(){
 
 			return this.oBox.find('[sc = box-content]');
+
+		},
+		refreshData: function(data) {
+
+			//刷新弹框数据，在使用模板的情况下
+			
+			this.oWrap.html( this.boxTpl( data ) );
 
 		}
 

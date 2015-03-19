@@ -1,0 +1,85 @@
+/**
+ *description:table
+ *author:fanwei
+ *date:2014/10/31
+ */
+/**
+ *description:网站全局less变量-配置
+ *author:fanwei
+ *date:2014/10/30
+ */
+/* use-most-var */
+/* color */
+/* a-link */
+/* font-family */
+/* h-size */
+/* btn */
+/* layer */
+@font-face {
+  font-family: 'Marmelad';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Marmelad'), local('Marmelad-Regular'), url('../../../assets/fonts/marmelad.woff') format('woff');
+}
+/* site-config */
+/**
+ *description:网站全局less函数-pc
+ *author:fanwei
+ *date:2014/10/30
+ */
+/* line-height */
+/* font-size */
+/* margin */
+/* padding */
+/* opacity */
+/* trangle */
+.table {
+  max-width: 100%;
+  border-collapse: collapse;
+  color: #333333;
+  font-size: 12px;
+  text-align: center;
+}
+.table td {
+  padding: 8px;
+  border-top: 1px solid #dddddd;
+}
+.table tr {
+  background: #ffffff;
+}
+.table thead {
+  font-size: 14px;
+  font-weight: bold;
+  color: #333333;
+}
+.table.striped tbody tr:nth-child(odd) {
+  background: #f9f9f9;
+}
+.table.bordered,
+.table.bordered td {
+  border: 1px solid #dddddd;
+}
+.table.condensed td {
+  padding: 5px;
+}
+.table.hover tbody tr:hover {
+  background: #f9f9f9;
+}
+.table tr.active {
+  background: #f9f9f9;
+}
+.table tr.primary {
+  background: #428bca;
+}
+.table tr.success {
+  background: #5cb85c;
+}
+.table tr.info {
+  background: #5bc0de;
+}
+.table tr.warning {
+  background: #f0ad4e;
+}
+.table tr.danger {
+  background: #d9534f;
+}

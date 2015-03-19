@@ -1,0 +1,37 @@
+//ueditor 样式配置
+
+
+//ue-main图片的存放位置 路径相对于uediotr.less而言
+@ueImg: "../../../../../assets/widget/ueditor/images/main/";
+
+
+//主题样式
+@borderColor: #d4d4d4;      //边框颜色
+@wordCountColor: #aaa;      //workcount颜色
+@pathColor: #000;			//元素路径颜色
+@radius: 4px;			    //圆角大小
+
+//toolbar底部阴影
+.shadow () {
+	-webkit-box-shadow:0 1px 4px rgba(204, 204, 204, 0.6);
+    -moz-box-shadow:0 1px 4px rgba(204, 204, 204, 0.6);
+    box-shadow:0 1px 4px rgba(204, 204, 204, 0.6);
+}
+
+//toolbar背景色
+.uebg () {
+	background-color: #fafafa;
+    background-image: -moz-linear-gradient(top, #ffffff, #f2f2f2);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#f2f2f2));
+    background-image: -webkit-linear-gradient(top, #ffffff, #f2f2f2);
+    background-image: -o-linear-gradient(top, #ffffff, #f2f2f2);
+    background-image: linear-gradient(to bottom, #ffffff, #f2f2f2);
+    background-repeat: repeat-x;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#fff2f2f2', GradientType=0);
+}
+
+
+//image弹框
+
+//图片base路径
+@imgPath: "../../../../../../assets/widget/ueditor/images/dialog/image/";

@@ -1,0 +1,51 @@
+<!-- 订货列表 -->
+{{if list}}
+	{{each list}}
+		<tr list bid={{$value.pkProductBook}}>
+			<td>{{$value.bookno}}</td>
+			<td>{{$value.booktime}}</td>
+			<td>{{$value.operatorname}}</td>
+			<td>{{$value.bookmoney}}</td>
+			<td data-status>
+				{{if $value.vbillstatus == 1}}
+				制单中
+				{{else if $value.vbillstatus == 2}}
+				已提交
+				{{else if $value.vbillstatus == 3}}
+				审批中
+				{{else if $value.vbillstatus == 4}}
+				审批通过
+				{{else if $value.vbillstatus == 5}}
+				审批不通过
+				{{else if $value.vbillstatus == 6}}
+				已驳回
+				{{else if $value.vbillstatus == 7}}
+				待收货
+				{{else if $value.vbillstatus == 8}}
+				已完成
+				{{/if}}
+			</td>
+			<td>
+				{{if $value.vbillstatus == 1}}
+				<a class="btn btn-normal" href="{{getRoute ['goods/bookAddEdit']}}?bid={{$value.pkProductBook}}&status={{$value.vbillstatus}}&note={{$value.note}}" operation="edit">编辑</a>
+				<a class="btn btn-normal" href="javascript:;" bid={{$value.pkProductBook}} operation="submit">提交</a>
+				{{/if}}
+				{{if $value.vbillstatus == 2 || $value.vbillstatus == 8}}
+				<a class="btn btn-normal" href="{{getRoute ['goods/bookAddEdit']}}?bid={{$value.pkProductBook}}&status={{$value.vbillstatus}}&note={{$value.note}}" operation="detail">详情</a>
+				{{/if}}
+				{{if $value.vbillstatus == 4}}
+				<a class="btn btn-normal" href="{{getRoute ['goods/bookAddEdit']}}?bid={{$value.pkProductBook}}&status={{$value.vbillstatus}}&note={{$value.note}}" operation="detail">详情</a>
+				<a class="btn btn-normal" href="javascript:;" bid="{{$value.pkProductBook}}" operation="confirm">确认收货</a>
+				{{/if}}
+				{{if $value.vbillstatus == 6}}
+				<a class="btn btn-normal" href="{{getRoute ['goods/bookAddEdit']}}?bid={{$value.pkProductBook}}&status={{$value.vbillstatus}}&note={{$value.note}}" operation="edit">编辑</a>
+				{{/if}}
+				<a class="btn btn-normal" href="{{getRoute ['goods/bookAddEdit']}}?bid={{$value.pkProductBook}}&status={{$value.vbillstatus}}&note={{$value.note}}&sc=rebook" operation="rebook">重新订货</a>
+			</td>
+		</tr>
+	{{/each}}
+{{else}}
+	<tr>
+		<td colspan="6">暂无数据</td>
+	</tr>
+{{/if}}

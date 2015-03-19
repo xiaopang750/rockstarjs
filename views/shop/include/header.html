@@ -1,0 +1,39 @@
+<!-- header -->
+<div class="header" header>
+	<div class="ba-clearfix">
+		<div class="login ba-fl">
+			<a href="{{views['user/index'].url}}">
+				<img src="{{imgPath}}lib/logo/chorhairLogo.png" height="40" class="ba-block ba-mr-5 ba-mt-4 ba-fl">
+				<!-- <span class="ba-fl ba-font-16 ba-mt-12 ba-gray">美发管理平台</span> -->
+			</a>
+		</div>
+		{{if shopname}}
+            <div class="ba-fr">
+                <ul class="ba-clearfix">
+                    <li class="block-item info" block-item>
+                        <span class="item-title">{{username}}</span>
+                    </li>
+                    <li class="block-item" block-item>
+                        <span class="item-title">{{shopname}}</span>
+                        <div class="drop-menu" drop-menu>
+                            <ul>
+                                <li>
+                                    <a href="javascript:;" class="list-item" modifyPass>
+                                        <span class="fa fa-ellipsis-h"></span>
+                                        <span>密码修改</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="javascript:;" class="list-item" loginOut>
+                                        <span class="fa fa-sign-out"></span>
+                                        <span>退出</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+		{{/if}}
+	</div>
+</div>

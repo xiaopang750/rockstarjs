@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>{{title}}</title>
+{{include '../include/meta'}}
+<link rel="stylesheet" href="{{cssPath}}core/rockstar.css">
+<link rel="stylesheet" href="{{cssPath}}main/shop/performance/index.css">
+</head>
+
+<body>
+	{{include '../include/header'}}
+	<div class="main-content">
+		{{include '../include/nav'}}
+		{{include '../include/msg'}}
+		<div class="center-bar">
+			<div class="bar-title ba-clearfix">
+				<span class="ba-intro ba-fl">{{title}}</span>
+			</div>
+			<div class="main-content" search-wrap>
+				<!-- tab标签 -->
+				{{include '../include/performanceTab'}}
+				<div class="ba-clearfix ba-mb-0 search-area">
+					<label class="ba-fl ba-mt-5 control-label">开始时间：</label>
+					<input type="text" class="startTime form-control ba-fl ba-mr-10" readonly="readonly" calendar
+                           search="begintime">
+					<label class="ba-fl ba-mt-5 control-label">结束时间：</label>
+					<input type="text" class="endTime form-control ba-fl ba-mr-10" calendar search="endtime" readonly="readonly">
+					<a href="javascript:;" class="btn btn-primary" search-btn>查询</a>
+				</div>
+				<div class="ba-mt-20 ba-mb-15">
+					<a href="javascript:;" class="btn btn-primary" conditionBtn="1" search="type">日结</a>
+					<a href="javascript:;" class="btn btn-primary" conditionBtn="2" search="type">周结</a>
+					<a href="javascript:;" class="btn btn-primary" conditionBtn="3" search="type">月结</a>
+					<a href="javascript:;" class="btn btn-primary ba-mr-20" conditionBtn="4" search="type">年结</a>
+				</div>
+				<div>
+					<!-- tpl/performance/allList.html -->
+					<table class="table bordered striped" width="100%">
+						<thead>
+							<tr>
+								<td width="15%">
+									<span class="sort" sort>
+										日期
+										<!-- <span class="fa fa-angle-down" point="time"></span> -->
+									</span>
+								</td>
+								<td width="15%">
+									<span class="sort" sort>
+										办卡收入(元)
+										<!-- <span class="fa fa-angle-down" point="time"></span> -->
+									</span>
+								</td>
+								<td width="15%">
+									<span class="sort" sort>
+										服务收入(元)
+										<!-- <span class="fa fa-angle-down" point="time"></span> -->
+									</span>
+								</td>
+								<td width="15%">
+									<span class="sort" sort>
+										理发师支出(元)
+										<!-- <span class="fa fa-angle-down" point="time"></span> -->
+									</span>
+								</td>
+								<td width="15%">
+									<span class="sort" sort>
+										收入总额(元)
+										<!-- <span class="fa fa-angle-down" point="time"></span> -->
+									</span>
+								</td>
+								<td width="15%">
+									<span class="sort" sort>
+										支出总额(元)
+										<!-- <span class="fa fa-angle-down" point="time"></span> -->
+									</span>
+								</td>
+								<td width="10%">
+									<span class="sort" sort>
+										余额(元)
+										<!-- <span class="fa fa-angle-down" point="time"></span> -->
+									</span>
+								</td>
+							</tr>
+						</thead>
+						<tbody data-ele="data-wrap">
+							
+						</tbody>
+					</table>
+					<!-- fenye -->
+					{{include '../include/fenye'}}
+				</div>
+			</div>	
+		</div>	
+	</div>
+{{include '../include/siteConfig'}}
+<script src="{{seaPath}}seajs/sea.js"></script>	
+<script src="{{seaPath}}seajs/config.js"></script>
+<script>
+	seajs.use('main/shop/performance/index');
+</script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!-- 会员查询列表 -->
+{{if list}}
+	{{each list}}
+		<tr>
+			<td>
+				
+			</td>
+			<td>
+				{{$value.customername}}
+			</td>
+			<td>
+				{{$value.cellphone}}
+			</td>
+			<td class="ba-tl">
+				<a class="btn btn-normal ba-mr-5" href="{{getRoute ['user/add']}}?uid={{$value.pkCustomer}}" class="ba-mr-10">详情</a>
+				{{if $value.pkUser == 0}}
+				<a class="btn btn-normal ba-mr-5" href="javascript:;" regist-app aid="{{$value.pkCustomer}}">注册App</a>
+				{{else}}
+				<span>已注册App</span>
+				{{/if}}
+			</td>
+		</tr>
+	{{/each}}
+{{else}}
+	<tr>
+		<td colspan="4">暂无数据</td>
+	</tr>
+{{/if}}

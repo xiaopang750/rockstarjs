@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>{{title}}</title>
+{{include '../include/meta'}}
+<link rel="stylesheet" href="{{cssPath}}core/rockstar.css">
+<link rel="stylesheet" href="{{cssPath}}main/shop/goods/platBookAddEdit.css">
+</head>
+
+<body>
+	{{include '../include/header'}}
+	<div class="main-content">
+		{{include '../include/nav'}}
+		{{include '../include/msg'}}
+		<div class="center-bar">
+			<div class="bar-title ba-clearfix">
+				<span class="ba-intro">{{title}}</span>
+			</div>
+			<div class="main-content">
+				<table class="table bordered striped" width="100%" list-wrap>
+					<thead>
+						<tr>
+							<td width="20%" goods-name>商品名称</td>
+							<td width="10%">订货数量</td>
+							<td width="10%">发货数量</td>
+							<td width="10%">实收数量</td>
+							<td width="10%">单位</td>
+							<td width="10%">容量</td>
+							<td width="20%">标准价格</td>
+							<td width="10%">操作</td>
+						</tr>
+					</thead>
+					<tbody data-ele="data-wrap"></tbody>
+				</table>
+				<p class="ba-mt-20 ba-font-14">总金额：<strong class="ba-red" amount-money>0</strong> 元</p>
+				<p class="ba-mt-10 ba-font-14">订货负责人：<span operatorname>{{username}}</span></p>
+				<p class="ba-mt-10 ba-font-14 ba-clearfix">
+					<span class="ba-fl">备注：</span>
+					<span class="ba-fl" book-note></span>
+				</p>
+				<!-- fenye -->
+				{{include '../include/fenye'}}
+				<div class="ba-mt-30 ba-tc"> 
+					<a href="javascript:;" class="btn btn-primary" operation="pass">通过</a> 
+					<a href="javascript:;" class="btn btn-danger" operation="reject">驳回</a> 
+				</div>
+			</div>	
+		</div>	
+	</div>
+{{include '../include/siteConfig'}}
+<script src="{{seaPath}}seajs/sea.js"></script>	
+<script src="{{seaPath}}seajs/config.js"></script>
+<script>
+	seajs.use('main/shop/goods/platBookAddEdit');
+</script>
+</body>
+</html>

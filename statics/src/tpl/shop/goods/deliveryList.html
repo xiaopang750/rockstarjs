@@ -1,0 +1,30 @@
+<!-- 历史出库单列表 -->
+{{if list}}
+	{{each list}}
+		<tr list pkProductDelivery={{$value.pkProductDelivery}}>
+			<td>{{$value.deliveryno}}</td>
+			<td>{{$value.deliverytime}}</td>
+			<td>{{$value.operatorname}}</td>
+			<td>{{$value.deliverymoney}}</td>
+			<td edit="vbillstatus">
+				{{if $value.vbillstatus == 1}}
+				出库中
+				{{else if $value.vbillstatus == 8}}
+				已完成
+				{{/if}}
+			</td>
+			<td>
+				{{if $value.vbillstatus == 1}}
+				<a class="btn btn-normal" href="{{getRoute ['goods/deliveryAddEdit']}}?bid={{$value.pkProductDelivery}}&status={{$value.vbillstatus}}&note={{$value.note}}" delivery-edit>编辑</a>
+				<a class="btn btn-normal" href="javascript:;" delivery-confirm>确认出库</a>
+				{{else if $value.vbillstatus == 8}}
+				<a class="btn btn-normal" href="{{getRoute ['goods/deliveryAddEdit']}}?bid={{$value.pkProductDelivery}}&status={{$value.vbillstatus}}&note={{$value.note}}" delivery-detail>详情</a>
+				{{/if}}
+			</td>
+		</tr>
+	{{/each}}
+{{else}}
+	<tr>
+		<td colspan="6">暂无数据</td>
+	</tr>
+{{/if}}

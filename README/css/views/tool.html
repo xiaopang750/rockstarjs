@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>工具</title>
+<link rel="stylesheet" href="../src/css/core/rockstar.css">
+</head>
+<body>
+  <div class="wrap">
+
+    <!-- header -->
+    <div class="header" header>
+      <!-- header -->
+<div class="inner ba-clearfix">
+	<div class="title-wrap ba-fl ba-mr-20">
+		<a class="title" href="./">RockstarCss</a>
+		<div class="ba-gray">
+			<p>
+				写更少的样式 - for pc
+			</p>
+		</div>
+	</div>
+	<img src="../assets/lib/logo/xiaopang.jpg" class="title-img ba-fl">
+</div>
+    </div>
+
+    <!-- nav -->
+    <div class="nav" nav>
+      <!-- nav -->
+<div class="inner">
+	<ul class="ba-clearfix ba-pt-20">
+		
+			<li>
+				<a href="./index.html">
+					
+						<span class="fa fa-home ba-font-18"></span>
+					
+					首页
+				</a>
+			</li>
+		
+			<li>
+				<a href="./less.html">
+					
+					less
+				</a>
+			</li>
+		
+			<li>
+				<a href="./base.html">
+					
+					通用样式
+				</a>
+			</li>
+		
+			<li>
+				<a href="./rule.html">
+					
+					规范和最佳实践
+				</a>
+			</li>
+		
+			<li>
+				<a href="./icon.html">
+					
+					font-icon
+				</a>
+			</li>
+		
+			<li>
+				<a href="./use.html">
+					
+					使用
+				</a>
+			</li>
+		
+			<li>
+				<a href="./widget.html">
+					
+					组件
+				</a>
+			</li>
+		
+			<li>
+				<a href="./tool.html">
+					
+					工具
+				</a>
+			</li>
+		
+	</ul>
+</div>
+    </div>
+    
+    <!-- content -->
+    <div class="content ba-clearfix">
+      <div class="nav-left" nav-left-wrap>
+        <ul nav-left>
+          <!-- left-nav -->
+
+<li>
+	<a href="#grunt">
+		grunt
+	</a>
+</li>
+
+<li>
+	<a href="#holderJs">
+		holderJs
+	</a>
+</li>
+
+<li>
+	<a href="#雪碧图合并工具">
+		雪碧图合并工具
+	</a>
+</li>
+
+<li>
+	<a href="#markdown">
+		markdown
+	</a>
+</li>
+
+        </ul>
+      </div>
+      <div class="content-right" content-right>
+          <h2 id="grunt">grunt</h2>
+
+<blockquote>
+<p>grunt魔兽里面的兽族大G，在程序里grunt是基于nodejs前端构建工具，类似java的ant，通过Gruntfile.js,json格式去配置构建流程，而每一步的详细构建过程，有模块来完成。grunt有很多官方模块，和各个开发者开发的模块，虽然模块良莠不齐，不过我们可以取选择一些常用的。一般带contrib的为官方维护的模块，而下载量比较高的一般都是比较好的模块。</p>
+<p>这里我们选择几个模块去构建less</p>
+</blockquote>
+<ol>
+<li>grunt-contrib-less</li>
+<li>grunt-contrib-watch</li>
+<li>grunt-livereload</li>
+<li>grunt-contrib-connect</li>
+<li>grunt-markdown</li>
+</ol>
+<blockquote>
+<p>构建思路</p>
+</blockquote>
+<ol>
+<li><p>搭建静态文件服务器</p>
+</li>
+<li><p>编译lib中的less到对应lib文件夹的css文件</p>
+</li>
+<li><p>通过import合并lib到rockstar.less</p>
+</li>
+<li><p>编译rockstar.less-&gt;css</p>
+</li>
+<li><p>监测less, md文件的变化</p>
+</li>
+<li><p>刷新页面</p>
+</li>
+</ol>
+<pre><code>我们拆分来看一下配置
+
+less:
+var baseUrlLess = &#39;../static/src/less&#39;;
+var baseUrlCss = &#39;../static/src/css&#39;
+
+less: {
+    &#39;正式环境CSS文件&#39;: {
+        files: [{
+            expand: true,
+            cwd: baseUrlLess + &#39;/&#39;,
+            src: &#39;**/*.less&#39;,
+            dest: baseUrlCss + &#39;/&#39;,
+            ext: .css
+        }]
+    }
+}
+
+
+watch
+
+watch: {
+    options: {
+        spawn: false
+    },
+    scripts: {
+        files: [ baseUrlLess + &#39;/**/*.less&#39;, &#39;../static/doc/**/*.md&#39; ],
+        tasks: [&#39;less&#39;, &#39;markdown&#39;]
+    },
+    livereload: {
+        options:{
+            livereload: true
+        },
+        files: [
+            &#39;../static/**/*.*&#39;
+        ]
+    }
+}
+
+监测 less 和 md文件的变化
+
+
+markdown
+
+编译md文件 to html
+
+markdown: {
+    all: {
+      files: [
+        {
+          expand: true,
+          cwd: &#39;../static/doc&#39;,
+          src: &#39;**/*.md&#39;,
+          dest: &#39;../static/views&#39;,
+          ext: &#39;.html&#39;
+        }
+      ]
+    }
+}
+
+connect搭建静态文件服务器
+
+connect: {
+  options: {
+    port: 9000,
+    hostname: &#39;127.0.0.1&#39;,
+    livereload: 35729  
+  },
+  server: {
+    options: {
+      open: true, 
+      base: [
+        &#39;../static&#39;  
+      ]
+    }
+  }
+}</code></pre>
+<h2 id="holderJs">holderJs</h2>
+
+<blockquote>
+<p>holderjs,当网站大部分的数据是由后台输出的时候，我们写样式的时候，或者测试js的时候会找一些静态图片去站位，这样既浪费时间，效率又滴，无用的图片也会导致目录的不清晰。holderjs利用canvas绘图的原理，生成一张站位图。</p>
+</blockquote>
+<pre><code>&lt;img data-src=&quot;holder.js/100x100/gray&quot;&gt;
+
+
+第一个/ 尺寸
+第二个/ 颜色
+
+
+使用很简单...</code></pre>
+<h2 id="雪碧图合并工具">雪碧图合并工具</h2>
+
+<blockquote>
+<p>雪碧图合并，利用ps或者fire-work手动拼，效率自然很低。grunt有无界面的自动合并工具，不过要写大量配置，安装过多依赖，这里我们还是选择一个图形界面工具。</p>
+</blockquote>
+<pre><code>
+nodeTool文件夹中有个css-spirite文件夹
+
+详情请访问
+
+http://alloyteam.github.io/gopng/</code></pre>
+<h2 id="markdown">markdown</h2>
+
+<blockquote>
+<p>我们使用markdown作为文档工具，markdown的目的很简答，定义好样式模板，然后我们只需要专注于文字部分。</p>
+</blockquote>
+<pre><code>
+详情请看:
+
+http://wowubuntu.com/markdown/index.html</code></pre>
+
+      </div>
+    </div>
+
+    <!-- footer -->
+    <div class="footer" footer>
+      <!-- footer -->
+<div class="footer-inner ba-font-14 ba-tr ba-mt-20">
+	<a href="http://www.rockstars.com.cn" target="_blank">罗格斯达</a>&nbsp;&nbsp;
+	<a href="http://seajs.org" target="_blank">seajs</a>,
+	<a href="http://backbonejs.org" target="_blank">backbone</a>,
+	<a href="http://aralejs.org/class" target="_blank">class</a>,
+	<a href="https://code.csdn.net/Tencent/tmodjs" target="_blank">tmod</a>,
+	<a href="http://lab.lepture.com/nico/zh" target="_blank">nico</a>,
+	<a href="http://nodejs.org/" target="_blank">nodejs</a>,
+	<a href="http://www.expressjs.com.cn" target="_blank">express</a>,
+	<a href="http://koa.bootcss.com" target="_blank">koa</a>,
+	<a href="http://www.gruntjs.org" target="_blank">grunt</a>
+</div>
+    </div>
+  </div>
+
+<script src="../seajs/sea.js"></script>
+<script src="../seajs/config.js"></script>
+<script>
+  seajs.use('driver/R');
+</script>   
+</body>
+</html>

@@ -5,8 +5,8 @@
  */
 define(function(require, exports, module){
 
-	var loadCss = require('../../lib/http/loadCss');
-	loadCss(R.uri.css + "widget/calendar/calendar.css");
+	var loadCss = require('../../util/http/loadCss');
+	loadCss(R.uri.cssPath + "widget/form/calendar.css");
 
 	;(function( $, window, undefined ){
 
@@ -363,7 +363,7 @@ define(function(require, exports, module){
 	    constructor: lhgcalendar,
 		
 		_init: function( config )
-		{
+		{	
 		    var that = this, DOM,
 			    evt = that._getEvent(),
 				inpVal, date;
@@ -779,7 +779,7 @@ define(function(require, exports, module){
 		},
 		
 		show: function()
-		{
+		{	
 		    this.DOM.wrap[0].style.display = 'block';
 			return this;
 		},
@@ -834,7 +834,7 @@ define(function(require, exports, module){
 		real: null,
 		disDate: null,
 		enDate: false,
-		zIndex: 1978,
+		zIndex: 5000,
 		noToday: false,
 		linkageObj: null
 	};

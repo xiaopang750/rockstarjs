@@ -1,0 +1,39 @@
+<!-- 平台订货列表 -->
+{{if list}}
+	{{each list}}
+		<tr list pkProductBook={{$value.pkProductBook}}>
+			<td>{{$value.bookno}}</td>
+			<td>{{$value.booktime}}</td>
+			<td>{{$value.operatorname}}</td>
+			<td>{{$value.bookmoney}}</td>
+			<td>
+				{{if $value.vbillstatus == 1}}
+				制单中
+				{{else if $value.vbillstatus == 2}}
+				已提交
+				{{else if $value.vbillstatus == 3}}
+				审批中
+				{{else if $value.vbillstatus == 4}}
+				审批通过
+				{{else if $value.vbillstatus == 5}}
+				审批不通过
+				{{else if $value.vbillstatus == 6}}
+				已驳回
+				{{else if $value.vbillstatus == 7}}
+				待收货
+				{{else if $value.vbillstatus == 8}}
+				已完成
+				{{/if}}
+			</td>
+			<td>
+				<a class="btn btn-normal" href="{{getRoute ['goods/platBookAddEdit']}}?bid={{$value.pkProductBook}}&note={{$value.note}}" operation="detail">详情</a>
+				<a class="btn btn-normal" href="javascript:;" operation="pass">通过</a>
+				<a class="btn btn-normal" href="javascript:;" operation="reject">驳回</a>
+			</td>
+		</tr>
+	{{/each}}
+{{else}}
+	<tr>
+		<td colspan="6">暂无数据</td>
+	</tr>
+{{/if}}

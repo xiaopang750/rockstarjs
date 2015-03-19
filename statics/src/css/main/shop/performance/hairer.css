@@ -1,0 +1,60 @@
+/**
+ *description:理发师业绩
+ *author:fanwei
+ *date:2015/1/25
+ */
+/**
+ *description:网站全局less变量-配置
+ *author:fanwei
+ *date:2014/10/30
+ */
+/* use-most-var */
+/* color */
+/* a-link */
+/* font-family */
+/* h-size */
+/* btn */
+/* layer */
+/* site-config */
+/**
+ *description:网站全局less函数-pc
+ *author:fanwei
+ *date:2014/10/30
+ */
+/* line-height */
+/* font-size */
+/* margin */
+/* padding */
+/* opacity */
+/* trangle */
+/**
+ *description:css3-pc
+ *author:fanwei
+ *date:2014/10/31
+ */
+.startTime,
+.endTime {
+  width: 200px;
+}
+.list-wrap {
+  width: 736px;
+  margin: 20px 0 0 0;
+  overflow: hidden;
+}
+.list-wrap ul {
+  width: 756px;
+}
+.list-wrap ul li {
+  width: 204px;
+  height: 180px;
+  overflow-y: auto;
+  padding: 8px;
+  border: 1px solid #dddddd;
+  float: left;
+  margin: 0 20px 20px 0;
+  background: #fff;
+  border-radius: 5px;
+}
+.list-wrap ul li table td {
+  padding-bottom: 10px;
+}

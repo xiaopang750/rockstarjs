@@ -1,0 +1,83 @@
+/**
+ *description:登录
+ *author:fanwei
+ *date:2015/1/25
+ */
+/**
+ *description:网站全局less变量-配置
+ *author:fanwei
+ *date:2014/10/30
+ */
+/* use-most-var */
+/* color */
+/* a-link */
+/* font-family */
+/* h-size */
+/* btn */
+/* layer */
+/* site-config */
+/**
+ *description:网站全局less函数-pc
+ *author:fanwei
+ *date:2014/10/30
+ */
+/* line-height */
+/* font-size */
+/* margin */
+/* padding */
+/* opacity */
+/* trangle */
+/**
+ *description:css3-pc
+ *author:fanwei
+ *date:2014/10/31
+ */
+body {
+  background: #57b382;
+}
+html,
+body {
+  min-width: inherit;
+}
+.logo {
+  width: 271px;
+  height: 163px;
+  position: fixed;
+  margin-left: -135px;
+  left: 50%;
+  bottom: 360px;
+}
+.box-wrap {
+  width: 268px;
+  height: 190px;
+  position: fixed;
+  left: 50%;
+  bottom: 80px;
+  margin: 0 0 0 -134px;
+}
+.box-wrap .form-control {
+  border: none;
+  border-radius: 20px;
+  padding-left: 20px;
+  width: 266px;
+}
+.box-wrap .login-btn {
+  width: 184px;
+  border-radius: 20px;
+}
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  color: #fff;
+  width: 100%;
+  height: 60px;
+  line-height: 60px;
+  background: #39875b;
+}
+.footer a {
+  color: #fff;
+}
+.footer a:hover {
+  color: #fff;
+}

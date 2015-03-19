@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>{{title}}</title>
+{{include '../include/meta'}}
+<link rel="stylesheet" href="{{cssPath}}core/rockstar.css">
+<link rel="stylesheet" href="{{cssPath}}main/shop/content/addEdit.css">
+<link rel="stylesheet" href="{{cssPath}}widget/upload/webuploader.css">
+</head>
+
+<body>
+	{{include '../include/header'}}
+	<div class="main-content">
+		{{include '../include/nav'}}
+		{{include '../include/msg'}}
+		<div class="center-bar">
+			<div class="bar-title ba-clearfix">
+				<span class="ba-intro">{{title}}</span>
+				<a href="{{views['content/index'].url}}" class="btn btn-primary back-btn">返回</a>
+			</div>
+			<div class="main-content">
+				<table class="table no-border no-bg" script-bound="form-check">
+					<!-- title -->
+					<tr>
+						<td width="100">主题：</td>
+						<td>
+							{{if nowAction != 'detail'}}
+							<div script-role="check-wrap">
+								<input type="text" class="form-control" form_check="sys" ischeck="true" name="contenttopic" tip="此项为必填" wrong="主题为20个字符以内" re="(.{1,20})" value="{{pageInfo.contenttopic}}">
+							</div>
+							{{else}}
+								{{pageInfo.contenttopic}}
+							{{/if}}
+						</td>
+					</tr>
+					<!-- banner -->
+					<tr>
+						<td>
+							<span>
+								轮播图：
+							</span>
+						</td>
+						<td>
+							<div class="ba-clearfix upload-area">
+								<div webuploader-list-wrap>
+									{{each pageInfo.photolist}}
+										<span class="webuploader-view-list  {{if pageInfo.firstpage == $value.photoshorturl}}desktop{{/if}}" webuploader-list url="{{$value.photourl}}" thumb="{{$value.photoshorturl}}" orgWidth="{{$value.width}}" orgHeight="{{$value.height}}" pk="{{$value.pkPhoto}}" {{if pageInfo.firstpage == $value.photoshorturl}}desktop="Y"{{/if}}>
+											{{if nowAction != 'detail'}}
+											<div class="webuploader-view-list-toolbar-wrap" webuploader-view-list-toolbar-wrap>
+												<div class="webuploader-view-list-toolbar-shadow"></div>
+												<div class="webuploader-view-list-toolbar">
+													<div class="tool-detail">
+														<span class="fa fa-desktop ba-mr-10" title="作为封面图" to-face></span>
+														<span class="fa fa-trash-o ba-font-16" upload-remove title="删除"></span>
+													</div>
+												</div>
+											</div>
+											{{/if}}
+											<img src="{{$value.photoshorturl}}" width="100%">
+										</span>
+									{{/each}}
+								</div>
+								{{if nowAction != 'detail'}}
+								<span class="ba-fl uploadBtn" uploadBtn>
+									<span class="fa fa-plus ba-font-50"></span>
+								</span>	
+								{{/if}}
+							</div>
+							<div class="ba-qing line-h-22">
+								{{if nowAction != 'detail'}}
+								(请上传单张图片大小在1M以内的gif,jpg,jpeg,png, 建议比例: 750* 460, 并且至少选择一张图片作为封面图作为app首页的图片, 绿色边框的为当前封面图。)
+								{{/if}}
+							</div>
+						</td>
+					</tr>
+					<!-- tag -->
+					<tr>
+						<td>标签：</td>
+						<td>
+							{{if nowAction != 'detail'}}
+							<div class="tag-wrap" tag-wrap>
+								<input type="text" class="tag-input" tag-input text="请输入标签,按空格或者回车确定">
+								<div class="tag-list-wrap" tag-list-wrap>
+									{{each pageInfo.taglist}}
+									<span class="tag-list" tag-list>
+										<span class="tag-name" tag-name="{{$value.tagname}}" tag-id="{{$value.pkTag}}">{{$value.tagname}}</span>
+										<span class="tag-close" tag-close>x</span>
+									</span>
+									{{/each}}
+								</div>
+							</div>
+							{{else}}
+								<div class="tag-wrap no-border">
+									{{each pageInfo.taglist}}
+										<span class="tag-list">
+											<span class="tag-name">{{$value.tagname}}</span>
+										</span>
+									{{/each}}
+								</div>	
+							{{/if}}
+						</td>
+					</tr>
+					<!-- content -->
+					<tr>
+						<td>正文：</td>
+						<td>
+							<div class="editor-wrap {{if nowAction == 'detail'}}auto{{/if}}">
+								{{if nowAction != 'detail'}}
+								<script id="editor" style="width:500px;height:300px" type="text/html">{{=pageInfo.contentbody}}</script>
+								{{else}}
+									{{=pageInfo.contentbody}}
+								{{/if}}
+							</div>
+						</td>
+					</tr>
+					{{if nowAction != 'detail'}}
+					<tr>
+						<td></td>
+						<td colspan="3">
+							<a href="javascript:;" class="btn btn-primary" script-role="confirm-btn">确定</a>
+							<a href="{{views['content/index'].url}}" class="btn btn-danger">取消</a>
+						</td>
+					</tr>
+					{{/if}}
+				</table>
+			</div>	
+		</div>	
+	</div>
+
+<div contentId class="ba-none">{{pageInfo.pkContent}}</div>
+
+<!-- loading -->
+<div class="loading-wrap ba-none" loading-wrap>
+	<span class="progress-wrap">
+		<span class="text" loading-text></span>
+		<span class="percentage" loading-percent></span>
+	</span>
+	<div class="loading-shadow"></div>
+</div>
+
+{{include '../include/siteConfig'}}
+<script src="{{seaPath}}seajs/sea.js"></script>	
+<script src="{{seaPath}}seajs/config.js"></script>
+<script>
+	seajs.use('main/shop/content/addEdit');
+</script>
+</body>
+</html>

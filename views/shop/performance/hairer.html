@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>{{title}}</title>
+{{include '../include/meta'}}
+<link rel="stylesheet" href="{{cssPath}}core/rockstar.css">
+<link rel="stylesheet" href="{{cssPath}}main/shop/performance/hairer.css">
+</head>
+
+<body>
+	{{include '../include/header'}}
+	<div class="main-content">
+		{{include '../include/nav'}}
+		{{include '../include/msg'}}
+		<div class="center-bar">
+			<div class="bar-title ba-clearfix">
+				<span class="ba-intro">{{title}}</span>
+				<a href="{{views['performance/index'].url}}" class="btn btn-primary back-btn">返回</a>
+			</div>
+			<div class="main-content" search-wrap>
+				<!-- tab标签 -->
+				{{include '../include/performanceTab'}}
+				<div class="ba-clearfix ba-mb-10 search-area">
+					<label class="ba-fl ba-mt-5 control-label">开始时间：</label>
+					<input type="text" class="startTime form-control ba-fl ba-mr-10" readonly="readonly" calendar
+                           search="begintime">
+					<label class="ba-fl ba-mt-5 control-label">结束时间：</label>
+					<input type="text" class="endTime form-control ba-fl ba-mr-10" readonly="readonly" calendar search="endtime">
+					<a href="javascript:;" class="btn btn-primary ba-fl" search-btn>查询</a>
+				</div>
+				<div data-ele="data-wrap" class="list-wrap">
+					<!-- tpl/performance/hairList -->
+				</div>
+				<!-- fenye -->
+				<div class="list-wrap">
+					{{include '../include/fenye'}}
+				</div>
+			</div>	
+		</div>	
+	</div>
+{{include '../include/siteConfig'}}
+<script src="{{seaPath}}seajs/sea.js"></script>	
+<script src="{{seaPath}}seajs/config.js"></script>
+<script>
+	seajs.use('main/shop/performance/hairer');
+</script>
+</body>
+</html>

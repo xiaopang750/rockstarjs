@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>代码组织实践</title>
+<link rel="stylesheet" href="../src/css/core/rockstar.css">
+</head>
+<body>
+  <div class="wrap">
+
+    <!-- header -->
+    <div class="header" header>
+      <!-- header -->
+<div class="inner ba-clearfix">
+	<div class="title-wrap ba-fl ba-mr-20">
+		<a class="title" href="./">RockstarJs</a>
+		<div class="ba-gray">
+			<p>
+				构建灵活轻量的互联网应用 - for pc
+			</p>
+		</div>
+	</div>
+	<img src="../assets/lib/logo/xiaopang.jpg" class="title-img ba-fl">
+</div>
+    </div>
+
+    <!-- nav -->
+    <div class="nav" nav>
+      <!-- nav -->
+<div class="inner">
+	<ul class="ba-clearfix ba-pt-20">
+		
+			<li>
+				<a href="./index.html">
+					
+						<span class="fa fa-home ba-font-18"></span>
+					
+					首页
+				</a>
+			</li>
+		
+			<li>
+				<a href="./about.html">
+					
+					关于 RockstarJs
+				</a>
+			</li>
+		
+			<li>
+				<a href="./use.html">
+					
+					使用
+				</a>
+			</li>
+		
+			<li>
+				<a href="./rule.html">
+					
+					开发规范
+				</a>
+			</li>
+		
+			<li>
+				<a href="./organization.html">
+					
+					代码组织实践
+				</a>
+			</li>
+		
+			<li>
+				<a href="./tool.html">
+					
+					工具
+				</a>
+			</li>
+		
+	</ul>
+</div>
+    </div>
+    
+    <!-- content -->
+    <div class="content ba-clearfix">
+      <div class="nav-left" nav-left-wrap>
+        <ul nav-left>
+          <!-- left-nav -->
+
+<li>
+	<a href="#配置">
+		配置
+	</a>
+</li>
+
+<li>
+	<a href="#接口">
+		接口
+	</a>
+</li>
+
+<li>
+	<a href="#代码中固定的东西">
+		代码中固定的东西
+	</a>
+</li>
+
+<li>
+	<a href="#代码">
+		代码
+	</a>
+</li>
+
+        </ul>
+      </div>
+      <div class="content-right" content-right>
+          <h2 id="配置">配置</h2>
+
+<pre><code>config.js最好不要放在global里全局引用
+
+因为每个页面可能需要不同的配置项。
+
+比如pc端的项目中夹杂了一个手机页面
+
+先看下config.js的一般配置:
+
+seajs.config({
+    base: &#39;../src/js&#39;,
+    alias: {
+        &#39;jquery&#39;: &#39;lib/jquery/jquery&#39;
+
+      },
+      preload: [&#39;jquery&#39;]
+});
+
+手机页面需要加载zepto而不是jquery
+
+所以config.js 建议使用src的方式引入
+
+
+
+base 
+
+这个一定需要配置
+
+配置了base不仅可以解决目录深的问题
+
+通过replace base路径
+
+可以很快的把js 放到另一台服务器上
+
+比如上面的 &#39;../src/js&#39; -&gt; www.aaa.com/src/js
+
+这样就不需要写脚本针对每个页面进行替换
+
+
+alias别名
+
+把我们经常使用的模块配置一个别名
+
+因为这样调用起来会很方便</code></pre>
+<h2 id="接口">接口</h2>
+
+<pre><code>
+也许我们的代码中会出现很多的接口地址:
+
+$.ajax(&#39;/index.php/user/login&#39;, function(){
+
+});
+
+虽然没有什么问题，也很直观
+
+不过如果后台的目录结构发生了迁移
+
+当前项目中又嵌套了一个项目
+
+这时我们需要把所有接口前面加一个
+
+/project/index.php/user/login
+
+然后灾难性的故事就发生了，批量替换吧。
+
+
+建议这样
+
+
+全局gloal.js如下
+
+
+var module_A = require(&#39;config_a.js&#39;);
+var global = {
+    interfaces: {
+        &quot;A模块&quot;: module_A.config
+    },
+    prefix: &#39;/project/index.php&#39;
+}
+
+
+config_a.js如下
+
+var config = {
+    login: global.prefix + &#39;/user/login&#39;,
+    regist: global.prefix + &#39;/user/regist&#39;,
+    list: global.prefix + &#39;/user/list&#39;    
+}
+
+把global暴露在window上里面存一些网站的配置信息
+
+页面调用:
+var nowInterFace = global.interfaces[&quot;A模块&quot;].module_A.config;
+
+console.log( nowInterFace.login );
+
+
+把接口分模块放在统一的地方进行管理
+
+可以方便进行维护和管理</code></pre>
+<h2 id="代码中固定的东西">代码中固定的东西</h2>
+
+<pre><code>
+代码中尽量不要出现太多写死的东西，比如跳转地址。
+
+跳转地址尽量依靠后台的返回值，因为页面在控制器下
+
+跳转是一个后台的逻辑，如果我们把跳转地址写死，后台
+
+的逻辑一变，那么前台也需要大量修改。
+
+
+
+
+如果有需要写死的地方或者要和后台业务逻辑的一些特殊状态
+
+码耦合。比如001 对应微信 002对应微博
+
+这种逻辑最好在前台做一个统一的配置文件，不要在代码中写死。
+
+如果前台100个页面出现了这种逻辑，那么当后台的逻辑发生
+
+变化时这种修改又是灾难性的。
+
+
+
+总之代码中不要有太多固定的东西，如果有而且需要大量使用
+请一定使用配置文件。我们需要灵活使用require,他不仅可以
+require模块，也可以require配置文件。配置文件的好处就是
+改一个地方就改了很多地方。</code></pre>
+<h2 id="代码">代码</h2>
+
+<blockquote>
+<p>1.选择元素使用data-api自定义属性不要使用id, class</p>
+</blockquote>
+<pre><code>当我们写js的时候，我们假象我们是一个纯jser不能动页面结构，
+不管页面页面是什么样的结构，我们都要在不修改html,css的情况
+下实现功能。比如:
+
+&lt;div class=&quot;tab-wrap&quot;&gt;
+    &lt;div class=&quot;tab-head-wrap&quot;&gt;
+        &lt;div class=&quot;tab-btn&quot;&gt;&lt;/div&gt;
+        &lt;div class=&quot;tab-btn&quot;&gt;&lt;/div&gt;
+        &lt;div class=&quot;tab-btn&quot;&gt;&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+这是一个选项卡的tab-btn的结构
+
+如果有一天页面上不小心多了一个 .tab-btn的元素
+
+这个时候我们用 $(&#39;.tab-btn&#39;)获取就会出现错误。
+
+为了解除这种耦合，我们规定在写html和css的时候
+
+只能使用id和class和非 data-api开头的属性选择器。
+
+而jser只能使用data-api开头的元素。
+
+虽然属性选择器的效率低下，远比不上id和class选择器，
+
+不过这种损失几乎可以忽略。</code></pre>
+<blockquote>
+<p>2.不要使用节点选择器，或者依赖html结构</p>
+</blockquote>
+<pre><code>还是用选项卡说明
+
+&lt;div class=&quot;tab-wrap&quot;&gt;
+    &lt;div class=&quot;tab-head-wrap&quot;&gt;
+        &lt;div class=&quot;tab-btn&quot;&gt;&lt;/div&gt;
+        &lt;div class=&quot;tab-btn&quot;&gt;&lt;/div&gt;
+        &lt;div class=&quot;tab-btn&quot;&gt;&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+假如写错了，写成了
+
+
+&lt;div class=&quot;tab-wrap&quot;&gt;
+    &lt;div class=&quot;tab-btn&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;tab-head-wrap&quot;&gt;
+
+        &lt;div class=&quot;tab-btn&quot;&gt;&lt;/div&gt;
+        &lt;div class=&quot;tab-btn&quot;&gt;&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+
+用jquery的同学经常会用.siblings() .next() .prev();
+
+使用节点选择器就意味着我们对html结构有很强的依赖
+
+如果我们使用自定属性不使用节点选择器。
+
+&lt;div class=&quot;tab-wrap&quot; data-widget-tabA&gt; 
+    &lt;div class=&quot;tab-btn&quot; data-widget-tabBtn&gt;&lt;/div&gt;
+    &lt;div class=&quot;tab-head-wrap&quot;&gt;
+
+        &lt;div class=&quot;tab-btn&quot; data-widget-tabBtn&gt;&lt;/div&gt;
+        &lt;div class=&quot;tab-btn&quot; data-widget-tabBtn&gt;&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+var oTabWrap = $(&#39;[data-widget-tabA]&#39;);
+var aTabBtn = oTabWrap.find(&#39;[data-widget-tabBtn]&#39;);
+
+这样不管结构和class,id怎么变我们都不用担心。
+
+而且这种思想也使我们更容易封装组件，因为组件的基础
+
+元素是不会变得。
+
+
+总之我们所做的一切就是要解除耦合，提高维护性。</code></pre>
+<blockquote>
+<p>3.使用事件委托,不要使用事件绑定</p>
+</blockquote>
+<pre><code>
+good
+oParent.on(&#39;click&#39;, &#39;selector&#39;, function(){});
+
+bad
+$(&#39;selector&#39;).click(function(){})
+
+使用事件委托不仅可以提高性能，
+新生成的元素也能继承方法。
+
+verybad
+&lt;div onclick=&quot;aa()&quot;&gt;&lt;/div&gt;
+
+这样js 和 html耦合性极强，没有维护性可言。</code></pre>
+<blockquote>
+<ol>
+<li>把交互逻辑和具体的实现拆分开。</li>
+</ol>
+</blockquote>
+<pre><code>
+类似这样的代码很多:
+
+oLoginBtn.onclick = function() {
+
+    var name = oName.value;
+    var pass = oPass.value;
+
+    if(name &amp;&amp; pass) {
+
+        $.post(&#39;xxx&#39;, function(data){
+
+            if(data.code == &#39;001&#39;) {
+                //success
+            } else {
+                //fail
+            }
+
+        });
+
+    } 
+
+}
+
+当我们点击登录的时候我们做了一堆的事情。
+我们把这些逻辑全部和点击耦合在一起。
+假如我们不需要点击，只需要验证。
+假如我们不需要验证，只需要提交。
+然后我们又需要重写一遍。
+
+我们最好把方法拆分开来
+
+function getValue(oName, oPass) {
+
+    var sName = oName.value;
+    var sPass = oPass.value;
+
+    return {
+        name: sName,
+        pass: sPass
+    }
+
+}
+
+function check(sName, sPass) {
+
+    if(sName &amp;&amp; sPass) {
+        return true;
+    }
+
+}
+
+
+function request(url, param, suc, fail) {
+
+    $.post(url, param, function(data){
+
+        if(data.code == &#39;001&#39;) {
+            //success
+            suc &amp;&amp; suc();
+        } else {
+            //fail
+            fail &amp;&amp; fail();
+        }
+
+    });
+
+}
+
+oLoginBtn.onclick = function() {
+
+    var data = getValue(oName, oPass);
+
+    var result = check(data.name, data.pass);
+
+    if(result) {
+        request(url, data);
+    }
+
+    ...
+};
+
+这样逻辑清晰，代码也能复用。
+
+所有方法不和用户的行为操作耦合在一起。</code></pre>
+<blockquote>
+<p>参数清晰</p>
+</blockquote>
+<pre><code>用一个弹出框说明
+
+假如实现一个点击页面的某个位置显示一个层的功能。
+
+oBox.prototype = {
+
+    events: function() {
+
+        var _this = this;
+
+        this.ele.onclick = function(e) {
+
+            var oEvent = ev || event;
+
+            _this.show(oEvent);
+
+        };
+
+    },
+    show: function(oEvent) {
+
+        var x = oEvent.clientX
+        var y = oEvent.clientY
+
+        this.ele.style.left = x + &#39;px&#39;;
+        this.ele.style.top = y + &#39;px&#39;;
+        this.ele.style.display = &#39;block&#39;;
+    }
+
+}
+
+这里我们把事件对象当参数传了进去。
+
+这样参数很不清晰，一眼看上去并不知道是什么，
+
+其实我们应该要的是坐标。
+
+传事件对象，参数不清晰是一方面，另一方面
+
+又和事件紧耦合了。事件对象只能生存在有事件
+
+的环境下。
+
+其实这样就可以了：
+
+show: function(left, top) {
+
+}
+
+left top在 events里面计算。
+
+当我们定义一个函数的或者方法的时候尽量
+
+让参数简单明了。</code></pre>
+<blockquote>
+<p>尽量使用json格式的参数</p>
+</blockquote>
+<pre><code>当参数过多最好使用
+
+json格式的参数。
+
+example(&#39;/user/info&#39;,&#39;haha&#39; , &#39;123&#39;, &#39;sdf&#39;);
+
+这种调用，如果你对api不熟，
+
+一眼看上去完全不知道是在写什么。
+
+如果:
+
+example({
+    requestUrl: &#39;/user/info&#39;,
+    name: &#39;haha&#39;,
+    age: &#39;13&#39;,
+    description: &#39;sdf&#39;
+});
+
+这样也许还能猜一下，也不需要在意参数的顺序问题。</code></pre>
+<blockquote>
+<p>依赖不要太深，不要把模块化做到极致,保持适当重复的代码。</p>
+</blockquote>
+<pre><code>有了require,我们可能会想，是不是能把所有东西当拆的很细很细。
+这样是不是能更省代码,代码确实能省。
+
+假如我们每写一个模块都要这样
+
+var ajax = require(&#39;ajax&#39;);
+var event = require(&#39;event&#39;);
+var selector = require(&#39;selector&#39;);
+var css = require(&#39;css&#39;);
+var attr = require(&#39;attr&#39;);
+....
+
+我们把基础库也模块化，把模块化做到极致。
+
+然后每次写代码的时候要require一堆基础的东西。
+
+而且我们的模块的生存环境只能是模块化的jquery。
+
+所以我们最好不要使用过多细致的require。
+
+模块和模块之间的不要有过多的依赖和联系，如果彼此依赖太多，那么升级模块也必然会牵涉很多的模块。
+
+最好保持适当的require,适当重复的代码。</code></pre>
+<blockquote>
+<p>不要拼html字符串</p>
+</blockquote>
+<pre><code>尽量使用模板，不要在js里面拼html字符串。</code></pre>
+
+      </div>
+    </div>
+
+    <!-- footer -->
+    <div class="footer" footer>
+      <!-- footer -->
+<div class="footer-inner ba-font-14 ba-tr ba-mt-20">
+	<a href="http://www.rockstars.com.cn" target="_blank">罗格斯达</a>&nbsp;&nbsp;
+	<a href="http://seajs.org" target="_blank">seajs</a>,
+	<a href="http://backbonejs.org" target="_blank">backbone</a>,
+	<a href="http://aralejs.org/class" target="_blank">class</a>,
+	<a href="https://code.csdn.net/Tencent/tmodjs" target="_blank">tmod</a>,
+	<a href="http://lab.lepture.com/nico/zh" target="_blank">nico</a>,
+	<a href="http://nodejs.org/" target="_blank">nodejs</a>,
+	<a href="http://www.expressjs.com.cn" target="_blank">express</a>,
+	<a href="http://koa.bootcss.com" target="_blank">koa</a>,
+	<a href="http://www.gruntjs.org" target="_blank">grunt</a>
+</div>
+    </div>
+  </div>
+
+<script src="../seajs/sea.js"></script>
+<script src="../seajs/config.js"></script>
+<script>
+  seajs.use('driver/R');
+</script>   
+</body>
+</html>

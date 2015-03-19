@@ -1,0 +1,70 @@
+/**
+ *description:订单添加编辑
+ *author:wangweicheng
+ *date:2015/3/11
+ */
+/**
+ *description:网站全局less变量-配置
+ *author:fanwei
+ *date:2014/10/30
+ */
+/* use-most-var */
+/* color */
+/* a-link */
+/* font-family */
+/* h-size */
+/* btn */
+/* layer */
+/* site-config */
+/**
+ *description:网站全局less函数-pc
+ *author:fanwei
+ *date:2014/10/30
+ */
+/* line-height */
+/* font-size */
+/* margin */
+/* padding */
+/* opacity */
+/* trangle */
+/**
+ *description:css3-pc
+ *author:fanwei
+ *date:2014/10/31
+ */
+.goods-list-wrap {
+  position: absolute;
+  display: none;
+  top: 37px;
+  left: 8px;
+  z-index: 99;
+  width: 100%;
+  max-height: 200px;
+  padding: 5px 10px;
+  overflow: auto;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.goods-list-wrap li {
+  line-height: 22px;
+  text-align: left;
+}
+.book-note {
+  padding: 5px;
+  width: 250px;
+  height: 100px;
+  border-color: #ddd;
+}
+.modify-box {
+  width: 300px;
+  height: 150px;
+  padding: 10px;
+  background: #fff;
+  border: 1px solid #ccc;
+  box-shadow: 1px 1px 1px #000;
+  border-radius: 5px;
+}
+.modify-box .text {
+  line-height: 30px;
+}

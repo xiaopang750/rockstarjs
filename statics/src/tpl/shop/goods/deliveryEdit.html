@@ -1,0 +1,17 @@
+<!-- 编辑出库商品 -->
+{{each list}}
+	<tr list gid={{$value.pkProduct}} pkProductDeliveryB={{$value.pkProductDeliveryB}}>
+		<td class="ba-rel">
+			<input class="col-12 form-control" value={{$value.productname}} type="text" goods-list-input>
+			<div class="goods-list-wrap" goods-list-wrap>
+				<ul goods-list></ul>
+			</div>
+		</td>
+		<td>
+			<input class="col-12 form-control" value={{$value.productnum}} type="text" delivery-num-input>	
+		</td>
+		<td data="unit">{{$value.productunit}}</td>
+		<td data="productprice">{{$value.productprice}}</td>
+		<td></td>
+	</tr>
+{{/each}}

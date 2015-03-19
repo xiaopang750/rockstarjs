@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>{{title}}</title>
+{{include '../include/meta'}}
+<link rel="stylesheet" href="{{cssPath}}core/rockstar.css">
+<link rel="stylesheet" href="{{cssPath}}main/shop/user/regist.css">
+</head>
+
+<body>
+	{{include '../include/header'}}
+
+	<div class="box-wrap" script-bound="form-check">
+		<div class="box-inner">
+			<div class="ba-mb-10" script-role="check-wrap">
+				<div class="ba-mb-5">手机号：</div>
+				<input type="text" enter-do class="form-control" form_check="sys" ischeck="true" name="cellphone" tip="此项为必填" wrong="手机号格式不正确" re="(1[3|4|5|8][0-9]\d{8})">
+			</div>
+			<div class="ba-mb-10" script-role="check-wrap">
+				<div class="ba-mb-5">用户名：</div>
+				<input type="text" enter-do class="form-control" form_check="sys" ischeck="true" name="username" tip="此项为必填" wrong="用户名为10个字符以内" re="(.{1,10})">
+			</div>
+			<div class="ba-mb-10" script-role="check-wrap">
+				<div class="ba-mb-5">店铺主键：</div>
+				<input type="text" enter-do class="form-control" form_check="sys" ischeck="true" name="pkShop" tip="此项为必填" wrong="店铺主键为1000000以内的数字" re="(\d{1,1000000})">
+			</div>
+			<div class="ba-mb-10" script-role="check-wrap">
+				<div class="ba-mb-5">密码：</div>
+				<input type="password" enter-do class="form-control" form_check="sys" ischeck="true" name="loginpassword" tip="此项为必填" wrong="密码为6-16位" re="(.{6,16})">
+			</div>
+			<div class="ba-clearfix">
+				<a href="javascript:;" class="btn btn-success ba-fl ba-mr-5" script-role = confirm-btn>
+					注册
+				</a>
+				<a href="{{views['user/index'].url}}" class="btn btn-primary">go首页</a>
+			</div>
+		</div>
+	</div>
+
+{{include '../include/siteConfig'}}
+<script src="{{seaPath}}seajs/sea.js"></script>	
+<script src="{{seaPath}}seajs/config.js"></script>
+<script>
+	seajs.use('main/shop/user/regist');
+</script>
+</body>
+</html>

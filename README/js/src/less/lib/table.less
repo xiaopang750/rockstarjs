@@ -1,0 +1,81 @@
+/**
+ *description:table
+ *author:fanwei
+ *date:2014/10/31
+ */
+
+@import "../config/config.less";
+@import "../config/func.less"; 
+
+.table {
+	max-width: 100%;
+	border-collapse: collapse;
+	color: @table-color;
+	font-size: @table-size;
+	text-align: @table-align;
+
+	& td {
+		padding: @table-cell-padding;
+		border-top: @table-cell-border;
+	}
+	
+	& tr {
+		background: @table-bg;
+	}
+
+	& thead {
+		font-size: @table-head-size;
+		font-weight: @table-head-weight;
+		color: @table-head-color;
+	}
+	
+	//striped
+	&.striped tbody tr:nth-child(odd) {
+		background: @table-bg-accent;
+	}
+
+	//borded
+	&.bordered,
+	&.bordered td {
+		border: @table-cell-border;
+	}
+
+	//condensed
+	&.condensed td {
+		padding: @table-condensed-cell-padding;
+	}
+
+	//hover
+	&.hover tbody tr:hover {
+		background: @table-bg-accent;
+	}
+
+	//bg
+	& tr.active {
+		background: @table-bg-accent;
+	}
+
+	& tr.primary {
+		background: @brand-primary;
+	}
+
+	& tr.success {
+		background: @brand-success;
+	}
+
+	& tr.info {
+		background: @brand-info;
+	}
+
+	& tr.warning {
+		background: @brand-warning;	 
+	}
+
+	& tr.danger {
+		background: @brand-danger;
+	}
+
+}
+
+
+

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>{{title}}</title>
+{{include '../include/meta'}}
+<link rel="stylesheet" href="{{cssPath}}core/rockstar.css">
+<link rel="stylesheet" href="{{cssPath}}main/shop/user/manage.css">
+</head>
+
+<body>
+	{{include '../include/header'}}
+	<div class="main-content">
+		{{include '../include/nav'}}
+		{{include '../include/msg'}}
+		<div class="center-bar">
+			<div class="bar-title ba-clearfix">
+				<span class="ba-intro">{{title}}</span>
+				<a href="{{views['user/index'].url}}" class="btn btn-primary back-btn">返回</a>
+			</div>
+			<div class="main-content" content-wrap>
+				<table class="table bordered striped" width="100%">
+					<thead>
+						<tr>
+							<td width="25%">
+								消费者照片
+							</td>
+							<td width="25%">
+								姓名
+							</td>
+							<td width="25%">
+								手机号
+							</td>
+							<td width="25%">
+								操作
+							</td>
+						</tr>
+					</thead>
+					<tbody data-ele="data-wrap">
+						<!-- tpl/shop/member/list.html -->
+					</tbody>
+				</table>
+				<!-- fenye -->
+				{{include '../include/fenye'}}
+			</div>	
+		</div>	
+	</div>	
+
+{{include '../include/siteConfig'}}
+<script src="{{seaPath}}seajs/sea.js"></script>	
+<script src="{{seaPath}}seajs/config.js"></script>
+<script>
+	seajs.use('main/shop/user/manage');
+</script>
+</body>
+</html>

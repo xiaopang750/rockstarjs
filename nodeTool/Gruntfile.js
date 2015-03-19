@@ -65,6 +65,13 @@
                     compile.views.files.cwd + '/' + compile.views.files.files
                 ]
             }
+        },
+        shell: {
+            tmod: {
+                command: [
+                    'tmod ../statics/src/tpl'
+                ].join('&&')
+            }
         }
 		      
     });
@@ -79,10 +86,16 @@
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-replace');
     grunt.loadNpmTasks('grunt-contrib-jshint');
+    grunt.loadNpmTasks('grunt-shell');
 
     //开发环境builder页面
     grunt.registerTask('builder', [
         'watch'
+    ]);
+
+    //模板任务
+    grunt.registerTask('tmod', [
+        'shell:tmod'
     ]);
 
     grunt.registerTask('static', [
@@ -104,6 +117,7 @@
     grunt.registerTask('test', [
         'jshint'
     ]);
+
 };
 
 

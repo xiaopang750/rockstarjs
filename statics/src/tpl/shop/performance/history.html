@@ -1,0 +1,26 @@
+<!-- 历史订单列表 -->
+{{if list}}
+    {{each list}}
+    <tr>
+        <td>{{$value.orderno}}</td>
+        <td>{{$value.ordetime}}</td>
+        <td>{{$value.ordermoney}}</td>
+        <td>
+        	{{if $value.iscombo == 'Y'}}
+        		套餐订单
+    		{{else}}
+    			服务订单	
+        	{{/if}}
+        </td>
+        <td>
+        	{{$value.operator}}
+        </td>
+        <td>{{$value.fairername}}</td>
+        <td>{{$value.fairermoney}}</td>
+    </tr>
+    {{/each}}
+{{else}}
+    <tr>
+        <td colspan="7">暂无数据</td>
+    </tr>    
+{{/if}}

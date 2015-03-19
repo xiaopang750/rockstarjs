@@ -13,6 +13,10 @@
 	color: @table-color;
 	font-size: @table-size;
 	text-align: @table-align;
+	
+	&.no-border td {
+		border:none;
+	}
 
 	& td {
 		padding: @table-cell-padding;
@@ -32,6 +36,13 @@
 	//striped
 	&.striped tbody tr:nth-child(odd) {
 		background: @table-bg-accent;
+	}
+
+	&.no-bg {
+		& td,
+		& tr {
+			background: none;
+		}
 	}
 
 	//borded

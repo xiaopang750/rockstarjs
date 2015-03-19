@@ -131,6 +131,37 @@
 	height:1000px;
 }
 
+.p-1 {
+	width: 10%;
+}
+.p-2 {
+	width: 20%;
+}
+.p-3 {
+	width: 30%;
+}
+.p-4 {
+	width: 40%;
+}
+.p-5 {
+	width: 50%;
+}
+.p-6 {
+	width: 60%;
+}
+.p-7 {
+	width: 70%;
+}
+.p-8 {
+	width: 80%;
+}
+.p-9 {
+	width: 90%;
+}
+.p-10 {
+	width: 100%;
+}
+
 
 //col
 .col-1 {
@@ -171,12 +202,10 @@
 }
 
 .col (@index){
-	@percent: (100/12)*@index;
-	width: ~"@{percent}%";
+	@deji: (100/12)*@index;
+	width: ~"@{deji}%";
 	float: left;
 	min-height: 1px;
-  	padding-right: 15px;
-    padding-left: 15px;
 } 
 
 

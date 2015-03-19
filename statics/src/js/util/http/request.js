@@ -13,7 +13,6 @@ define(function(require, exports, module) {
 	var oTip = require('../../widget/dom/tip');
 	var dialog = require('../../widget/dom/dialog');
 	
-
 	function request( options ) {
 		
 		var url,
@@ -99,78 +98,24 @@ define(function(require, exports, module) {
 	}
 
 	function successDo(url, data, suc, noData, unLogin, otherStatus) {
+		
+		if(data.code == "001") {
 
-		data = JSON.parse( data.outJson );
-		
-		/*if(!checkData(data, url)) {	
-			return;
-		}*/
-		
-		if(data.code == "s001" || data.code == "a001" || data.code == "u001" || data.code == "d001" || data.code == "r001"  || data.code == "w001" || data.code == "send001" || data.code == "c001" ) {	
 			//成功
-			
 			suc && suc(data, data.code);
 
 		}
-		else if(data.code == "s002" || data.code == "a002" || data.code == "u002"  || data.code == "d002"  || data.code == "o002"  || data.code == "r002" || data.code == "n002"  || data.code == "w002") {
+		else if(data.code == "002") {
 
 			//失败;
 			noData && noData(data, data.code);
 			
 			return;
 		}
-		else if(data.code == 'i002') {
-
-			window.location = '../views/main/error.jsp';
-
-		}
-		else if(data.code == 'l002') {	
+		else if(data.code == '003') {	
 			
-			//未登录
-			oTip.say(data.msg + '，3秒后自动跳转');
+			//未登录 
 
-			setTimeout(function(){
-
-				window.location = R.uri.domain + data.data.url;
-
-			}, 3000);
-
-			noLogin();
-			
-			unLogin && unLogin(data); 
-
-		} else if( data.code == 'l004' ) {
-
-			//登录同一个账号
-			var oConfirm;
-
-			if(!oConfirm) {
-
-				oConfirm = new dialog({
-					title: '重新登录',
-					content: data.msg
-				});
-
-				oConfirm.onConfirm = function() {
-
-					request({
-						url: R.interfaces.login,
-						data: {
-							code: data.data.code,
-							loginWay: data.data.loginWay
-						},
-						sucDo: function(data) {
-							
-							window.location = R.uri.domain + data.data.url;	
-						}
-					});
-
-				};
-
-			}
-
-			oConfirm.show();
-			
 		}
 
 		// 其他状态

@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>开发规范</title>
+<link rel="stylesheet" href="../src/css/core/rockstar.css">
+</head>
+<body>
+  <div class="wrap">
+
+    <!-- header -->
+    <div class="header" header>
+      <!-- header -->
+<div class="inner ba-clearfix">
+	<div class="title-wrap ba-fl ba-mr-20">
+		<a class="title" href="./">RockstarJs</a>
+		<div class="ba-gray">
+			<p>
+				构建灵活轻量的互联网应用 - for pc
+			</p>
+		</div>
+	</div>
+	<img src="../assets/lib/logo/xiaopang.jpg" class="title-img ba-fl">
+</div>
+    </div>
+
+    <!-- nav -->
+    <div class="nav" nav>
+      <!-- nav -->
+<div class="inner">
+	<ul class="ba-clearfix ba-pt-20">
+		
+			<li>
+				<a href="./index.html">
+					
+						<span class="fa fa-home ba-font-18"></span>
+					
+					首页
+				</a>
+			</li>
+		
+			<li>
+				<a href="./about.html">
+					
+					关于 RockstarJs
+				</a>
+			</li>
+		
+			<li>
+				<a href="./use.html">
+					
+					使用
+				</a>
+			</li>
+		
+			<li>
+				<a href="./rule.html">
+					
+					开发规范
+				</a>
+			</li>
+		
+			<li>
+				<a href="./organization.html">
+					
+					代码组织实践
+				</a>
+			</li>
+		
+			<li>
+				<a href="./tool.html">
+					
+					工具
+				</a>
+			</li>
+		
+	</ul>
+</div>
+    </div>
+    
+    <!-- content -->
+    <div class="content ba-clearfix">
+      <div class="nav-left" nav-left-wrap>
+        <ul nav-left>
+          <!-- left-nav -->
+
+<li>
+	<a href="#命名规范">
+		命名规范
+	</a>
+</li>
+
+<li>
+	<a href="#目录结构">
+		目录结构
+	</a>
+</li>
+
+<li>
+	<a href="#编码风格">
+		编码风格
+	</a>
+</li>
+
+        </ul>
+      </div>
+      <div class="content-right" content-right>
+          <h2 id="命名规范">命名规范</h2> 
+
+<blockquote>
+<p>目录名和文件名：</p>
+</blockquote>
+<pre><code>文件名和目录名只能包含[a-z\d-],并以英文字母开头。</code></pre>
+<blockquote>
+<p>变量命名</p>
+</blockquote>
+<pre><code>1. 选取合适的寓意化单词，禁止 var a,b,c 这种看不懂的变量
+2. 采用驼峰命名法
+3. 常量全大写USER_CONFIG
+4. 类名驼峰首字母大写DialogBox
+5. 自定义事件名采用驼峰， onComplte</code></pre>
+<blockquote>
+<p>data-api</p>
+</blockquote>
+<pre><code>
+1. 全部小写用-链接
+2. 全部以data开头
+3. 用于展示渲染页面的容器使用data-view-detail
+4. 组件标识api, data-widget-focus
+5. 获取dom元素 data-ele-login-button
+6. 获取和事件相关的dom元素 data-click-login-button</code></pre>
+<h2 id="目录结构">目录结构</h2>
+
+<blockquote>
+<p>详见使用里面的目录结构 <a href="./use.html#目录结构">点击这里</a></p>
+</blockquote>
+<h2 id="编码风格">编码风格</h2>
+
+<blockquote>
+<p>一行保持在80-120个字符。</p>
+<p>保持一个tab四个空格</p>
+<p>花括号:</p>
+</blockquote>
+<pre><code>建议不要使用.net的写法
+
+if()
+{
+
+}
+
+保持
+if() {
+
+}
+的风格</code></pre>
+<blockquote>
+<p>空格保持代码的清晰</p>
+</blockquote>
+<pre><code>good
+var a = b + c;
+
+
+bad
+var a=b+c;
+
+当a,b,c变量名比较长时，可能一眼望去看不清
+
+
+
+不需要使用alignMent等插件实现对齐, 那样会浪费时间
+自然空一格
+
+good
+var a = b;
+var example = c;
+
+
+bad
+var a =       b;
+var example = c;</code></pre>
+<blockquote>
+<p>逗号</p>
+</blockquote>
+<pre><code>good
+{
+    name: &#39;haha&#39;,
+    age: 13,
+    year: 2014
+}
+
+bad
+{
+    a: &#39;a&#39;
+   ,b: &#39;b&#39;
+   ,c: &#39;c&#39;
+}</code></pre>
+<blockquote>
+<p>单var 和 多var不做约束</p>
+<p>=号</p>
+</blockquote>
+<pre><code>建议使用 === 不使用 == 依赖隐式类型转换
+特别是处理后台返回的数据时。</code></pre>
+<blockquote>
+<p>null</p>
+</blockquote>
+<pre><code>不要用任何变量去和null比较</code></pre>
+<blockquote>
+<p>if</p>
+</blockquote>
+<pre><code>
+if(judge()) {
+
+}
+
+建议if内不要有(),所有判断条件最好用变量存一下
+
+if 括号内的逻辑判断不要太长。
+
+如果太长需要对逻辑判断进行拆分，尽量保证逻辑清晰
+
+
+good
+var passed = judge();
+
+if(passed) {
+
+}
+
+建议if 不要简写
+
+bad
+if(result) alert(&#39;a&#39;); 
+
+good
+if(result) {
+
+}</code></pre>
+<blockquote>
+<p>代码中不要出现debugger </p>
+<p>结尾统一加上;避免合并时出现问题 var a = b;</p>
+<p>构造函数首字母大写 LoginBox</p>
+</blockquote>
+<h4 id="-jshint-doc-">上述规范会开启jshint进行语法检测把文档生成到doc里面</h4>
+
+      </div>
+    </div>
+
+    <!-- footer -->
+    <div class="footer" footer>
+      <!-- footer -->
+<div class="footer-inner ba-font-14 ba-tr ba-mt-20">
+	<a href="http://www.rockstars.com.cn" target="_blank">罗格斯达</a>&nbsp;&nbsp;
+	<a href="http://seajs.org" target="_blank">seajs</a>,
+	<a href="http://backbonejs.org" target="_blank">backbone</a>,
+	<a href="http://aralejs.org/class" target="_blank">class</a>,
+	<a href="https://code.csdn.net/Tencent/tmodjs" target="_blank">tmod</a>,
+	<a href="http://lab.lepture.com/nico/zh" target="_blank">nico</a>,
+	<a href="http://nodejs.org/" target="_blank">nodejs</a>,
+	<a href="http://www.expressjs.com.cn" target="_blank">express</a>,
+	<a href="http://koa.bootcss.com" target="_blank">koa</a>,
+	<a href="http://www.gruntjs.org" target="_blank">grunt</a>
+</div>
+    </div>
+  </div>
+
+<script src="../seajs/sea.js"></script>
+<script src="../seajs/config.js"></script>
+<script>
+  seajs.use('driver/R');
+</script>   
+</body>
+</html>

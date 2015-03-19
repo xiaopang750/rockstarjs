@@ -17,8 +17,8 @@ define(function(require, exports, module){
 	 function Tip() {
 
 	 	this.timer = null;
-	 	this.hideTime = 5000;
-
+	 	this.hideTime = 2500;
+	 	this.create();
 	 }
 
 	 Tip.prototype = {
@@ -94,8 +94,6 @@ define(function(require, exports, module){
 	 }
 
 	 var oTip = new Tip();
-
-	 oTip.create();
 
 	 module.exports = oTip;
 

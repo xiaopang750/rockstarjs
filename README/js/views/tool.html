@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>工具</title>
+<link rel="stylesheet" href="../src/css/core/rockstar.css">
+</head>
+<body>
+  <div class="wrap">
+
+    <!-- header -->
+    <div class="header" header>
+      <!-- header -->
+<div class="inner ba-clearfix">
+	<div class="title-wrap ba-fl ba-mr-20">
+		<a class="title" href="./">RockstarJs</a>
+		<div class="ba-gray">
+			<p>
+				构建灵活轻量的互联网应用 - for pc
+			</p>
+		</div>
+	</div>
+	<img src="../assets/lib/logo/xiaopang.jpg" class="title-img ba-fl">
+</div>
+    </div>
+
+    <!-- nav -->
+    <div class="nav" nav>
+      <!-- nav -->
+<div class="inner">
+	<ul class="ba-clearfix ba-pt-20">
+		
+			<li>
+				<a href="./index.html">
+					
+						<span class="fa fa-home ba-font-18"></span>
+					
+					首页
+				</a>
+			</li>
+		
+			<li>
+				<a href="./about.html">
+					
+					关于 RockstarJs
+				</a>
+			</li>
+		
+			<li>
+				<a href="./use.html">
+					
+					使用
+				</a>
+			</li>
+		
+			<li>
+				<a href="./rule.html">
+					
+					开发规范
+				</a>
+			</li>
+		
+			<li>
+				<a href="./organization.html">
+					
+					代码组织实践
+				</a>
+			</li>
+		
+			<li>
+				<a href="./tool.html">
+					
+					工具
+				</a>
+			</li>
+		
+	</ul>
+</div>
+    </div>
+    
+    <!-- content -->
+    <div class="content ba-clearfix">
+      <div class="nav-left" nav-left-wrap>
+        <ul nav-left>
+          <!-- left-nav -->
+
+<li>
+	<a href="#模板工具">
+		模板工具
+	</a>
+</li>
+
+<li>
+	<a href="#文档工具">
+		文档工具
+	</a>
+</li>
+
+<li>
+	<a href="#部署工具">
+		部署工具
+	</a>
+</li>
+
+        </ul>
+      </div>
+      <div class="content-right" content-right>
+          <h2 id="模板工具">模板工具</h2>
+
+<blockquote>
+<p>模板引擎，大家应该并不陌生。常用的有artTemplate, mustache,jade等，虽然他们各有特点，不过基本使用思路都相同。把模板写到页面上，或者写到单独的文件里用ajax拉取,或者用手动拼字符串写到js文件里用require拉取。不管怎么样，都显得不太方便。</p>
+<p>如果有一种方案，我们把模板写成html文件，然后当我们写的时候，通过grunt的watch模块把他编译成cmd格式的js文件，然后通过require的方式引入。</p>
+<p>这样做有明显的几点好处:</p>
+</blockquote>
+<ol>
+<li><p>模板独立</p>
+</li>
+<li><p>方便调试</p>
+</li>
+<li><p>保持了html标签的语法</p>
+</li>
+<li><p>利于团队协作</p>
+</li>
+<li><p>实现了静态的include功能</p>
+</li>
+<li><p>代码复用</p>
+</li>
+</ol>
+<blockquote>
+<p>这里我们选用tmodjs，tmodjs是一个采用artTemplate语法的工具。</p>
+<p>使用方法:</p>
+</blockquote>
+<pre><code>1. 安装nodejs
+
+2. npm install -g tmodjs
+
+记得一定要全局安装，不然找不到tmod命令
+
+3. cd到项目的模板目录下比如:
+
++ statics
+    + src
+        + tpl
+            -package.json
+
+新建一个package.json 里面是关于模板的一些配置选项
+
+{
+    &quot;name&quot;: &quot;template&quot;,
+    &quot;version&quot;: &quot;1.0.0&quot;,
+    &quot;dependencies&quot;: {
+        &quot;tmodjs&quot;: &quot;1.0.1-rc9&quot;
+    },
+    &quot;tmodjs-config&quot;: {
+        &quot;output&quot;: &quot;../../js/tpl&quot;,
+        &quot;charset&quot;: &quot;utf-8&quot;,
+        &quot;syntax&quot;: &quot;simple&quot;,
+        &quot;helpers&quot;: &quot;../../js/tpl/helper.js&quot;,
+        &quot;escape&quot;: true,
+        &quot;compress&quot;: true,
+        &quot;type&quot;: &quot;cmd&quot;,
+        &quot;runtime&quot;: &quot;templates.js&quot;,
+        &quot;alias&quot;: null,
+        &quot;minify&quot;: false,
+        &quot;cache&quot;: true
+    }
+}
+
+output: 输出的目标dest目录
+charset: 字符集编码
+syntax: native/simple 原生和简版语法,一般来说都选用simple语法
+
+这是native
+&lt;% for (var i=0; i&lt;data.length; i++) { %&gt;            
+    //todo
+&lt;% } %&gt;
+
+这是simple
+{{each data}}
+    {{$value.name}}
+{{/each}}
+
+helpers: 定义辅助模板方法的js文件地址
+escape: true 是否过滤xss, 如果后台已经过滤数据，那么关闭可以提高性能
+compress: true 是否压缩空白的html字符
+type: 模板类型 这里我们选择cmd, 刚好可以配合sea.js
+runtime: 模板引擎的名称
+
+模板的配置文件里面会写 runtime: template.js
+不过最好改一个名称，在模板合并的时候，会和cmd-concat的任务冲突，
+会不停的递归循环,所以随便改一个名字。
+
+minify: 是否开启压缩,一般为false, 提高实时编译的速率。最后项目上线再压缩
+cache: true 是否开启缓存。
+
+4. 写好了配置文件后,运行tmodjs +tpl模板路径的地址
+地址可以是绝对，也可以是相对。
+
+5. 运行完成后会开启watch状态,在tpl里新建一个文件,那么在dest目录
+里也会生成一个对应的文件。我们通过require的方式去引入。</code></pre>
+<h2 id="文档工具">文档工具</h2>
+
+<blockquote>
+<p>我们采用<a href="http://wowubuntu.com/markdown/index.html">markdown</a>来编写文档。</p>
+<p>markdwon的语法很简洁，让我们更关注文字，而不需要关注html标签。</p>
+<p>常用语法如下:</p>
+</blockquote>
+<pre><code>标题
+# h1
+## h2
+...
+###### h6
+
+段落
+&gt; 段落 Blockquotes
+&gt;&gt; 段落嵌套
+
+
+列表
+
+无序列表
+* haha
+* haha2
+
+有序列表
+1. haha
+2. haha2
+
+
+链接
+[链接名称](http://example.com)
+
+图片引用
+![alt信息](/path/aaa.jpg)
+
+table
+字段      |字段说明                  
+--------------|-------------------------
+code          |状态码    
+msg           |返回消息 
+
+
+代码块
+3个`
+
+任意代码..
+
+3个`</code></pre>
+<blockquote>
+<p>使用md文档的好处很明显: </p>
+</blockquote>
+<ol>
+<li><p>能快速生成文档</p>
+</li>
+<li><p>大家都在使用，方便引用。比如github社区上，基本都是md格式的文档。</p>
+</li>
+</ol>
+<blockquote>
+<p>不过markdown只提供了抓换html标签的功能，如果要自定义模板样式。我们需要使用其他工具例如<a href="http://lab.lepture.com/nico/zh/">nico</a>。nico也是markdonw的语法，不过他帮我们做了更多的事，比如我们可以选择文档主题，生成列表。nico默认是github的文档风格。</p>
+<p>我们不使用nico,通过grunt的markdown,liverealod,connect,watch模块我们可以自己搭建了一个静态文档服务。</p>
+</blockquote>
+<h2 id="部署工具">部署工具</h2>
+
+<blockquote>
+<p>grunt, 一个js的构建工具。</p>
+<p>grunt其实并不是一个构建项目的实质。他只是提供了一个规范，一个框架，一些简单的操作文件的api,使用nodejs的语法，去开发一些grunt模块。通过加载模块，编写任务流程来构建我们的项目。</p>
+<p>seajs的项目构建步骤如下:</p>
+<ol>
+<li>把cmd格式的模块转换成</li>
+</ol>
+</blockquote>
+<pre><code>define(&#39;id&#39;, 依赖, function(require, module, exports){
+
+});
+的方式.
+
+这里我们使用 grunt-cmd-transport</code></pre>
+<blockquote>
+<ol>
+<li><p>合并cmd模块的依赖,这里我们选用grunt-cmd-concat,由于我们认定一个页面一个入口js文件，所以我们只需要对这些入口文件进行合并。</p>
+</li>
+<li><p>压缩js 选用grunt-contrib-uglify</p>
+</li>
+<li><p>less 使用grunt-contrib-less 编译less合并通过import的方式导入。</p>
+</li>
+<li><p>压缩css 使用grunt-contrib-cssmin </p>
+</li>
+<li><p>最后根据需要replace 一些需要切换路径的地方。</p>
+</li>
+</ol>
+</blockquote>
+<p>我们分别看一下配置</p>
+<pre><code>grunt-cmd-transport
+
+transport: {
+    options: {
+        debug: false
+    },
+    &#39;seajs转换&#39;: {
+        expand : true,
+        cwd: config.snail.src + &#39;/js&#39;,  
+        src: &#39;**/*.js&#39;,  
+        dest: &#39;seaTransport&#39;
+    }
+}</code></pre>
+<pre><code>grunt-cmd-concat
+
+concat_cmd: {
+    options: {  
+        include: &#39;all&#39; 
+    },
+    &#39;seajs合并&#39;: {
+        expand : true,
+        cwd: &#39;seaTransport&#39;,  
+        src: &#39;**/*.js&#39;,  
+        dest: &#39;concatTransport&#39;
+    }
+}
+
+此模块注册的时候叫concat,和grunt-contrib-concat模块重名，
+所以我们可以改一下他的注册名。</code></pre>
+<pre><code>grunt-contrib-uglify
+
+uglify: {
+    options: {
+        banner: &#39;/*! company &lt;%= pkg.name %&gt; version &lt;%= pkg.version %&gt; &lt;%= grunt.template.today(&quot;yyyy-mm-dd&quot;) %&gt; */\n&#39;
+    },
+    &#39;压缩合并后的seajs&#39;: {
+        expand: true,
+        cwd: config.snail.dest + &#39;/js&#39;,
+        src: &#39;**/*.js&#39;,
+        dest: config.snail.dest + &#39;/js&#39;
+    }
+}</code></pre>
+<pre><code>grunt-contrib-less
+
+less: {
+    &#39;正式环境CSS文件&#39;: {
+        files: [{
+            expand: true,
+            cwd: baseUrlLess + &#39;/&#39;,
+            src: &#39;**/*.less&#39;,
+            dest: baseUrlCss + &#39;/&#39;,
+            ext: extName
+        }]
+    }
+}</code></pre>
+<pre><code>grunt-contrib-cssmin
+
+cssmin: {
+    options: {
+        banner: &#39;/*! company &lt;%= pkg.name %&gt; version &lt;%= pkg.version %&gt; &lt;%= grunt.template.today(&quot;yyyy-mm-dd&quot;) %&gt; */\n&#39;
+    },
+    &#39;css压缩&#39;: {
+        expand: true,
+        cwd : config.snail.src + &#39;/css&#39;,
+        src: [&#39;**/*.css&#39;],
+        dest: config.snail.dest + &#39;/css&#39;
+    }
+}</code></pre>
+<pre><code>grunt-replace
+
+replace: {
+    &#39;替换config&#39;: {
+        options: {
+          patterns: [
+            {
+              match: &#39;/statics/src/js&#39;,
+              replacement: &#39;/statics/build/js&#39;
+            }
+          ],
+          usePrefix: false,
+        },
+        files: [
+          { 
+            expand: true, 
+            flatten: true,
+            src: baseUrl + &#39;statics/seajs/config.js&#39;, 
+            dest: baseUrl + &#39;statics/seajs&#39;
+          }
+        ]
+    },
+    &#39;生成js版本号&#39;: {
+        options: {
+          patterns: [
+            {
+              match: &#39;seaversion&#39;,
+              replacement: nowTime
+            }
+          ],
+          usePrefix: false,
+        },
+        files: [
+          { 
+            expand: true, 
+            flatten: true,
+            src: baseUrl + &#39;statics/seajs/config.js&#39;, 
+            dest: baseUrl + &#39;statics/seajs&#39;
+          }
+        ]
+    },
+    &#39;替换configjs的baseUrl&#39;: {
+        options: {
+          patterns: [
+            {
+              match: /base\:\s\&#39;\.\.\//,
+              replacement: &#39;base: \&#39;&#39; + domain.url + &#39;/&#39;
+            }
+          ],
+          usePrefix: false,
+        },
+        files: [
+          { 
+            expand: true, 
+            flatten: true,
+            src: baseUrl + &#39;statics/seajs/config.js&#39;, 
+            dest: baseUrl + &#39;statics/seajs&#39;
+          }
+        ]
+    },
+    &#39;替换接口环境&#39;: {
+        options: {
+          patterns: [
+            {
+              match: &#39;/rmrbweb/&#39;,
+              replacement: &#39;/&#39;
+            },
+            {
+              match: &#39;../statics/src/css/&#39;,
+              replacement: domain.url + &#39;/statics/build/css/&#39;
+            },
+            {
+              match: &#39;../statics/assets/&#39;,
+              replacement: domain.url + &#39;/statics/assets/&#39;
+            }
+          ],
+          usePrefix: false,
+        },
+        files: [
+          { 
+            expand: true, 
+            flatten: true,
+            src:  &#39;seaTransport/driver/R.js&#39;, 
+            dest: &#39;seaTransport/driver&#39;
+          }
+        ]
+    }
+}</code></pre>
+<blockquote>
+<p>grunt任务的配置一般来说都会有个src目录，也就是需要执行任务的目录，然后有一个dest目录，也就是生成的目录，最后有个option最为配置参数。</p>
+<p>千万不要采用覆盖的当前代码的方式，执行任务，即使不在本机执行task也一样。那样我们会找不到调试的依据破坏了源代码。</p>
+<p>详细关于grunt的介绍 <a href="http://gruntjs.com/"><a href="http://gruntjs.com/">http://gruntjs.com/</a></a> grunt中文网上的模块加载不出来，最好进英文官网。</p>
+</blockquote>
+
+      </div>
+    </div>
+
+    <!-- footer -->
+    <div class="footer" footer>
+      <!-- footer -->
+<div class="footer-inner ba-font-14 ba-tr ba-mt-20">
+	<a href="http://www.rockstars.com.cn" target="_blank">罗格斯达</a>&nbsp;&nbsp;
+	<a href="http://seajs.org" target="_blank">seajs</a>,
+	<a href="http://backbonejs.org" target="_blank">backbone</a>,
+	<a href="http://aralejs.org/class" target="_blank">class</a>,
+	<a href="https://code.csdn.net/Tencent/tmodjs" target="_blank">tmod</a>,
+	<a href="http://lab.lepture.com/nico/zh" target="_blank">nico</a>,
+	<a href="http://nodejs.org/" target="_blank">nodejs</a>,
+	<a href="http://www.expressjs.com.cn" target="_blank">express</a>,
+	<a href="http://koa.bootcss.com" target="_blank">koa</a>,
+	<a href="http://www.gruntjs.org" target="_blank">grunt</a>
+</div>
+    </div>
+  </div>
+
+<script src="../seajs/sea.js"></script>
+<script src="../seajs/config.js"></script>
+<script>
+  seajs.use('driver/R');
+</script>   
+</body>
+</html>

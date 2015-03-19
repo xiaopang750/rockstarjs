@@ -34,6 +34,9 @@
   font-size: 12px;
   text-align: center;
 }
+.table.no-border td {
+  border: none;
+}
 .table td {
   padding: 8px;
   border-top: 1px solid #dddddd;
@@ -49,6 +52,10 @@
 .table.striped tbody tr:nth-child(odd) {
   background: #f9f9f9;
 }
+.table.no-bg td,
+.table.no-bg tr {
+  background: none;
+}
 .table.bordered,
 .table.bordered td {
   border: 1px solid #dddddd;
@@ -63,7 +70,7 @@
   background: #f9f9f9;
 }
 .table tr.primary {
-  background: #428bca;
+  background: #353946;
 }
 .table tr.success {
   background: #5cb85c;

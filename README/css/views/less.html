@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>less</title>
+<link rel="stylesheet" href="../src/css/core/rockstar.css">
+</head>
+<body>
+  <div class="wrap">
+
+    <!-- header -->
+    <div class="header" header>
+      <!-- header -->
+<div class="inner ba-clearfix">
+	<div class="title-wrap ba-fl ba-mr-20">
+		<a class="title" href="./">RockstarCss</a>
+		<div class="ba-gray">
+			<p>
+				写更少的样式 - for pc
+			</p>
+		</div>
+	</div>
+	<img src="../assets/lib/logo/xiaopang.jpg" class="title-img ba-fl">
+</div>
+    </div>
+
+    <!-- nav -->
+    <div class="nav" nav>
+      <!-- nav -->
+<div class="inner">
+	<ul class="ba-clearfix ba-pt-20">
+		
+			<li>
+				<a href="./index.html">
+					
+						<span class="fa fa-home ba-font-18"></span>
+					
+					首页
+				</a>
+			</li>
+		
+			<li>
+				<a href="./less.html">
+					
+					less
+				</a>
+			</li>
+		
+			<li>
+				<a href="./base.html">
+					
+					通用样式
+				</a>
+			</li>
+		
+			<li>
+				<a href="./rule.html">
+					
+					规范和最佳实践
+				</a>
+			</li>
+		
+			<li>
+				<a href="./icon.html">
+					
+					font-icon
+				</a>
+			</li>
+		
+			<li>
+				<a href="./use.html">
+					
+					使用
+				</a>
+			</li>
+		
+			<li>
+				<a href="./widget.html">
+					
+					组件
+				</a>
+			</li>
+		
+			<li>
+				<a href="./tool.html">
+					
+					工具
+				</a>
+			</li>
+		
+	</ul>
+</div>
+    </div>
+    
+    <!-- content -->
+    <div class="content ba-clearfix">
+      <div class="nav-left" nav-left-wrap>
+        <ul nav-left>
+          <!-- left-nav -->
+
+<li>
+	<a href="#什么是less">
+		什么是less
+	</a>
+</li>
+
+<li>
+	<a href="#用css带来的问题">
+		用css带来的问题
+	</a>
+</li>
+
+<li>
+	<a href="#lessApi">
+		lessApi
+	</a>
+</li>
+
+        </ul>
+      </div>
+      <div class="content-right" content-right>
+          <h2 id="什么是less">什么是less</h2>
+
+<h3 id="less-">less顾名思义 写更少的样式。</h3>
+<blockquote>
+<p>传统的css层叠样式表是一种无逻辑的表述性语言,我们只能至上而下，从左到右的去描述着页面的展示。php , jsp 各种页面技术，模板引擎给html套上了一层光环。改变了html文件的后缀，使得 里面可以配置各种变量,函数于是html这种文本标记语言变得灵活可配置。而js本身就是一种脚本语言，自然也很灵活。而在一段时间内，我们发现我们对css毫无办法，我们只能重复，而憋屈的去做一些重复的事情（也就是我们通常所说的<code>页面仔</code>,<code>切图的</code>）页面样式变成了一件很无聊，没有什么技术含量的事情，当然技术含量是相对于我们已经很清楚各大浏览器兼容的情况的前提下。</p>
+<p>改变文件后缀，使用服务器， 用各种字符串操作。我们当然可以把这种技术运用到样式表中，因为从原理上来说显然是可行的。所以我们编译机制，就像发明一种新的语言一样去创造一种新的样式表写法，让他可以使用变量，函数, 命名空间，让样式表的可复用维护程度达到最大化。</p>
+</blockquote>
+<h2 id="用css带来的问题">用css带来的问题</h2>
+
+<h3 id="-config-less-">有了变量我们可以把网站的基础配置放到一个config.less里面，比如配色，背景, 间距。如果按照传统的做法。</h3>
+<pre><code>    因为没有变量：
+
+    文件a.css
+
+    ele1 {
+        color:#fff000;
+    }
+
+    文件b.css
+
+    ele2 {
+        color:#fff000;
+    }
+
+    文件....
+
+    有多少个我们就要批量替换多少个...
+
+
+    我们为什么不这样
+
+    文件config.less
+
+    @theme-main-color: #fff000;
+    @theme-main-bg: #fcc;
+
+    文件a.css
+
+    import &quot;config&quot;;
+
+    ele1 {
+        color: @theme-main-color
+    }
+
+    文件b.css
+
+    ele2 {
+        color: @theme-main-color
+    }
+
+    如果设计师告诉我们要换#fff000这种颜色，我们只需要改掉config.less里面的 @theme-main-color;</code></pre>
+<h3 id="-ctrl-f-src-">令人头疼的超长背景路径问题，样式表和静态图片的路径一旦发生变化，结果将是灾难性的，批量替换我们不放心，为了谨慎我们首先ctrl+f 找到 src 然后一个一个的比对替换他...</h3>
+<pre><code>    ele1 {
+        background-image: url(&#39;../../../img/11.jpg&#39;);
+    }
+
+    ele2 {
+        background-image: url(&#39;../../../img/22.jpg&#39;);
+    }
+
+
+
+    我们为什么不能这样:
+
+    @path: &quot;../../../img/&quot;;
+
+    .bg-img (@src) {
+        background-image: ~&quot;url(&#39;@{path}@{src}&#39;)&quot;;
+    }
+
+    ele1 {
+        .bg-img(11.jpg);
+    }
+
+    ele2 {
+        .bg-img(22.jpg);
+    }</code></pre>
+<h3 id="-">为了维护性，我们也在样式表里注释，因为一眼望去，根本看不清楚哪一段是在描述页面哪个部分的样式</h3>
+<pre><code>    ele1 {
+        color: #fff;
+        width: 100px;
+    }
+
+    ele1:hover {
+        color:#f00;
+    }
+
+    ele1:active {
+        color:#fcc;
+    }
+
+    ele1 .ele2 {
+        width: 200px;
+        color:#fcc;
+    }
+
+    ele1 .ele2 .ele3 {
+        width: 200px;
+        color:#fcc;
+    }
+
+    ele1 .ele2 .ele3:hover {
+        width: 100px;
+        color:#fcc;
+    }
+
+    有可能无限点下去
+
+
+    我们为什么不这样
+
+    ele {
+
+        color: #fff;
+        width: 100px;
+
+        &amp;:hover {
+            color:#f00;
+        }
+
+        &amp;:active {
+            color:#fcc;
+        }
+
+        &amp; .ele2 {
+            width: 200px;
+            color:#fcc;
+
+            &amp; .ele3 {
+                width: 200px;
+                color:#fcc;
+
+                &amp;:hover {
+                    width: 100px;
+                    color:#fcc;
+                }
+            }
+        }
+    }
+
+    ele 作为最外层的结界, 
+    与他相关的样式全部被封闭在里面，
+    描述一个部分，是不是看的很清楚，
+    而且有点js里封闭空间的意思。
+    对于hover active等伪类的写法也更简单清晰。</code></pre>
+<h3 id="-css3-">自从有了个叫css3的东西，各种前缀让我们写的痛不欲生。</h3>
+<pre><code>
+    div {
+        -webkit-transform: pespective(800px) rotateY(30deg);
+        -moz-transform: pespective(800px) rotateY(30deg);
+        -ms-transform: pespective(800px) rotateY(30deg);
+        -o-transform: pespective(800px) rotateY(30deg);
+        transform: pespective(800px) rotateY(30deg);
+    }
+
+    我们一般会写一段，然后ctrl+c 5次然后 改掉前缀
+    w3c跟我们说 以后会统一 ， 但是我感觉 我们等不到那一天
+    与其向他妥协，不如我们想点办法。
+
+    .transform(@style) {
+        -webkit-transform: ~&quot;@{style}&quot;;
+        -moz-transform: ~&quot;@{style}&quot;;
+        -ms-transform: ~&quot;@{style}&quot;;
+        -o-transform: ~&quot;@{style}&quot;;
+        transform: ~&quot;@{style}&quot;;
+    }
+
+    div {
+        .transform(pespective(800px) rotateY(30deg))
+    }
+
+    一个顶过去的五个...</code></pre>
+<h3 id="-filter-alpha-opacity-">微软总是弄些反人类写法，滤镜给大家的第一印象就是filter:alpha(opacity=...)有点长，有点烦人，虽然有代码提示，还是不爽...</h3>
+<pre><code>.opa (@num) {
+    opacity: @num;
+    @opacity-ie: (@num * 100);
+    filter:~&quot;alpha(opacity=@{opacity-ie})&quot;
+}
+
+div {
+    .opa(0.5);
+}
+
+样式表一下清净了... 自然还有其他滤镜...比如旋转...至少有两行代码吧，一般
+我们都会用样式生成器去生成...然后样式表里写得到处都是, 有了函数自然就不一样了。</code></pre>
+<h3 id="-less-if-else-less-css-js-less-">有了变量，函数。那么less有流程控制语句么，比如if else... ,less 的作者当然会想到。响应式，虽然我们可能不太喜欢这种方式，因为虽然多个平台公用一套页面，一套css,一套js，但是没有维护性可言，多半是纯展示性的网站会采用这种方式,不过有了less自然也就不一样了。</h3>
+<pre><code>
+.mixin (@a) when (@media = mobile) { ... }
+
+.mixin (@a) when (@media = desktop) { ... }
+
+
+less为我们提供了when 来作为匹配模式，
+写惯了js的同学，很容易把单 = 写成 == 
+less从严格意义上来说是做匹配而不是逻辑判断。
+当然less还提供另一种参数形式的匹配模式
+
+当定义传一个参数时
+
+.haha (@arguments1) {
+
+    ...
+
+}
+
+当定义两个参数时
+
+.haha (@arguments1; @arguments2) {
+
+    ...
+
+}
+
+如果当调用时，我们传了一个参数，会执行上面
+两个会执行下面。
+
+写惯了js的同学，请注意less 函数的参数 以分号隔开 而不是逗号</code></pre>
+<h3 id="-css-hover-hover-ps-">在写css的时候我们一定会遇到这种问题，当设计师 没有给我们hover颜色的时候，我们也许就会选一种比当前颜色淡一点的颜色，作为hover色。然后我们打开ps，然后就...</h3>
+<pre><code>
+less的作者想得很周到，提供了color函数
+
+
+lighten(@color, 10%);     
+darken(@color, 10%);      
+
+saturate(@color, 10%);    
+desaturate(@color, 10%);  
+
+fadein(@color, 10%);      
+fadeout(@color, 10%);     
+fade(@color, 50%);        
+
+spin(@color, 10);         
+spin(@color, -10);        
+
+mix(@color1, @color2);   
+
+
+看得懂英文的同学们， 深  浅  混合  这个几个意思一定明白吧...</code></pre>
+<h3 id="import-css-import-less-import-less-">import..在传统的css中，教科书告诉我们不要使用import,当然在less里也不例外，不过有了预编译机制那情况也就不一样了。import过来的less文件，会合并到当前文件中，你所定义的变量函数也会被干掉，所以我们不需要担心代码的冗余。当然自动编译的代码，肯定会比我们手写的代码要多，但是我们就不要钻这个牛角尖了，维护成本也是成本，效率也是成本，所以这种少量的代码冗余，我们应该是完全可以接受的</h3>
+<pre><code>
+import &quot;aaa&quot;
+
+导入某个less文件 后缀可以省略
+
+当然也可以导入某个css文件
+
+不过我个人建议如果是写less, 那么就都用less。</code></pre>
+<h3 id="less-">less很好，很强大，不过我们也会经常遇到一些问题，当然是我们自己的问题。</h3>
+<pre><code>
+比如：
+
+.opa (@num) {
+    opacity: @num;
+    filter:alpha(opacity=@num)
+}
+
+函数见括号就执行, less执行函数时也有括号 alpha()
+也有括号。。
+为了避免他被编译我们
+
+把他变成:
+
+&quot;alpha(opacity=@num)&quot;
+
+然后通过  反引号的 （~）,并且跟num加个大括号的 方式
+
+~&quot;alpha(opacity=@{num})&quot;
+
+通常几种情况下会遇到这种问题
+字符串中有变量
+正常的样式中有()</code></pre>
+<h2 id="lessApi">lessApi</h2>
+
+<blockquote>
+<p>以上的问题可能是我们工作中经常会遇到的问题，如果你是一个jser less应该能很快能上手，使用它的目的很简单，加强团队协作，减少代码量，提高维护性。
+详情请看 <a href="http://www.bootcss.com/p/lesscss/" class="linker">less api</a></p>
+</blockquote>
+
+      </div>
+    </div>
+
+    <!-- footer -->
+    <div class="footer" footer>
+      <!-- footer -->
+<div class="footer-inner ba-font-14 ba-tr ba-mt-20">
+	<a href="http://www.rockstars.com.cn" target="_blank">罗格斯达</a>&nbsp;&nbsp;
+	<a href="http://seajs.org" target="_blank">seajs</a>,
+	<a href="http://backbonejs.org" target="_blank">backbone</a>,
+	<a href="http://aralejs.org/class" target="_blank">class</a>,
+	<a href="https://code.csdn.net/Tencent/tmodjs" target="_blank">tmod</a>,
+	<a href="http://lab.lepture.com/nico/zh" target="_blank">nico</a>,
+	<a href="http://nodejs.org/" target="_blank">nodejs</a>,
+	<a href="http://www.expressjs.com.cn" target="_blank">express</a>,
+	<a href="http://koa.bootcss.com" target="_blank">koa</a>,
+	<a href="http://www.gruntjs.org" target="_blank">grunt</a>
+</div>
+    </div>
+  </div>
+
+<script src="../seajs/sea.js"></script>
+<script src="../seajs/config.js"></script>
+<script>
+  seajs.use('driver/R');
+</script>   
+</body>
+</html>

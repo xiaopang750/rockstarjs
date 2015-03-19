@@ -56,6 +56,7 @@
   font-size: @form-base-size;
   color: @form-base-color;
   border: 1px solid @form-base-border-color;
+  box-sizing:border-box;
   border-radius: @form-base-radius;
   background-color: @form-base-bg;
 
@@ -68,13 +69,17 @@
   &.disabled,
   &.readonly {
 	background-color: @form-disabled-color;
-	.opa(0.7);
+	opacity: 1;
 	.form-control-focus(@form-base-border-color);
 	box-shadow: none@i;
   }
 
-}
+  &.noInput {
+  	background: none;
+  	border:none;
+  }
 
+}
 
 //status
 .has-success {
@@ -192,6 +197,24 @@ textarea {
 
 	&.lg {
 		height: 500px;
+	}
+
+}
+
+//搜索区域
+.search-area {
+	
+	& .control-label {
+		padding-top: 3px;
+	}
+
+	& .form-control {
+		height: 30px;
+	}
+
+	& .btn {
+		height: 15px;
+		line-height: 15px;
 	}
 
 }

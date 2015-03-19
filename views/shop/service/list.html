@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>{{title}}</title>
+{{include '../include/meta'}}
+<link rel="stylesheet" href="{{cssPath}}core/rockstar.css">
+<link rel="stylesheet" href="{{cssPath}}main/shop/service/list.css">
+</head>
+
+<body>
+	{{include '../include/header'}}
+	<div class="main-content">
+		{{include '../include/nav'}}
+		{{include '../include/msg'}}
+		<div class="center-bar">
+			<div class="bar-title ba-clearfix">
+				<span class="ba-intro">{{title}}</span>
+				<a href="{{views['service/addEdit'].url}}" class="btn btn-primary bar-right-btn">添加</a>
+			</div>
+			<div class="main-content">
+				<table class="table bordered striped" width="100%" list-wrap>
+					<thead>
+						<tr>
+							<td width="15%">姓名</td>
+							<td width="15%">昵称</td>
+							<td width="20%">电话号码</td>
+							<td width="50%">管理</td>
+						</tr>
+					</thead>
+					<tbody data-ele="data-wrap">
+						<!-- tpl/shop/service/fairList.html -->
+					</tbody>
+				</table>
+			</div>
+			<!-- fenye -->
+            {{include '../include/fenye'}}	
+		</div>	
+	</div>
+
+{{include '../include/siteConfig'}}
+<script src="{{seaPath}}seajs/sea.js"></script>	
+<script src="{{seaPath}}seajs/config.js"></script>
+<script>
+	seajs.use('main/shop/service/list');
+</script>
+</body>
+</html>

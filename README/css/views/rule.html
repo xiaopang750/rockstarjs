@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>规范和最佳实践</title>
+<link rel="stylesheet" href="../src/css/core/rockstar.css">
+</head>
+<body>
+  <div class="wrap">
+
+    <!-- header -->
+    <div class="header" header>
+      <!-- header -->
+<div class="inner ba-clearfix">
+	<div class="title-wrap ba-fl ba-mr-20">
+		<a class="title" href="./">RockstarCss</a>
+		<div class="ba-gray">
+			<p>
+				写更少的样式 - for pc
+			</p>
+		</div>
+	</div>
+	<img src="../assets/lib/logo/xiaopang.jpg" class="title-img ba-fl">
+</div>
+    </div>
+
+    <!-- nav -->
+    <div class="nav" nav>
+      <!-- nav -->
+<div class="inner">
+	<ul class="ba-clearfix ba-pt-20">
+		
+			<li>
+				<a href="./index.html">
+					
+						<span class="fa fa-home ba-font-18"></span>
+					
+					首页
+				</a>
+			</li>
+		
+			<li>
+				<a href="./less.html">
+					
+					less
+				</a>
+			</li>
+		
+			<li>
+				<a href="./base.html">
+					
+					通用样式
+				</a>
+			</li>
+		
+			<li>
+				<a href="./rule.html">
+					
+					规范和最佳实践
+				</a>
+			</li>
+		
+			<li>
+				<a href="./icon.html">
+					
+					font-icon
+				</a>
+			</li>
+		
+			<li>
+				<a href="./use.html">
+					
+					使用
+				</a>
+			</li>
+		
+			<li>
+				<a href="./widget.html">
+					
+					组件
+				</a>
+			</li>
+		
+			<li>
+				<a href="./tool.html">
+					
+					工具
+				</a>
+			</li>
+		
+	</ul>
+</div>
+    </div>
+    
+    <!-- content -->
+    <div class="content ba-clearfix">
+      <div class="nav-left" nav-left-wrap>
+        <ul nav-left>
+          <!-- left-nav -->
+
+<li>
+	<a href="#html">
+		html
+	</a>
+</li>
+
+<li>
+	<a href="#css">
+		css
+	</a>
+</li>
+
+<li>
+	<a href="#代码组织顺序">
+		代码组织顺序
+	</a>
+</li>
+
+<li>
+	<a href="#最佳实践">
+		最佳实践
+	</a>
+</li>
+
+        </ul>
+      </div>
+      <div class="content-right" content-right>
+          <h2 id="html">html</h2>
+
+<h4 id="-htmll5-">文档头,使用htmll5的标准</h4>
+<pre><code>
+&lt;!DOCTYPE html&gt;</code></pre>
+<h4 id="-">字符集</h4>
+<pre><code> 统一使用utf-8</code></pre>
+<h4 id="seo">SEO</h4>
+<pre><code>关键词1-5个，网站描述100个字以内
+
+&lt;meta name=&quot;keywords&quot; content=&quot;&quot;/&gt;
+&lt;meta name=&quot;description&quot; content=&quot;&quot; /&gt;</code></pre>
+<h4 id="html-">html编码规则</h4>
+<pre><code>    &lt;div&gt;
+        &lt;p&gt;
+            &lt;span&gt;
+                1111
+            &lt;/span&gt;
+        &lt;/p&gt;
+    &lt;/div&gt;
+
+
+    尽量保持清晰的结构，不要写成一行
+
+    &lt;div&gt;&lt;p&gt;&lt;span&gt;111&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;</code></pre>
+<h4 id="-">属性顺序</h4>
+<pre><code>class
+id, name
+data-*
+src, for, type, href
+title, alt
+role</code></pre>
+<h4 id="-">减少标签的数量</h4>
+<pre><code>
+&lt;!-- Not so great --&gt;
+&lt;span class=&quot;avatar&quot;&gt;
+  &lt;img src=&quot;...&quot;&gt;
+&lt;/span&gt;
+
+&lt;!-- Better --&gt;
+&lt;img class=&quot;avatar&quot; src=&quot;...&quot;&gt;</code></pre>
+<h4 id="-">脚本样式表放置位置</h4>
+<pre><code>&lt;head&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;...&quot;&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+
+    &lt;script src=&quot;&quot;&gt;&lt;/script&gt;
+&lt;/body&gt;
+
+link放head内,让样式最先加载,以内文档内容加载完后样式还未加载完
+导致页面凌乱
+
+
+script标签会阻塞下面的内容加载，所以放在body的最底部</code></pre>
+<h2 id="css">css</h2>
+
+
+<h4 id="-">语法</h4>
+<ol>
+<li>用两个空格来代替制表符（tab） -- 这是唯一能保证在所有环境下获得一致展现的方法。</li>
+<li>为选择器分组时，将单独的选择器单独放在一行。</li>
+<li>为了代码的易读性，在每个声明块的左花括号前添加一个空格。</li>
+<li>声明块的右花括号应当单独成行。</li>
+<li>每条声明语句的 : 后应该插入一个空格。</li>
+<li>为了获得更准确的错误报告，每条声明都应该独占一行。</li>
+<li>所有声明语句都应当以分号结尾。最后一条声明语句后面的分号是可选的，但是，如果省略这个分号，你的代码可能更易出错。</li>
+<li>对于以逗号分隔的属性值，每个逗号后面都应该插入一个空格（例如，box-shadow）。</li>
+<li>不要在 rgb()、rgba()、hsl()、hsla() 或 rect() 值的内部的逗号后面插入空格。这样利于从多个属性值（既加逗号也加空格）中区分多个颜色值（只加逗号，不加空格）。</li>
+<li>对于属性值或颜色参数，省略小于 1 的小数前面的 0 （例如，.5 代替 0.5；-.5px 代替 -0.5px）。</li>
+<li>十六进制值应该全部小写，例如，#fff。在扫描文档时，小写字符易于分辨，因为他们的形式更易于区分。</li>
+<li>尽量使用简写形式的十六进制值，例如，用 #fff 代替 #ffffff。
+为选择器中的属性添加双引号，例如，input[type=&quot;text&quot;]。只有在某些情况下是可选的，但是，为了代码的一致性，建议都加上双引号。
+避免为 0 值指定单位，例如，用 margin: 0; 代替 margin: 0px;。</li>
+</ol>
+<h4 id="-">声明顺序</h4>
+<pre><code>Positioning
+Box model
+Typographic
+Visual
+
+由于定位（positioning）可以从正常的文档流中移除元素，
+
+并且还能覆盖盒模型（boxmodel）相关的样式，因此排在首位。
+
+盒模型排在第二位，因为它决定了组件的尺寸和位置。
+
+其他属性只是影响组件的内部（inside）或者是不影响前两组属性，因此排在后面。</code></pre>
+<h4 id="-import">不要使用 @import</h4>
+<blockquote>
+<p>与 <link> 标签相比，@import 指令要慢很多，不光增加了额外的请求次数，还会导致不可预料的问题。替代办法有以下几种：</p>
+</blockquote>
+<ol>
+<li>使用多个 <link> 元素</li>
+<li>通过 Sass 或 Less 类似的 CSS 预处理器将多个 CSS 文件编译为一个文件</li>
+<li>通过 Rails、Jekyll 或其他系统中提供过 CSS 文件合并功能</li>
+</ol>
+<h4 id="-">单行规则声明</h4>
+<blockquote>
+<p>对于只包含一条声明的样式，为了易读性和便于快速编辑，建议将语句放在同一行。对于带有多条声明的样式，还是应当将声明分为多行。</p>
+<p>这样做的关键因素是为了错误检测 -- 例如，CSS 校验器指出在 183 行有语法错误。如果是单行单条声明，你就不会忽略这个错误；如果是单行多条声明的话，你就要仔细分析避免漏掉错误了。</p>
+</blockquote>
+<pre><code>sprite {
+  display: inline-block;
+  width: 16px;
+  height: 15px;
+  background-image: url(../img/sprite.png);
+}
+.icon           { background-position: 0 0; }
+.icon-home      { background-position: 0 -20px; }
+.icon-account   { background-position: 0 -40px; }</code></pre>
+<h4 id="-">简写形式的属性声明</h4>
+<blockquote>
+<p>在需要显示地设置所有值的情况下，应当尽量限制使用简写形式的属性声明。常见的滥用简写属性声明的情况如下：</p>
+</blockquote>
+<ul>
+<li>padding</li>
+<li>margin</li>
+<li>font</li>
+<li>background</li>
+<li>border</li>
+<li>border-radius</li>
+</ul>
+<blockquote>
+<p>大部分情况下，我们不需要为简写形式的属性声明指定所有值。例如，HTML 的 heading 元素只需要设置上、下边距（margin）的值，因此，在必要的时候，只需覆盖这两个值就可以。过度使用简写形式的属性声明会导致代码混乱，并且会对属性值带来不必要的覆盖从而引起意外的副作用。</p>
+</blockquote>
+<pre><code>/* Bad example */
+.element {
+  margin: 0 0 10px;
+  background: red;
+  background: url(&quot;image.jpg&quot;);
+  border-radius: 3px 3px 0 0;
+}
+
+/* Good example */
+.element {
+  margin-bottom: 10px;
+  background-color: red;
+  background-image: url(&quot;image.jpg&quot;);
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+}</code></pre>
+<h4 id="-">注释</h4>
+<blockquote>
+<p>代码是由人编写并维护的。请确保你的代码能够自描述、注释良好并且易于他人理解。好的代码注释能够传达上下文关系和代码目的。不要简单地重申组件或 class 名称。</p>
+<p>对于较长的注释，务必书写完整的句子；对于一般性注解，可以书写简洁的短语。</p>
+</blockquote>
+<h4 id="class-">class命名</h4>
+<ol>
+<li><p>class 名称中只能出现小写字符和破折号（dashe）（不是下划线，也不是驼峰命名法）。破折号应当用于相关 class 的命名（类似于命名空间）（例如，.btn 和 .btn-danger）。</p>
+</li>
+<li><p>避免过度任意的简写。.btn 代表 button，但是 .s 不能表达任何意思。
+class 名称应当尽可能短，并且意义明确。</p>
+</li>
+</ol>
+<p>3.使用有意义的名称。使用有组织的或目的明确的名称，不要使用表现形式（presentational）的名称。
+基于最近的父 class 或基本（base） class 作为新 class 的前缀。</p>
+<h2 id="代码组织顺序">代码组织顺序</h2>
+
+<ol>
+<li><p>reset + config</p>
+</li>
+<li><p>layer</p>
+</li>
+<li><p>button + icon</p>
+</li>
+<li><p>main</p>
+</li>
+</ol>
+<h4 id="-">模块化的样式</h4>
+<h2 id="最佳实践">最佳实践</h2>
+
+<h4 id="-">自定义属性</h4>
+<blockquote>
+<p>js组件通过在html标签上加自定义属性,来标识组件,pc端由于要兼容到ie7,最好不要使用属性选择器,这里留给js使用</p>
+</blockquote>
+<pre><code>&lt;div widget-focus&gt;
+    &lt;div widget-focus-btn-left&gt;左按钮&lt;/div&gt;
+    &lt;div widget-focus-btn-right&gt;右按钮&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+<h4 id="-">组件模块开发顺序</h4>
+<ol>
+<li><p>html</p>
+</li>
+<li><p>自定义属性标识</p>
+</li>
+<li><p>组件样式</p>
+</li>
+<li><p>组件js </p>
+</li>
+</ol>
+<h4 id="-icon-font">使用icon-font</h4>
+<blockquote>
+<p>尽量用icon-font代替img-icon, icon-font为svg图片，有点狠明显：</p>
+</blockquote>
+<ol>
+<li><p>比图片大小小</p>
+</li>
+<li><p>能随意切换大小，颜色</p>
+</li>
+<li><p>便于维护</p>
+</li>
+<li><p>非常好的兼容retina屏</p>
+</li>
+</ol>
+<h4 id="-css3-">鼓励使用css3效果，低端浏览器才有降级处理</h4>
+<blockquote>
+<p>css3的出现一定有他的道理，低级浏览器虽然会阻碍css3的使用，但在移动端我们几乎可以使用大量css3样式，但需要考虑性能，移动端只要涉及和运动有关的效果，都会出现一些问题。而在pc端，性能已经不是问题，css3效果能在pc端的高级浏览器得到极致的展现。当然我们不是为了做效果，而做效果，而是为了提高用户体验，或者吸引用户的眼球。所以对于新技术的使用，一方面能提高我们的技术，另一方面也可以促进新技术的发展。css3值得我们拥有，如果没有ie，css3能提高我们很多的效率。比如：box-sizing:border-box, flex布局, 圆角, 阴影, 旋转, 渐变。</p>
+</blockquote>
+<h4 id="-html-">保持简洁的html结构，降低耦合性</h4>
+<blockquote>
+<p>有一种bug叫，我以为这个p 的next就是 就是我想要的元素</p>
+<p>降低html的耦合性，保持简洁清晰的风格，使js更好操作。</p>
+</blockquote>
+<h4 id="-">用了浮动尽量清楚</h4>
+<blockquote>
+<p>有种清浮动的方式叫，所有元素浮动，然后所有元素就都浮起来了，浮动就不用清了。这种写法的后果，同学们应该都懂的。</p>
+</blockquote>
+<h4 id="-reset-reset-">组件样式不要依靠reset,要有自己独立的reset, 保持独立性</h4>
+<blockquote>
+<p>独立的样式能降低样式模块之间的耦合性。</p>
+</blockquote>
+<h4 id="-">文件大小</h4>
+<p>对于css文件的大小,有的人说一个文件不应该超过多少，我觉得这个应该不重要了。最后合并出来的基础样式库,既然是库，大一点也无所谓吧。每个页面都引入基础样式，然后再单独引入一个自己的样式。每个页面一到两个样式表，在seajs的帮助下，实现一个view 对应 一个 style 一个 入口 js文件。</p>
+<h4 id="-ie6">放弃ie6</h4>
+<blockquote>
+<p>为了加速ie6的淘汰，我们就不兼容它了。</p>
+</blockquote>
+
+      </div>
+    </div>
+
+    <!-- footer -->
+    <div class="footer" footer>
+      <!-- footer -->
+<div class="footer-inner ba-font-14 ba-tr ba-mt-20">
+	<a href="http://www.rockstars.com.cn" target="_blank">罗格斯达</a>&nbsp;&nbsp;
+	<a href="http://seajs.org" target="_blank">seajs</a>,
+	<a href="http://backbonejs.org" target="_blank">backbone</a>,
+	<a href="http://aralejs.org/class" target="_blank">class</a>,
+	<a href="https://code.csdn.net/Tencent/tmodjs" target="_blank">tmod</a>,
+	<a href="http://lab.lepture.com/nico/zh" target="_blank">nico</a>,
+	<a href="http://nodejs.org/" target="_blank">nodejs</a>,
+	<a href="http://www.expressjs.com.cn" target="_blank">express</a>,
+	<a href="http://koa.bootcss.com" target="_blank">koa</a>,
+	<a href="http://www.gruntjs.org" target="_blank">grunt</a>
+</div>
+    </div>
+  </div>
+
+<script src="../seajs/sea.js"></script>
+<script src="../seajs/config.js"></script>
+<script>
+  seajs.use('driver/R');
+</script>   
+</body>
+</html>

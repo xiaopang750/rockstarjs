@@ -1,11 +1,19 @@
 /* 获取全局url */
 
-template.helper('getUrl', function(content){
-       
-    return __url__data[content];
+template.helper('getRoute', function(content){
+     
+    return R.route[content].url;
 
 });
 
+/* time-cha */
+template.helper('timeLeft', function(sEnd, sStart){
+       
+    var sStartTime = new Date( sStart.replace(/\-/gi, '\/') ).getTime();
+    var sEndTime = new Date( sEnd.replace(/\-/gi, '\/') ).getTime();
+    var cha = sEndTime - sStartTime;
+    return parseInt(cha / 1000 / 60 / 60 / 24, 10);
+});
 
 /* 模板内图片路径前缀 */
 template.helper('imgPath', function(content){
@@ -15,6 +23,12 @@ template.helper('imgPath', function(content){
     } else {
         return R.uri.assets + content;
     }
+});
+
+/* parse-json-str */
+template.helper('jp', function(content){
+
+    return JSON.parse(content);
 });
 
 

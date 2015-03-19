@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>{{title}}</title>
+{{include '../include/meta'}}
+<link rel="stylesheet" href="{{cssPath}}core/rockstar.css">
+<link rel="stylesheet" href="{{cssPath}}main/shop/goods/list.css">
+</head>
+
+<body>
+	{{include '../include/header'}}
+	<div class="main-content">
+		{{include '../include/nav'}}
+		{{include '../include/msg'}}
+		<div class="center-bar">
+			<div class="bar-title ba-clearfix">
+				<span class="ba-intro">{{title}}</span>
+			</div>
+			<div class="main-content">
+				<table class="table bordered striped" width="100%" list-wrap>
+					<thead>
+						<tr>
+							<td width="20%">套餐名称</td>
+							<td width="10%">面向群体</td>
+							<td width="10%">标准价格</td>
+							<td width="10%">本店价格</td>
+							<td width="10%">当前价格</td>
+							<td width="10%">提成比例</td>
+							<td width="10%">说明</td>
+							<td width="20%">操作</td>
+						</tr>
+					</thead>
+					<tbody data-ele="data-wrap">
+						<!-- tpl/shop/goods/goodsList.html -->
+					</tbody>
+				</table>
+				<!-- fenye -->
+				{{include '../include/fenye'}}
+			</div>	
+		</div>	
+	</div>
+{{include '../include/siteConfig'}}
+<script src="{{seaPath}}seajs/sea.js"></script>	
+<script src="{{seaPath}}seajs/config.js"></script>
+<script>
+	seajs.use('main/shop/goods/list');
+</script>
+</body>
+</html>

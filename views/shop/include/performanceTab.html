@@ -1,0 +1,32 @@
+<!-- 业绩tab页面 -->
+<div class="ba-mb-30">
+	{{if title == '店面业绩'}}
+		<a href="javascript:;" class="btn btn-warning ba-default active">
+        	店面业绩
+        </a>
+	{{else}}
+	<a href="{{views['performance/index'].url}}" class="btn btn-warning">
+    	店面业绩
+    </a>
+    {{/if}}
+	
+	{{if title == '发型师业绩'}}
+		<a href="javascript:;" class="btn btn-warning ba-default active">
+        	发型师业绩
+        </a>
+	{{else}}
+	<a href="{{views['performance/hairer'].url}}" class="btn btn-warning">
+    	发型师业绩
+    </a>
+    {{/if}}
+	
+	{{if title == '历史订单'}}
+		<a href="javascript:;" class="btn btn-warning ba-default active">
+        	历史订单
+        </a>
+	{{else}}
+	<a href="{{views['performance/history'].url}}" class="btn btn-warning">
+    	历史订单
+    </a>
+    {{/if}}
+</div>

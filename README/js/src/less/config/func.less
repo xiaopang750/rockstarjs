@@ -1,0 +1,114 @@
+/**
+ *description:网站全局less函数-pc
+ *author:fanwei
+ *date:2014/10/30
+ */
+
+.content-wrap() {
+	width:  @page-width;
+	margin: @auto;
+}
+
+.word-break() {
+	word-break:break-all;
+}
+
+
+/* line-height */
+.line-h (@h){
+	line-height: @h;
+}
+
+.clearfix-after() {
+	visibility: hidden;
+	display: block;
+	font-size: 0;
+	content: " ";
+	clear: both;
+	height: 0;
+	overflow: hidden;
+}
+
+/* font-size */
+.font-s (@size) {
+	font-size: @size + ~"!important";
+}
+
+/* margin */
+.m-l (@size) {
+	margin-left: @size + ~"!important";
+}
+
+.m-r (@size) {
+	margin-right: @size + ~"!important";
+}
+
+.m-t (@size) {
+	margin-top: @size + ~"!important";
+}
+
+.m-b (@size) {
+	margin-bottom: @size + ~"!important";
+}
+
+/* padding */
+.p-l (@size) {
+	padding-left: @size + ~"!important";
+}
+
+.p-r (@size) {
+	padding-right: @size + ~"!important";
+}
+
+.p-t (@size) {
+	padding-top: @size + ~"!important";
+}
+
+.p-b (@size) {
+	padding-bottom: @size + ~"!important";
+}
+
+
+/* opacity */
+.opa (@num) {
+	opacity: @num;
+	@opacity-ie: (@num * 100);
+	filter:~"alpha(opacity=@{opacity-ie})"
+}
+
+/* trangle */
+.tran() {
+	display: inline-block;
+	width: 0;
+	height: 0;
+}
+
+.tran-d(@size; @bg) {
+	.tran();
+	border-top: @size solid @bg;
+	border-right: @size solid transparent;
+	border-left: @size solid transparent;
+}
+
+.tran-t(@size; @bg) {
+	.tran();
+	border-bottom: @size solid @bg;
+	border-right: @size solid transparent;
+	border-left: @size solid transparent;
+}
+
+.tran-l(@size; @bg) {
+	.tran();
+	border-right: @size solid @bg;
+	border-top: @size solid transparent;
+	border-bottom: @size solid transparent;
+}
+
+.tran-r(@size; @bg) {
+	.tran();
+	border-left: @size solid @bg;
+	border-top: @size solid transparent;
+	border-bottom: @size solid transparent;
+}
+
+

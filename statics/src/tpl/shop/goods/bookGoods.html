@@ -1,0 +1,6 @@
+<!-- 库存商品 -->
+{{if list}}
+	{{each list}}
+		<li><a href="javascript:;" gid={{$value.pkShopProdcut}} unit={{$value.unit}} capacity={{$value.capacity}} productprice={{$value.productprice}} goods-item>{{$value.productname}}</a></li>
+	{{/each}}
+{{/if}}

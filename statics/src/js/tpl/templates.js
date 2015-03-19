@@ -77,10 +77,15 @@
         helpers[name] = helper;
     }, define(function() {
         return template;
-    }), template.helper("getUrl", function(content) {
-        return __url__data[content];
+    }), template.helper("getRoute", function(content) {
+        return R.route[content].url;
+    }), template.helper("timeLeft", function(sEnd, sStart) {
+        var sStartTime = new Date(sStart.replace(/\-/gi, "/")).getTime(), sEndTime = new Date(sEnd.replace(/\-/gi, "/")).getTime(), cha = sEndTime - sStartTime;
+        return parseInt(cha / 1e3 / 60 / 60 / 24, 10);
     }), template.helper("imgPath", function(content) {
         return content ? R.uri.assets + content : R.uri.assets;
+    }), template.helper("jp", function(content) {
+        return JSON.parse(content);
     }), template.helper("cut", function(content, num) {
         var len;
         return "string" != typeof content ? content : (len = content.length, num >= len ? content : content.substring(0, num) + "...");

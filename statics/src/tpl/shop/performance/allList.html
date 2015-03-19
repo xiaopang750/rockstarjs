@@ -1,0 +1,18 @@
+<!-- 店铺业绩列表 -->
+{{if list}}
+	{{each list}}
+	<tr>
+		<td>{{$value.curdate}}</td>
+		<td>{{$value.combomoney}}</td>
+		<td>{{$value.servicemoney}}</td>
+		<td>{{$value.fairermoney}}</td>
+		<td>{{$value.combomoney + $value.servicemoney}}</td>
+		<td>{{$value.fairermoney}}</td>
+		<td>{{$value.combomoney + $value.servicemoney - $value.fairermoney}}</td>
+	</tr>
+	{{/each}}
+{{else}}
+	<tr>
+		<td colspan="7">暂无数据</td>
+	</tr>
+{{/if}}

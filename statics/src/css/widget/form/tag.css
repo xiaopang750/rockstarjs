@@ -1,0 +1,49 @@
+/**
+ *description:标签添加
+ *author:fanwei
+ *date:2015/1/25
+ */
+.tag-wrap {
+  width: 460px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+.tag-wrap.no-border {
+  border: none;
+}
+.tag-wrap .tag-input {
+  width: 98%;
+  height: 30px;
+  line-height: 30px;
+  padding-left: 2px;
+  border: none;
+  background: none;
+  margin: 0 auto 5px auto;
+  display: block;
+}
+.tag-wrap .tag-list-wrap {
+  width: 98%;
+  margin: 0 auto;
+  padding-bottom: 10px;
+  word-break: break-all;
+}
+.tag-wrap .tag-list {
+  padding: 2px 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  display: inline-block;
+  margin: 0 5px 5px 0;
+  background: #fff;
+}
+.tag-wrap .tag-list .tag-name {
+  margin-right: 5px;
+}
+.tag-wrap .tag-list .tag-close {
+  cursor: pointer;
+  position: relative;
+  top: -3px;
+  color: #ccc;
+}
+.tag-wrap .tag-list .tag-close:hover {
+  color: #666;
+}

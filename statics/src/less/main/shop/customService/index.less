@@ -1,0 +1,33 @@
+/**
+ *description:客服管理
+ *author:fanwei
+ *date:2015/1/25
+ */
+
+@import "../../../config/config.less";
+@import "../../../config/func.less";
+@import "../../../extend/css3.less";
+
+.msg-wrap {
+	width: 600px;
+	border:1px solid @border-color;
+	margin:0 auto;
+	background: #fff;
+	padding:10px;
+
+	& .msg-history {
+		height: 300px;
+		padding:10px;
+		border:1px solid @border-color;
+		overflow: auto;
+
+		& li {
+			margin-bottom: 10px;
+		}
+	}
+
+	& .msg-area textarea {
+		width: 100%@i;
+		box-sizing:border-box;
+	}
+}

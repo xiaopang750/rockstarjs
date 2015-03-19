@@ -1,0 +1,202 @@
+/**
+ *description:table-for-pc
+ *author:fanwei
+ *date:2014/11/03
+ */
+
+@import "../config/config.less";
+@import "../config/func.less";
+@import "../extend/css3.less";
+
+//label
+.control-label {
+	font-size: @lable-base-size;
+	font-weight: @label-base-weight;
+	padding-top: @label-base-padding-top;
+}
+
+.form-inline {
+	
+	zoom:1;
+	margin-bottom: @form-base-group-margin-bottom;
+	& .form-group {
+		float: left;
+		margin-right: @form-base-horizontal-space;
+		margin-bottom: 0@i;
+	}
+
+	&:after {
+		.clearfix-after()
+	}
+
+}
+
+.form-group {
+	margin-bottom: @form-base-group-margin-bottom;
+	zoom:1;
+	&:after {
+		.clearfix-after()
+	}
+
+	& .control-label {
+		float: left;
+	}
+
+	& .form-control {
+		float: left;
+	}
+}
+
+
+.form-control {	
+  display: block;
+  width: 100% - @form-base-left-padding;
+  padding: @form-base-vertical-padding 0;
+  padding-left: @form-base-left-padding;
+  font-size: @form-base-size;
+  color: @form-base-color;
+  border: 1px solid @form-base-border-color;
+  border-radius: @form-base-radius;
+  background-color: @form-base-bg;
+
+  .transition(all .15s ease-in-out);
+  .form-control-focus(@form-focus-border);
+  .placeholder(@form-placeholder-color);
+
+  &[disabled],
+  &[readonly],
+  &.disabled,
+  &.readonly {
+	background-color: @form-disabled-color;
+	.opa(0.7);
+	.form-control-focus(@form-base-border-color);
+	box-shadow: none@i;
+  }
+
+}
+
+
+//status
+.has-success {
+  .form-control-validation(@state-success-text; @state-success-text; @state-success-bg);
+}
+.has-warning {
+  .form-control-validation(@state-warning-text; @state-warning-text; @state-warning-bg);
+}
+.has-error {
+  .form-control-validation(@state-danger-text; @state-danger-text; @state-danger-bg);
+}
+
+
+
+//form-focus
+.form-control-focus(@color) {
+  @color-rgba: rgba(red(@color), green(@color), blue(@color), .6);
+  &.focus,
+  &:focus {
+    border-color: @color;
+    outline: 0;
+    .box-shadow(~"inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px @{color-rgba}");
+  }
+
+}
+
+
+//size-height
+.input-sm {
+  .input-size(@form-sm-vertical-padding; @form-sm-font-size);
+}
+
+.input-lg {
+  .input-size(@form-lg-vertical-padding; @form-lg-font-size);
+}
+
+
+//placeholder
+.placeholder(@color) {
+  &::-moz-placeholder           { color: @color; opacity: 1; } 
+  &:-ms-input-placeholder       { color: @color; } 
+  &::-webkit-input-placeholder  { color: @color; }
+}
+
+
+//radio-checkbox;
+.form-item {
+	display: inline-block;
+	margin-right: @form-base-item-space;
+	margin-bottom: 0;
+	vertical-align: middle;
+	cursor: pointer;
+
+	& input[type=checkbox],
+	& input[type=radio] {
+		margin-right: 5px;
+	}
+ }
+
+
+
+//validation-status
+.form-control-validation(@text-color: #555; @border-color: #ccc; @background-color: #f5f5f5) {
+
+  &.form-control {
+    border-color: @border-color;
+    .box-shadow(inset 0 1px 1px rgba(0,0,0,.075)); // Redeclare so transitions work
+    &:focus {
+      border-color: darken(@border-color, 10%);
+      @shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 6px lighten(@border-color, 20%);
+      .box-shadow(@shadow);
+    }
+  }
+
+}
+
+//input-size
+.input-size (@form-size-vertical-padding; @form-size-font-size) {
+	padding-top:@form-size-vertical-padding;
+	padding-bottom:@form-size-vertical-padding;
+	font-size: @form-size-font-size;
+}
+
+//help-text
+.help-text {
+  display: block;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  color: lighten(@form-base-color, 25%);
+  clear:both;
+}
+
+//必填
+.required {
+	font-size: 14px;
+	overflow: hidden;
+	color:@red;
+	float: left;
+	padding-top:4px;
+	margin-left:4px;
+}
+
+//textarea
+textarea {
+	
+	height: 150px;
+
+	&.sm {
+		height: 100px;
+	}
+
+	&.mid {
+		height: 300px;
+	}
+
+	&.lg {
+		height: 500px;
+	}
+
+}
+
+
+
+
+

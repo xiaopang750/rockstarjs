@@ -1,0 +1,37 @@
+<!-- 商品套餐列表 -->
+{{if list}}
+	{{each list}}
+		<tr list>
+			<td>{{$value.comboname}}</td>
+			<td>
+				{{if $value.fitgroup == 1}}
+				男士
+				{{else if $value.fitgroup == 2}}
+				女士
+				{{else}}
+				不限
+				{{/if}}
+			</td>
+			<td>{{$value.standardmoney}}</td>
+			<td edit="shopmoney">{{$value.shopmoney}}</td>
+			<td edit="shopmoney">{{$value.currentmoney}}</td>
+			<td edit="fairermoney">{{$value.fairermoney*100}}%</td>
+			<td edit="combonote">{{$value.combonote}}</td>
+			<td>
+				<p class="ba-mb-10">
+					<a class="btn btn-normal" href="javascript:;" aid="{{$value.pkShopCombo}}" modify>修改</a>
+				</p>
+				<p class="ba-mb-10">
+					<a class="btn btn-normal" href="{{getRoute ['goods/detail']}}?gid={{$value.pkShopCombo}}">修改详情</a>
+				</p>
+				<p>
+					<a class="btn btn-normal" href="{{getRoute ['content/addEdit']}}?pkType={{$value.pkShopCombo}}&contenttype=combo">内容维护</a>
+				</p>
+			</td>
+		</tr>
+	{{/each}}
+{{else}}
+	<tr>
+		<td colspan="8">暂无数据</td>
+	</tr>
+{{/if}}

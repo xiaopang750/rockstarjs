@@ -1,0 +1,21 @@
+<!-- 库存列表 -->
+{{if list}}
+	{{each list}}
+		<tr list>
+			<td>{{$value.brand}}</td>
+			<td>{{$value.series}}</td>
+			<td>{{$value.itemno}}</td>
+			<td>{{$value.capacity}}</td>
+			<td>{{$value.productname}}</td>
+			<td>{{$value.productnum}}</td>
+			<td>{{$value.unit}}</td>
+			<td>{{$value.productprice}}</td>
+			<td edit="shopprice">{{$value.shopprice}}</td>
+			<td><a class="btn btn-normal" href="javascript:;" aid="{{$value.pkShopProdcut}}" modify>修改</a></td>
+		</tr>
+	{{/each}}
+{{else}}
+	<tr>
+		<td colspan="8">暂无数据</td>
+	</tr>
+{{/if}}

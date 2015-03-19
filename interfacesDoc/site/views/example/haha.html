@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<link rel="stylesheet" href="/static/css/rockstar.css">
+<link rel="stylesheet" href="/static/css/one.css">
+</head>
+<body>
+
+<div class="document yue" id="wrap">	
+  <blockquote>
+<h3 id="-">接口地址</h3>
+</blockquote>
+<pre><code>http://www.haha.com/post/comment/publish</code></pre>
+<blockquote>
+<h3 id="http-2">Http方法2</h3>
+</blockquote>
+<pre><code>POST</code></pre>
+<blockquote>
+<h3 id="-">是否需要登录</h3>
+</blockquote>
+<pre><code>是</code></pre>
+<blockquote>
+<h3 id="-">前台传参字段说明</h3>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>是否必须</th>
+<th>参数类型</th>
+<th>参数说明</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>content</td>
+<td>是</td>
+<td>string</td>
+<td>评论内容</td>
+<td>哈哈</td>
+</tr>
+<tr>
+<td>cid</td>
+<td>是</td>
+<td>int</td>
+<td>评论内容id</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<h3 id="-">返回值示例</h3>
+</blockquote>
+<pre><code>{&quot;code&quot;:&quot;A00000&quot;, &quot;msg&quot;:&quot;评论成功&quot;}</code></pre>
+<blockquote>
+<h3 id="-">返回值说明</h3>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>字段说明                  </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>code</td>
+<td>状态码    </td>
+</tr>
+<tr>
+<td>msg</td>
+<td>返回消息 </td>
+</tr>
+</tbody>
+</table>
+
+</div>
+<script>
+	window.onload = function() {
+
+		var oWrap = document.getElementById('wrap');
+		var w = oWrap.offsetWidth;
+		var h = oWrap.offsetHeight + 100;
+		console.log(h);
+
+		if(window.parent) {
+
+			var oParentFrame = window.parent.document.getElementById('frame');
+			oParentFrame.style.width = w + 'px';
+			oParentFrame.style.height = h + 'px';
+
+		}
+
+	};
+</script> 
+</body>
+</html>

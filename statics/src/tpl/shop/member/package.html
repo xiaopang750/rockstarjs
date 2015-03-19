@@ -1,0 +1,24 @@
+<!-- 套餐信息 -->
+{{if list}}
+	{{each list}}
+	<tr list-info>
+		<td packname>{{$value.comboname}}</td>
+		<td>{{$value.leftcount}}</td>
+		<td timeLeft>{{timeLeft($value.comboendtime, $value.combobegintime)}}天</td>
+		<td class="ba-tl">
+			<p class="ba-mb-5">理发师:{{$value.lastfairername}}</p>
+			<p class="ba-mb-5">金额:{{$value.lastmoney}}</p>
+			<p>时间:{{$value.lastusetime}}</p>
+		</td>
+		<td money>{{$value.combomoney - $value.discount}}</td>
+		<td>
+			<a class="btn btn-normal" href="{{$value.orderUrl}}&spid={{$value.pkShopCombo}}&comboid={{$value.pkCustomerCombo}}" order>下单</a>
+			<a class="btn btn-normal" href="javascript:;" aid="{{$value.pkCustomerCombo}}" {{if $value.pkCustomerCombo == 0}}class="ba-hidden"{{/if}} edit>编辑</a>
+		</td>
+	</tr>
+	{{/each}}
+{{else}}
+	<tr>
+		<td colspan="6">暂无数据</td>
+	</tr>
+{{/if}}

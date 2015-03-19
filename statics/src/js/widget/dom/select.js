@@ -22,9 +22,9 @@
 
 define(function(require, exports, module){
 
-	var template = require('../../lib/template/template');
+	var template = require('../../lib/template/artTemplate');
 	
-	var select = R.Class.create(R.until, {
+	var select = R.Class.create(R.util, {
 
 		initialize: function(opts) {
 
@@ -37,6 +37,8 @@ define(function(require, exports, module){
 			this.changeData = opts.changeData || null;
 			this.onChange = opts.onChange || null;
 			this.onReady = opts.onReady || null;
+
+			if(!this.oSelect.length) return;
 			this._req();
 			this.events();
 			this.orgHTML = this.oSelect.html();
@@ -50,17 +52,8 @@ define(function(require, exports, module){
 				oSelect;
 
 			oSelect = this.oSelect[0];
-
-			if(!this.loadUrl) {
-
-				data = this.renderData;
-				this.render(data);
-
-				nowIndex = oSelect.selectedIndex;
-				nowOption = $( oSelect.options[ nowIndex ] );
-				this.onReady && this.onReady(this.oSelect, nowOption, nowIndex);
-
-			} else {
+			
+			if(this.loadUrl) {
 
 				this.reqUrl = this.loadUrl;
 				this.reqParam = this.param;
@@ -72,10 +65,56 @@ define(function(require, exports, module){
 					nowIndex = oSelect.selectedIndex;
 					nowOption = $( oSelect.options[ nowIndex ] );
 					_this.onReady && _this.onReady(_this.oSelect, nowOption, nowIndex);
-
 				});
 
+			} else {
+
+				data = this.renderData;
+				this.render(data);
+
+				nowIndex = oSelect.selectedIndex;
+				nowOption = $( oSelect.options[ nowIndex ] );
+				this.onReady && this.onReady(this.oSelect, nowOption, nowIndex);
+
 			}
+
+		},
+		match: function(attr, sValue) {
+			
+			var aChildren = this.oSelect.children();
+			var nowValue;
+			var _this = this;
+
+			aChildren.each(function(i){
+
+				nowValue = aChildren.eq(i).attr(attr);
+
+				if(sValue == nowValue) {
+
+					_this.oSelect[0].selectedIndex = i;
+
+				}
+
+			});
+
+		},
+		getNowIndex: function() {
+
+			var nowIndex = this.oSelect[0].selectedIndex;
+
+			return nowIndex;
+
+		},
+		getValue: function() {
+
+			return this.oSelect.val();
+
+		},
+		getNowOption: function() {
+
+			var nowIndex = this.getNowIndex();
+
+			return this.oSelect.children().eq(nowIndex);
 
 		},
 		events: function() {
@@ -116,7 +155,7 @@ define(function(require, exports, module){
 		}
 
 	});
-
+	
 	module.exports = select;
 	
 });

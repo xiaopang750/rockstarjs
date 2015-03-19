@@ -1,0 +1,39 @@
+<!-- left-nav -->
+<div class="left-bar" left-bar>
+	<ul class="main">
+		{{each siteNav}}
+			{{if $value.belongIndex == belongIndex}}	
+		<li class="list-main active" list-main>
+			{{else}}	
+		<li class="list-main {{if $value.children}}{{each $value.children as $value2 index2}}{{if $value2.belongIndex == belongIndex}}down{{/if}}{{/each}}{{/if}}" list-main>		
+			{{/if}}	
+			{{if $value.children}}
+				<a href="javascript:;" class="first-index" list-main-head>
+			{{else}}
+				<a href="{{$value.url}}" class="first-index" list-main-head>
+			{{/if}}		
+					<div class="ba-ml-15 ba-rel">
+						<span class="fa {{$value.icon}}"></span>
+						<span>{{$value.name}}</span>
+						{{if $value.children}}
+							<span class="fa fa-chevron-down icon"></span>
+							<span class="fa fa-chevron-up icon"></span>
+						{{/if}}
+					</div>
+				</a>
+			{{if $value.children}}	
+			<ul class="sub" list-sub>
+				{{each $value.children as $value2 index2}}
+				<li {{if $value2.belongIndex == belongIndex}}class="active"{{/if}}>
+					<a href="{{$value2.url}}">
+						<span>.</span>
+						{{$value2.name}}
+					</a>
+				</li>
+				{{/each}}
+			</ul>
+			{{/if}}
+		</li>
+		{{/each}}
+	</ul>
+</div>

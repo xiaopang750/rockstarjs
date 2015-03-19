@@ -1,0 +1,36 @@
+<!-- 消息人物 -->
+{{if customer.length}}
+<li class="group" group="001">
+	<span class="group-head ba-pointer">
+		<span class="fa fa-caret-right"></span>
+		<span class="fa fa-caret-down"></span>
+		消费者({{customer.length}})
+	</span>
+	<ul class="user-wrap">
+		{{each customer}}
+		<li cancelBubble="true">
+			<input type="checkbox" id="group{{$value.pkUser}}" msgUid="{{$value.pkUser}}" cancelBubble="true">
+			<label uid="{{$value.pkUser}}" for="group{{$value.pkUser}}" class="ba-pointer" cancelBubble="true">{{$value.customername}}</label>
+		</li>
+		{{/each}}
+	</ul>
+</li>
+{{/if}}
+
+{{if fairer.length}}
+<li class="group" group="002">
+	<span class="group-head ba-pointer">
+		<span class="fa fa-caret-right"></span>
+		<span class="fa fa-caret-down"></span>
+		理发师({{fairer.length}})
+	</span>
+	<ul class="user-wrap">
+		{{each fairer}}
+		<li user-list="true" cancelBubble="true">
+			<input type="checkbox" id="group{{$value.pkUser}}" msgUid="{{$value.pkUser}}" cancelBubble="true">
+			<label uid="{{$value.pkUser}}" for="group{{$value.pkUser}}" class="ba-pointer" cancelBubble="true">{{$value.fairername}}</label>
+		</li>
+		{{/each}}
+	</ul>
+</li>
+{{/if}}

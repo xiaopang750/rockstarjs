@@ -1,0 +1,185 @@
+/**
+ *description:网站全局less变量-配置
+ *author:fanwei
+ *date:2014/10/30
+ */
+
+/* use-most-var */
+@i:   !important;
+
+
+/* color */
+@white:      white;
+@red:        #de682a;
+@black:      black;
+@blue:       blue;
+@yellow: 	 yellow;
+@gray: 		 #999;
+@green: 	 green;
+
+/* a-link */
+@a-color: 	           gray;
+@a-color-hover: 	   gray;
+@a-color-active:       red;
+@a-color-visited:      "";
+
+
+/* font-family */
+@font-yahei: 			"Microsoft Yahei";
+@font-song: 			"宋体";
+@font-three: 		"";
+@font-four: 		"";
+@font-five: 		"";
+
+
+/* h-size */
+@h1-size: 		36px;
+@h2-size: 		30px;
+@h3-size: 		24px;
+@h4-size: 		18px;
+@h5-size: 		14px;
+@h6-size: 		12px;
+
+
+/* btn */
+@btn-font-weight: normal;
+
+//btn-size
+@btn-padding-vertical-base:         6px;
+@btn-padding-horizontal-base: 		12px;
+@btn-font-size-base:                12px;
+@btn-border-radius-base:            4px;
+
+@btn-padding-vertical-lg:        10px;
+@btn-padding-horizontal-lg:      16x;
+@btn-font-size-lg:               14px;
+@btn-border-radius-lg:           6px;
+
+@btn-padding-vertical-sm:        5px;
+@btn-padding-horizontal-sm:      10px;
+@btn-font-size-sm:               12px;
+@btn-border-radius-sm:           3px;
+
+@btn-padding-vertical-xs:           1px;
+@btn-padding-horizontal-xs:         5px;
+@btn-font-size-xs:                  12px;
+@btn-border-radius-xs:              3px;
+
+//btn-theme
+@brand-primary:         #428bca;
+@brand-success:         #5cb85c;
+@brand-info:            #5bc0de;
+@brand-warning:         #f0ad4e;
+@brand-danger:          #d9534f;
+
+@btn-default-color:              #333;
+@btn-default-bg:                 #fff;
+@btn-default-border:             #ccc;
+
+@btn-primary-color:              #fff;
+@btn-primary-bg:                 @brand-primary;
+@btn-primary-border:             darken(@btn-primary-bg, 5%);
+
+@btn-success-color:              #fff;
+@btn-success-bg:                 @brand-success;
+@btn-success-border:             darken(@btn-success-bg, 5%);
+
+@btn-info-color:                 #fff;
+@btn-info-bg:                    @brand-info;
+@btn-info-border:                darken(@btn-info-bg, 5%);
+
+@btn-warning-color:              #fff;
+@btn-warning-bg:                 @brand-warning;
+@btn-warning-border:             darken(@btn-warning-bg, 5%);
+
+@btn-danger-color:               #fff;
+@btn-danger-bg:                  @brand-danger;
+@btn-danger-border:              darken(@btn-danger-bg, 5%);
+
+
+//table
+@table-cell-padding: 			 8px;     //默认内编剧
+@table-condensed-cell-padding:   5px;     //紧缩表格内边距
+@table-cell-border: 			 1px solid #ddd;  //border
+
+@table-bg:  					 #fff;    //表格背景
+@table-bg-accent:                #f9f9f9; //表格hover,和隔行的颜色
+
+@table-color: 					 #333;    //表格字体颜色
+@table-size: 					 12px;    //表格字体大小
+@table-align: 					 center;  //表格默认对齐方式
+
+@table-head-size: 				 14px;    //表头字体大小
+@table-head-color : 			 #333;    //表头字体颜色
+@table-head-weight: 			 bold;    //表头字样式
+
+
+//表单
+@form-base-group-margin-bottom:     15px;
+@form-base-horizontal-space:        10px;
+
+@form-base-border-color :     		#ccc;
+@form-base-radius :     			4px;
+@form-base-bg : 					#fff;
+@form-base-color: 					#555;
+@form-base-size: 					12px;
+@form-base-left-padding: 			2px;
+@form-base-vertical-padding: 		7px;
+@form-base-border-radis: 			4px;
+@form-disabled-color:               lighten(#000, 93.5%);
+@form-base-transition: border-color 1500ms ease-in-out;
+
+@form-focus-border:					#66afe9;
+@form-placeholder-color: 			#66afe9;
+
+@lable-base-size:  					12px;
+@label-base-weight:     			normal;
+@label-base-padding-top:            5px;
+
+@form-base-item-space:               20px;  //checkbox,radio
+
+
+@state-success-text:             #3c763d;
+@state-success-bg:               #dff0d8;
+@state-success-border:           darken(spin(@state-success-bg, -10), 5%);
+
+@state-warning-text:             #8a6d3b;
+@state-warning-bg:               #fcf8e3;
+@state-warning-border:           darken(spin(@state-warning-bg, -10), 5%);
+
+@state-danger-text:              #a94442;
+@state-danger-bg:                #f2dede;
+@state-danger-border:            darken(spin(@state-danger-bg, -10), 5%);
+
+@form-lg-vertical-padding:                10px;
+@form-lg-font-size:                		  16px;
+
+@form-sm-vertical-padding:                5px;
+@form-sm-font-size:                    	  12px;
+
+
+/* layer */
+@page-width: 1140px;
+@auto: 0 auto;
+
+@font-face {
+  font-family: 'Marmelad';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Marmelad'), local('Marmelad-Regular'), url('@{base-font}marmelad.woff') format('woff');
+}
+
+/* site-config */
+@base-size: 12px; 
+@base-bg: #fff; 
+@base-color: #000;
+@base-font-family: Marmelad; 
+@base-min-width: 1000px;
+
+@base-img: "../../../assets/";           //静态资源存放目录
+@base-font: "../../../assets/fonts/";	 //font-icon字体存放目录
+
+
+
+
+

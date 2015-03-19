@@ -1,0 +1,1612 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>通用样式</title>
+<link rel="stylesheet" href="../src/css/core/rockstar.css">
+</head>
+<body>
+  <div class="wrap">
+
+    <!-- header -->
+    <div class="header" header>
+      <!-- header -->
+<div class="inner ba-clearfix">
+	<div class="title-wrap ba-fl ba-mr-20">
+		<a class="title" href="./">RockstarCss</a>
+		<div class="ba-gray">
+			<p>
+				写更少的样式 - for pc
+			</p>
+		</div>
+	</div>
+	<img src="../assets/lib/logo/xiaopang.jpg" class="title-img ba-fl">
+</div>
+    </div>
+
+    <!-- nav -->
+    <div class="nav" nav>
+      <!-- nav -->
+<div class="inner">
+	<ul class="ba-clearfix ba-pt-20">
+		
+			<li>
+				<a href="./index.html">
+					
+						<span class="fa fa-home ba-font-18"></span>
+					
+					首页
+				</a>
+			</li>
+		
+			<li>
+				<a href="./less.html">
+					
+					less
+				</a>
+			</li>
+		
+			<li>
+				<a href="./base.html">
+					
+					通用样式
+				</a>
+			</li>
+		
+			<li>
+				<a href="./rule.html">
+					
+					规范和最佳实践
+				</a>
+			</li>
+		
+			<li>
+				<a href="./icon.html">
+					
+					font-icon
+				</a>
+			</li>
+		
+			<li>
+				<a href="./use.html">
+					
+					使用
+				</a>
+			</li>
+		
+			<li>
+				<a href="./widget.html">
+					
+					组件
+				</a>
+			</li>
+		
+			<li>
+				<a href="./tool.html">
+					
+					工具
+				</a>
+			</li>
+		
+	</ul>
+</div>
+    </div>
+    
+    <!-- content -->
+    <div class="content ba-clearfix">
+      <div class="nav-left" nav-left-wrap>
+        <ul nav-left>
+          <!-- left-nav -->
+
+<li>
+	<a href="#组成">
+		组成
+	</a>
+</li>
+
+<li>
+	<a href="#基础配置">
+		基础配置
+	</a>
+</li>
+
+<li>
+	<a href="#常用函数">
+		常用函数
+	</a>
+</li>
+
+<li>
+	<a href="#基础样式">
+		基础样式
+	</a>
+</li>
+
+<li>
+	<a href="#button">
+		button
+	</a>
+</li>
+
+<li>
+	<a href="#表单">
+		表单
+	</a>
+</li>
+
+<li>
+	<a href="#table">
+		table
+	</a>
+</li>
+
+<li>
+	<a href="#img">
+		img
+	</a>
+</li>
+
+<li>
+	<a href="#helper">
+		helper
+	</a>
+</li>
+
+<li>
+	<a href="#size">
+		size
+	</a>
+</li>
+
+        </ul>
+      </div>
+      <div class="content-right" content-right>
+          <h2 id="组成">组成</h2>
+
+<blockquote>
+<p>通用样式库由几个目录组成</p>
+</blockquote>
+<pre><code>
++ config
+    + config.less  网站配置存放, 每个项目都需要做适量的修改
+    + func.less    常用函数配置
+
++ core
+    + rockstar.less 这个就用公司名，命名把...
+
+    这个就是核心库，最后合并lib目录的所有文件
+
+    生成rockstar.css, 然后页面引用即可
+
++ extend
+    + css3.less        css3扩展,以后任何扩展都可以放这里面
+
++ font-icon
+    + icon.less
+    + icon-ie7.less     字体图标库
+
++ lib
+    + reset.less     重置
+    + base.less      基础样式
+    + bg.less        背景
+    + button.less    用样式写出来的按钮
+    + form.less      表单
+    + table.less     表格
+    + help.less      辅助样式
+    + img-button.less    使用图标的按钮
+    + img-icon.less      使用icon的按钮
+    + img.less           图片样式
+    + layer.less         网站布局
+    + size.less          宽高尺寸定义
+
++ main
+    +... 一个页面对应一个less文件
+
+
++ widget
+    +... 页面组件</code></pre>
+<h2 id="基础配置">基础配置</h2>
+
+<blockquote>
+<p>网站基础配置，比如颜色，主题，字体，背景色</p>
+</blockquote>
+<pre><code>/* color */
+@white:      white;
+@red:        #de682a;
+@black:      black;
+@blue:       blue;
+@yellow:      yellow;
+@gray:          #999;
+@green:      green;
+
+/* a-link */
+@a-color:                gray;
+@a-color-hover:        gray;
+@a-color-active:       red;
+@a-color-visited:      &quot;&quot;;
+
+
+/* font-family */
+@font-yahei:             &quot;Microsoft Yahei&quot;;
+@font-song:             &quot;宋体&quot;;
+@font-three:         &quot;&quot;;
+@font-four:         &quot;&quot;;
+@font-five:         &quot;&quot;;
+
+
+/* h-size */
+@h1-size:         36px;
+@h2-size:         30px;
+@h3-size:         24px;
+@h4-size:         18px;
+@h5-size:         14px;
+@h6-size:         12px;
+
+
+/* btn */
+@btn-font-weight: normal;
+
+//btn-size
+@btn-padding-vertical-base:         6px;
+@btn-padding-horizontal-base:         12px;
+@btn-font-size-base:                12px;
+@btn-border-radius-base:            4px;
+
+@btn-padding-vertical-lg:        10px;
+@btn-padding-horizontal-lg:      16x;
+@btn-font-size-lg:               14px;
+@btn-border-radius-lg:           6px;
+
+@btn-padding-vertical-sm:        5px;
+@btn-padding-horizontal-sm:      10px;
+@btn-font-size-sm:               12px;
+@btn-border-radius-sm:           3px;
+
+@btn-padding-vertical-xs:           1px;
+@btn-padding-horizontal-xs:         5px;
+@btn-font-size-xs:                  12px;
+@btn-border-radius-xs:              3px;
+
+//btn-theme
+@brand-primary:         #428bca;
+@brand-success:         #5cb85c;
+@brand-info:            #5bc0de;
+@brand-warning:         #f0ad4e;
+@brand-danger:          #d9534f;
+
+@btn-default-color:              #333;
+@btn-default-bg:                 #fff;
+@btn-default-border:             #ccc;
+
+@btn-primary-color:              #fff;
+@btn-primary-bg:                 @brand-primary;
+@btn-primary-border:             darken(@btn-primary-bg, 5%);
+
+@btn-success-color:              #fff;
+@btn-success-bg:                 @brand-success;
+@btn-success-border:             darken(@btn-success-bg, 5%);
+
+@btn-info-color:                 #fff;
+@btn-info-bg:                    @brand-info;
+@btn-info-border:                darken(@btn-info-bg, 5%);
+
+@btn-warning-color:              #fff;
+@btn-warning-bg:                 @brand-warning;
+@btn-warning-border:             darken(@btn-warning-bg, 5%);
+
+@btn-danger-color:               #fff;
+@btn-danger-bg:                  @brand-danger;
+@btn-danger-border:              darken(@btn-danger-bg, 5%);
+
+
+//table
+@table-cell-padding:              8px;     //默认内编剧
+@table-condensed-cell-padding:   5px;     //紧缩表格内边距
+@table-cell-border:              1px solid #ddd;  //border
+
+@table-bg:                       #fff;    //表格背景
+@table-bg-accent:                #f9f9f9; //表格hover,和隔行的颜色
+
+@table-color:                      #333;    //表格字体颜色
+@table-size:                      12px;    //表格字体大小
+@table-align:                      center;  //表格默认对齐方式
+
+@table-head-size:                  14px;    //表头字体大小
+@table-head-color :              #333;    //表头字体颜色
+@table-head-weight:              bold;    //表头字样式
+
+
+//表单
+@form-base-group-margin-bottom:     15px;
+@form-base-horizontal-space:        10px;
+
+@form-base-border-color :             #ccc;
+@form-base-radius :                 4px;
+@form-base-bg :                     #fff;
+@form-base-color:                     #555;
+@form-base-size:                     12px;
+@form-base-left-padding:             2px;
+@form-base-vertical-padding:         7px;
+@form-base-border-radis:             4px;
+@form-disabled-color:               lighten(#000, 93.5%);
+@form-base-transition: border-color 1500ms ease-in-out;
+
+@form-focus-border:                    #66afe9;
+@form-placeholder-color:             #66afe9;
+
+@lable-base-size:                      12px;
+@label-base-weight:                 normal;
+@label-base-padding-top:            5px;
+
+@form-base-item-space:               20px;  //checkbox,radio
+
+
+@state-success-text:             #3c763d;
+@state-success-bg:               #dff0d8;
+@state-success-border:           darken(spin(@state-success-bg, -10), 5%);
+
+@state-warning-text:             #8a6d3b;
+@state-warning-bg:               #fcf8e3;
+@state-warning-border:           darken(spin(@state-warning-bg, -10), 5%);
+
+@state-danger-text:              #a94442;
+@state-danger-bg:                #f2dede;
+@state-danger-border:            darken(spin(@state-danger-bg, -10), 5%);
+
+@form-lg-vertical-padding:                10px;
+@form-lg-font-size:                          16px;
+
+@form-sm-vertical-padding:                5px;
+@form-sm-font-size:                          12px;
+
+
+/* layer */
+@page-width: 1140px;
+@auto: 0 auto;
+
+@font-face {
+  font-family: &#39;Marmelad&#39;;
+  font-style: normal;
+  font-weight: 400;
+  src: local(&#39;Marmelad&#39;), local(&#39;Marmelad-Regular&#39;), url(&#39;@{base-font}marmelad.woff&#39;) format(&#39;woff&#39;);
+}
+
+/* site-config */
+@base-size: 12px; 
+@base-bg: #fff; 
+@base-color: #000;
+@base-font-family: Marmelad; 
+@base-min-width: 1000px;
+
+@base-img: &quot;../../../assets/&quot;;           //静态资源存放目录
+@base-font: &quot;../../../assets/fonts/&quot;;     //font-icon字体存放目录</code></pre>
+<h2 id="常用函数">常用函数</h2>
+
+<blockquote>
+<p>常用且不好记忆或者超长的样式...</p>
+</blockquote>
+<pre><code>
+.content-wrap() {
+    width:  @page-width;
+    margin: @auto;
+}
+
+.word-break() {
+    word-break:break-all;
+}
+
+
+/* line-height */
+.line-h (@h){
+    line-height: @h;
+}
+
+.clearfix-after() {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: &quot; &quot;;
+    clear: both;
+    height: 0;
+    overflow: hidden;
+}
+
+/* font-size */
+.font-s (@size) {
+    font-size: @size + ~&quot;!important&quot;;
+}
+
+/* margin */
+.m-l (@size) {
+    margin-left: @size + ~&quot;!important&quot;;
+}
+
+.m-r (@size) {
+    margin-right: @size + ~&quot;!important&quot;;
+}
+
+.m-t (@size) {
+    margin-top: @size + ~&quot;!important&quot;;
+}
+
+.m-b (@size) {
+    margin-bottom: @size + ~&quot;!important&quot;;
+}
+
+/* padding */
+.p-l (@size) {
+    padding-left: @size + ~&quot;!important&quot;;
+}
+
+.p-r (@size) {
+    padding-right: @size + ~&quot;!important&quot;;
+}
+
+.p-t (@size) {
+    padding-top: @size + ~&quot;!important&quot;;
+}
+
+.p-b (@size) {
+    padding-bottom: @size + ~&quot;!important&quot;;
+}
+
+
+/* opacity透明 */
+.opa (@num) {
+    opacity: @num;
+    @opacity-ie: (@num * 100);
+    filter:~&quot;alpha(opacity=@{opacity-ie})&quot;
+}
+
+/* trangle三角形 */
+.tran() {
+    display: inline-block;
+    width: 0;
+    height: 0;
+}
+
+.tran-d(@size; @bg) {
+    .tran();
+    border-top: @size solid @bg;
+    border-right: @size solid transparent;
+    border-left: @size solid transparent;
+}
+
+.tran-t(@size; @bg) {
+    .tran();
+    border-bottom: @size solid @bg;
+    border-right: @size solid transparent;
+    border-left: @size solid transparent;
+}
+
+.tran-l(@size; @bg) {
+    .tran();
+    border-right: @size solid @bg;
+    border-top: @size solid transparent;
+    border-bottom: @size solid transparent;
+}
+
+.tran-r(@size; @bg) {
+    .tran();
+    border-left: @size solid @bg;
+    border-top: @size solid transparent;
+    border-bottom: @size solid transparent;
+}</code></pre>
+<h2 id="基础样式">基础样式</h2>
+
+<pre><code>
+基础样式以base的简写方式ba开头，为了防止与其他定义的样式冲突。
+
+
+vertical垂直居中方式:
+
+.ba-vt-m {
+    vertical-align:middle@i;
+}
+.ba-vt-t {
+    vertical-align:top@i;
+}
+.ba-vt-b {
+    vertical-align:bottom@i;
+}
+
+
+定位:
+
+.ba-rel {
+    position:relative@i;
+}
+.ba-ab {
+    position:absolute@i;
+}
+
+
+对齐方式:
+
+.ba-tc {
+    text-align:center@i;
+}
+.ba-tl {
+    text-align:left@i;
+}
+.ba-tr {
+    text-align:right@i;
+}
+
+
+换行方式:
+
+.ba-just {
+    word-break:break-all@i;
+}
+.ba-nowrap {
+    white-space: nowrap;
+}
+
+
+浮动方式:
+
+.ba-fl {
+    float:left@i;
+}
+.ba-fr {
+    float:right@i;
+}
+.ba-fn {
+    float:none@i;
+}
+
+
+
+溢出隐藏方式:
+
+.ba-over-x-h {
+    overflow-x: hidden@i;
+}
+.ba-over-y-h {
+    overflow-y: hidden@i;
+}
+.ba-over-x-a {
+    overflow-x: auto@i;
+}
+.ba-over-y-a {
+    overflow-y: auto@i;
+}
+.ba-over-h {
+    overflow: hidden@i;
+}
+.ba-over-a {
+    overflow: auto@i;
+}
+
+
+display方式:
+
+.ba-inline {
+    display:inline@i;
+}
+.ba-in-bl {
+    display:inline-block@i;
+}
+.ba-none {
+    display:none@i;
+}
+.ba-block {
+    display:block@i;
+}
+
+
+字体样式:
+
+.ba-normal {
+    font-weight:normal@i;
+}
+.ba-bold {
+    font-weight:bold@i;
+}
+
+
+pointer-mode:
+
+.ba-pointer {
+    cursor:pointer@i;
+}
+.ba-default {
+    cursor:default@i;
+}
+.ba-move {
+    cursor: move@i;
+}
+
+
+visibility-mode:
+
+.ba-hidden {
+    visibility:hidden@i;
+}
+.ba-visible {
+    visibility:visible@i;
+}
+
+
+清除浮动方式:
+
+.ba-clear {
+    clear:both;
+}
+.ba-clearfix {
+    zoom:1;
+}
+.ba-clearfix:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: &quot; &quot;;
+    clear: both;
+    height: 0;
+    overflow: hidden;
+}
+
+
+基本颜色:
+
+white, red, black, blue, yellow, gray, green
+
+
+字体大小:
+
+9px, 11px, 12px - 50px 的双数
+
+
+margin, padding:
+
+.ba-mt-1 {
+    .m-t(1px)
+}
+
+...
+
+.ba-pt-1 {
+    .p-t(1px)
+}
+
+上下左右各50px</code></pre>
+<h2 id="button">button</h2>
+
+
+<blockquote>
+<p>button有六种颜色,可通过config.less配置6种主题。</p>
+</blockquote>
+<div class="ba-mb-20">
+
+    <a href="javascript:;" class="btn btn-default">保存</a>
+
+    <a href="javascript:;" class="btn btn-primary">保存</a>
+
+    <a href="javascript:;" class="btn btn-info">保存</a>
+
+    <a href="javascript:;" class="btn btn-warning">保存</a>
+
+    <a href="javascript:;" class="btn btn-danger">保存</a>
+
+    <a href="javascript:;" class="btn btn-primary">保存</a>
+
+</div>
+
+<pre><code>
+    button在pc端使用button标签在ie7下尺寸会变大，所以请使用a标签
+
+    &lt;a href=&quot;javascript:;&quot; class=&quot;btn btn-default&quot;&gt;保存&lt;/a&gt;
+
+    &lt;a href=&quot;javascript:;&quot; class=&quot;btn btn-primary&quot;&gt;保存&lt;/a&gt;
+
+    &lt;a href=&quot;javascript:;&quot; class=&quot;btn btn-info&quot;&gt;保存&lt;/a&gt;
+
+    &lt;a href=&quot;javascript:;&quot; class=&quot;btn btn-warning&quot;&gt;保存&lt;/a&gt;
+
+    &lt;a href=&quot;javascript:;&quot; class=&quot;btn btn-danger&quot;&gt;保存&lt;/a&gt;
+
+    &lt;a href=&quot;javascript:;&quot; class=&quot;btn btn-primary&quot;&gt;保存&lt;/a&gt;</code></pre>
+<blockquote>
+<p>button有4种尺寸</p>
+</blockquote>
+<div class="ba-mb-20">
+
+    <a href="javascript:;" class="btn btn-primary btn-lg">保存</a>
+
+    <a href="javascript:;" class="btn btn-primary">保存</a>
+
+    <a href="javascript:;" class="btn btn-primary btn-sm">保存</a>
+
+    <a href="javascript:;" class="btn btn-primary btn-xs">保存</a>
+
+</div>  
+
+<pre><code>    &lt;a href=&quot;javascript:;&quot; class=&quot;btn btn-primary btn-lg&quot;&gt;保存&lt;/a&gt;
+
+    &lt;a href=&quot;javascript:;&quot; class=&quot;btn btn-primary&quot;&gt;保存&lt;/a&gt;
+
+    &lt;a href=&quot;javascript:;&quot; class=&quot;btn btn-primary btn-sm&quot;&gt;保存&lt;/a&gt;
+
+    &lt;a href=&quot;javascript:;&quot; class=&quot;btn btn-primary btn-xs&quot;&gt;保存&lt;/a&gt;</code></pre>
+<blockquote>
+<p>状态</p>
+</blockquote>
+<div class="ba-mb-20">
+
+    <a href="javascript:;" class="btn btn-primary active">保存</a>
+
+    <a href="javascript:;" class="btn btn-primary disabled">保存</a>
+
+</div>  
+
+<pre><code>    关于disabled,bootstrap使用的是cursor-event; 这个ie10才兼容
+
+    如果用js操作，禁止按钮点击，必须去操作 disabled属性
+
+    &lt;a href=&quot;javascript:;&quot; class=&quot;btn btn-primary active&quot;&gt;保存&lt;/a&gt;
+
+    &lt;a href=&quot;javascript:;&quot; class=&quot;btn btn-primary disabled&quot;&gt;保存&lt;/a&gt;</code></pre>
+<h2 id="表单">表单</h2>
+
+<blockquote>
+<p>独占一行的form-control元素。input如果不设置宽度默认是98%,ie7不支持box-sizing:border-box,内边距和边框要占宽度。ie7 ie8无圆角,focus无渐变边框，shadow。
+form-control默认没有高度，上下默认7px的内边距。所有配置均可在config.less里面配置。</p>
+</blockquote>
+<div class="ba-mb-20">
+    <label>姓名：</label>
+    <input type="text" class="form-control">
+</div>
+
+<div class="ba-mb-20">
+    <label>电话：</label>
+    <input type="text" class="form-control">
+</div>
+
+<div class="ba-mb-20">
+    <label>城市：</label>
+    <select class="form-control">
+        <option value="请选择">请选择</option>
+        <option value="城市1">城市1</option>
+    </select>
+</div>
+
+<div class="ba-mb-20">
+    <label>描述：</label>
+    <textarea class="form-control"></textarea>
+</div>
+
+<pre><code>
+.form-control {    
+  display: block;
+  width: 100% - @form-base-left-padding;
+  padding: @form-base-vertical-padding 0;
+  padding-left: @form-base-left-padding;
+  font-size: @form-base-size;
+  color: @form-base-color;
+  border: 1px solid @form-base-border-color;
+  border-radius: @form-base-radius;
+  background-color: @form-base-bg;
+
+  .transition(all .15s ease-in-out);
+  .form-control-focus(@form-focus-border);
+  .placeholder(@form-placeholder-color);
+
+  &amp;[disabled],
+  &amp;[readonly],
+  &amp;.disabled,
+  &amp;.readonly {
+    background-color: @form-disabled-color;
+    opacity: 1;
+    .form-control-focus(@form-base-border-color);
+    box-shadow: none@i;
+  }
+
+}
+
+&lt;div&gt;
+    &lt;label&gt;姓名：&lt;/label&gt;
+    &lt;input type=&quot;text&quot; class=&quot;form-control&quot;&gt;
+&lt;/div&gt;
+
+&lt;div&gt;
+    &lt;label&gt;电话：&lt;/label&gt;
+    &lt;input type=&quot;text&quot; class=&quot;form-control&quot;&gt;
+&lt;/div&gt;
+
+
+&lt;div class=&quot;ba-mb-20&quot;&gt;
+    &lt;label&gt;城市：&lt;/label&gt;
+    &lt;select class=&quot;form-control&quot;&gt;
+        &lt;option value=&quot;请选择&quot;&gt;请选择&lt;/option&gt;
+        &lt;option value=&quot;城市1&quot;&gt;城市1&lt;/option&gt;
+    &lt;/select&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;ba-mb-20&quot;&gt;
+    &lt;label&gt;描述：&lt;/label&gt;
+    &lt;textarea class=&quot;form-control&quot;&gt;&lt;/textarea&gt;
+&lt;/div&gt;</code></pre>
+<blockquote>
+<p>control-label表单说明文字,默认会设置12px,加粗,6px的内边距的默认样式; 因为label和form-control的元素都浮动了，所以vertical-align会失效，所以设置一个
+6px的上内边距，使label垂直居中。</p>
+</blockquote>
+<div class="form-group">
+    <label class="control-label">电话：</label>
+    <input type="text" class="form-control col-2">
+</div>
+
+<pre><code>
+&lt;div class=&quot;form-group&quot;&gt;
+    &lt;label class=&quot;control-label&quot;&gt;电话：&lt;/label&gt;
+    &lt;input type=&quot;text&quot; class=&quot;form-control col-2&quot;&gt;
+&lt;/div&gt;</code></pre>
+<blockquote>
+<p>form-group包裹, form-group会有个15px的下边距，大小可以在config.less里设置,
+control-label会浮动， 和form-control的元素会浮动.</p>
+</blockquote>
+<div class="form-group">
+    <label class="control-label">姓名：</label>
+    <input type="text" class="form-control col-2">
+</div>
+
+<div class="form-group">
+    <label class="control-label">电话：</label>
+    <input type="text" class="form-control col-2">
+</div>
+
+<pre><code>
+&lt;div class=&quot;form-group&quot;&gt;
+    &lt;label class=&quot;control-label&quot;&gt;姓名：&lt;/label&gt;
+    &lt;input type=&quot;text&quot; class=&quot;form-control col-2&quot;&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;form-group&quot;&gt;
+    &lt;label class=&quot;control-label&quot;&gt;电话：&lt;/label&gt;
+    &lt;input type=&quot;text&quot; class=&quot;form-control col-2&quot;&gt;
+&lt;/div&gt;</code></pre>
+<blockquote>
+<p>几组表单元素并排</p>
+</blockquote>
+<section class="form-inline">
+
+    <div class="form-group col-5">
+        <label class="control-label">姓名：</label>
+        <input type="text" class="form-control col-8">
+    </div>
+
+    <div class="form-group col-5">
+        <label class="control-label">电话：</label>
+        <input type="text" class="form-control col-8">
+    </div>
+
+</section>
+
+
+<pre><code>
+&lt;div class=&quot;form-inline&quot;&gt;
+
+    &lt;div class=&quot;form-group col-5&quot;&gt;
+        &lt;label class=&quot;control-label&quot;&gt;姓名：&lt;/label&gt;
+        &lt;input type=&quot;text&quot; class=&quot;form-control col-8&quot;&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;form-group col-5&quot;&gt;
+        &lt;label class=&quot;control-label&quot;&gt;电话：&lt;/label&gt;
+        &lt;input type=&quot;text&quot; class=&quot;form-control col-8&quot;&gt;
+    &lt;/div&gt;
+
+&lt;/div&gt;</code></pre>
+<blockquote>
+<p>表单验证时状态: 成功，失败，警告,只读，禁用</p>
+</blockquote>
+<section>
+    <div class="ba-mb-15">
+        成功状态:<br>        <input type="text" class="form-control has-success">
+    </div>
+    <div class="ba-mb-15">
+        警告状态:<br>        <input type="text" class="form-control has-warning">
+    </div>
+    <div class="ba-mb-15">
+        错误状态:<br>        <input type="text" class="form-control has-error">
+    </div>
+    <div class="ba-mb-15">
+        只读:<br>        <input type="text" class="form-control readonly">
+    </div>
+    <div class="ba-mb-15">
+        禁用:<br>        <input type="text" class="form-control disabled">
+    </div>
+</section>
+
+<pre><code>
+&lt;section&gt;
+    &lt;div class=&quot;ba-mb-15&quot;&gt;
+        成功状态:    
+        &lt;input type=&quot;text&quot; class=&quot;form-control has-success&quot;&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;ba-mb-15&quot;&gt;
+        警告状态:    
+        &lt;input type=&quot;text&quot; class=&quot;form-control has-warning&quot;&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;ba-mb-15&quot;&gt;
+        错误状态:    
+        &lt;input type=&quot;text&quot; class=&quot;form-control has-error&quot;&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;ba-mb-15&quot;&gt;
+        只读:    
+        &lt;input type=&quot;text&quot; class=&quot;form-control readonly&quot;&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;ba-mb-15&quot;&gt;
+        禁用:    
+        &lt;input type=&quot;text&quot; class=&quot;form-control disabled&quot;&gt;
+    &lt;/div&gt;
+&lt;/section&gt;</code></pre>
+<blockquote>
+<p>辅助提示文字</p>
+</blockquote>
+<div class="form-group">
+    <label class="control-label">姓名：</label>
+    <input type="text" class="form-control">
+    <span class="help-text">请填写6-16位的姓名</span>
+</div>
+
+<pre><code>
+&lt;div class=&quot;form-group&quot;&gt;
+    &lt;label class=&quot;control-label&quot;&gt;姓名：&lt;/label&gt;
+    &lt;input type=&quot;text&quot; class=&quot;form-control&quot;&gt;
+    &lt;span class=&quot;help-text&quot;&gt;请填写6-16位的姓名&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+<blockquote>
+<p>必填项</p>
+</blockquote>
+<div class="form-group">
+    <label class="control-label">姓名：</label>
+    <input type="text" class="form-control">
+    <span class="required">*</span>
+</div>
+
+<pre><code>
+*号代表必填项
+
+&lt;div class=&quot;form-group&quot;&gt;
+    &lt;label class=&quot;control-label&quot;&gt;姓名：&lt;/label&gt;
+    &lt;input type=&quot;text&quot; class=&quot;form-control&quot;&gt;
+    &lt;span class=&quot;required&quot;&gt;*&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+<blockquote>
+<p>表单尺寸</p>
+</blockquote>
+<div class="form-group">
+    <label class="control-label">姓名：</label>
+    <input type="text" class="form-control input-lg">
+</div>
+
+<div class="form-group">
+    <label class="control-label">姓名：</label>
+    <input type="text" class="form-control input-sm">
+</div>
+
+<pre><code>
+尺寸有lg和sm两项
+
+&lt;div class=&quot;form-group&quot;&gt;
+    &lt;label class=&quot;control-label&quot;&gt;姓名：&lt;/label&gt;
+    &lt;input type=&quot;text&quot; class=&quot;form-control input-lg&quot;&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;form-group&quot;&gt;
+    &lt;label class=&quot;control-label&quot;&gt;姓名：&lt;/label&gt;
+    &lt;input type=&quot;text&quot; class=&quot;form-control input-sm&quot;&gt;
+&lt;/div&gt;</code></pre>
+<blockquote>
+<p>textarea尺寸</p>
+</blockquote>
+<div>
+    <span>100px</span>
+    <textarea class="form-control sm"></textarea>
+</div>
+
+<div>
+    <span>300px</span>
+    <textarea class="form-control mid"></textarea>
+</div>
+
+<div>
+    <span>500px</span>
+    <textarea class="form-control lg"></textarea>
+</div>
+
+<pre><code>
+&lt;div&gt;
+    &lt;span&gt;100px&lt;/span&gt;
+    &lt;textarea class=&quot;form-control sm&quot;&gt;&lt;/textarea&gt;
+&lt;/div&gt;
+
+&lt;div&gt;
+    &lt;span&gt;300px&lt;/span&gt;
+    &lt;textarea class=&quot;form-control mid&quot;&gt;&lt;/textarea&gt;
+&lt;/div&gt;
+
+&lt;div&gt;
+    &lt;span&gt;500px&lt;/span&gt;
+    &lt;textarea class=&quot;form-control lg&quot;&gt;&lt;/textarea&gt;
+&lt;/div&gt;</code></pre>
+<blockquote>
+<p>checkbox 和 radio</p>
+</blockquote>
+<div class="ba-mb-15">
+    <span class="form-item">
+        <input type="checkbox">
+        选项一
+    </span>
+    <span class="form-item">
+        <input type="checkbox">
+        选项二
+    </span>
+    <span class="form-item">
+        <input type="checkbox">
+        选项三
+    </span>
+</div>
+
+
+<div class="ba-mb-15">
+    <span class="form-item">
+        <input type="radio" name="radio">
+        选项一
+    </span>
+    <span class="form-item">
+        <input type="radio" name="radio">
+        选项二
+    </span>
+    <span class="form-item">
+        <input type="radio" name="radio">
+        选项三
+    </span>
+</div>
+
+
+<pre><code>
+&lt;div class=&quot;ba-mb-15&quot;&gt;
+    &lt;span class=&quot;form-item&quot;&gt;
+        &lt;input type=&quot;checkbox&quot;&gt;
+        选项一
+    &lt;/span&gt;
+    &lt;span class=&quot;form-item&quot;&gt;
+        &lt;input type=&quot;checkbox&quot;&gt;
+        选项二
+    &lt;/span&gt;
+    &lt;span class=&quot;form-item&quot;&gt;
+        &lt;input type=&quot;checkbox&quot;&gt;
+        选项三
+    &lt;/span&gt;
+&lt;/div&gt;
+
+
+&lt;div class=&quot;ba-mb-15&quot;&gt;
+    &lt;span class=&quot;form-item&quot;&gt;
+        &lt;input type=&quot;radio&quot; name=&quot;radio&quot;&gt;
+        选项一
+    &lt;/span&gt;
+    &lt;span class=&quot;form-item&quot;&gt;
+        &lt;input type=&quot;radio&quot; name=&quot;radio&quot;&gt;
+        选项二
+    &lt;/span&gt;
+    &lt;span class=&quot;form-item&quot;&gt;
+        &lt;input type=&quot;radio&quot; name=&quot;radio&quot;&gt;
+        选项三
+    &lt;/span&gt;
+&lt;/div&gt;</code></pre>
+<h2 id="table">table</h2>
+
+<blockquote>
+<p>普通table</p>
+</blockquote>
+<table class="table" width="100%">
+    <thead>
+        <tr>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+        </tr>
+    </tbody>
+</table>
+
+
+<pre><code>
+加上样式 .table 设置宽度100%
+
+&lt;table class=&quot;table ba-mb-15&quot; width=&quot;100%&quot;&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;td&gt;1&lt;/td&gt;
+            &lt;td&gt;2&lt;/td&gt;
+            &lt;td&gt;3&lt;/td&gt;
+            &lt;td&gt;4&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td&gt;1&lt;/td&gt;
+            &lt;td&gt;2&lt;/td&gt;
+            &lt;td&gt;3&lt;/td&gt;
+            &lt;td&gt;4&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;1&lt;/td&gt;
+            &lt;td&gt;2&lt;/td&gt;
+            &lt;td&gt;3&lt;/td&gt;
+            &lt;td&gt;4&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+<blockquote>
+<p>带边框的table</p>
+</blockquote>
+<table class="table bordered ba-mb-15" width="100%">
+    <thead>
+        <tr>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+        </tr>
+    </tbody>
+</table>
+
+<pre><code>
+.bordered
+
+&lt;table class=&quot;table bordered&quot; width=&quot;100%&quot;&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;td&gt;1&lt;/td&gt;
+            &lt;td&gt;2&lt;/td&gt;
+            &lt;td&gt;3&lt;/td&gt;
+            &lt;td&gt;4&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td&gt;1&lt;/td&gt;
+            &lt;td&gt;2&lt;/td&gt;
+            &lt;td&gt;3&lt;/td&gt;
+            &lt;td&gt;4&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;1&lt;/td&gt;
+            &lt;td&gt;2&lt;/td&gt;
+            &lt;td&gt;3&lt;/td&gt;
+            &lt;td&gt;4&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+<blockquote>
+<p>隔行变色的table</p>
+</blockquote>
+<table class="table striped ba-mb-15 bordered" width="100%">
+    <thead>
+        <tr>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+        </tr>
+    </tbody>
+</table>
+
+<pre><code>
+striped
+
+&lt;table class=&quot;table striped ba-mb-15 bordered&quot; width=&quot;100%&quot;&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;td&gt;1&lt;/td&gt;
+            &lt;td&gt;2&lt;/td&gt;
+            &lt;td&gt;3&lt;/td&gt;
+            &lt;td&gt;4&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td&gt;1&lt;/td&gt;
+            &lt;td&gt;2&lt;/td&gt;
+            &lt;td&gt;3&lt;/td&gt;
+            &lt;td&gt;4&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;1&lt;/td&gt;
+            &lt;td&gt;2&lt;/td&gt;
+            &lt;td&gt;3&lt;/td&gt;
+            &lt;td&gt;4&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+<blockquote>
+<p>紧缩的表格</p>
+</blockquote>
+<table class="table striped ba-mb-15 bordered condensed" width="100%">
+    <thead>
+        <tr>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+        </tr>
+    </tbody>
+</table>
+
+<pre><code>
+condensed
+
+&lt;table class=&quot;table striped ba-mb-15 bordered condensed&quot; width=&quot;100%&quot;&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;td&gt;1&lt;/td&gt;
+            &lt;td&gt;2&lt;/td&gt;
+            &lt;td&gt;3&lt;/td&gt;
+            &lt;td&gt;4&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td&gt;1&lt;/td&gt;
+            &lt;td&gt;2&lt;/td&gt;
+            &lt;td&gt;3&lt;/td&gt;
+            &lt;td&gt;4&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;1&lt;/td&gt;
+            &lt;td&gt;2&lt;/td&gt;
+            &lt;td&gt;3&lt;/td&gt;
+            &lt;td&gt;4&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+<blockquote>
+<p>hover 有状态的表格</p>
+</blockquote>
+<table class="table ba-mb-15 bordered condensed hover" width="100%">
+    <thead>
+        <tr>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+        </tr>
+    </tbody>
+</table>
+
+
+<pre><code>
+&lt;table class=&quot;table ba-mb-15 bordered condensed hover&quot; width=&quot;100%&quot;&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;td&gt;1&lt;/td&gt;
+            &lt;td&gt;2&lt;/td&gt;
+            &lt;td&gt;3&lt;/td&gt;
+            &lt;td&gt;4&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td&gt;1&lt;/td&gt;
+            &lt;td&gt;2&lt;/td&gt;
+            &lt;td&gt;3&lt;/td&gt;
+            &lt;td&gt;4&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;1&lt;/td&gt;
+            &lt;td&gt;2&lt;/td&gt;
+            &lt;td&gt;3&lt;/td&gt;
+            &lt;td&gt;4&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+<blockquote>
+<p>table状态</p>
+</blockquote>
+<table class="table ba-mb-15 bordered condensed" width="100%">
+    <thead>
+        <tr>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="active">
+            <td>active</td>
+            <td>active</td>
+            <td>active</td>
+            <td>active</td>
+        </tr>
+        <tr class="primary">
+            <td>primary</td>
+            <td>primary</td>
+            <td>primary</td>
+            <td>primary</td>
+        </tr>
+        <tr class="success">
+            <td>success</td>
+            <td>success</td>
+            <td>success</td>
+            <td>success</td>
+        </tr>
+        <tr class="info">
+            <td>info</td>
+            <td>info</td>
+            <td>info</td>
+            <td>info</td>
+        </tr>
+        <tr class="warning">
+            <td>warning</td>
+            <td>warning</td>
+            <td>warning</td>
+            <td>warning</td>
+        </tr>
+        <tr class="danger">
+            <td>danger</td>
+            <td>danger</td>
+            <td>danger</td>
+            <td>danger</td>
+        </tr>
+    </tbody>
+</table>
+
+
+<pre><code>
+&lt;table class=&quot;table ba-mb-15 bordered condensed&quot; width=&quot;100%&quot;&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;td&gt;1&lt;/td&gt;
+            &lt;td&gt;2&lt;/td&gt;
+            &lt;td&gt;3&lt;/td&gt;
+            &lt;td&gt;4&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr class=&quot;active&quot;&gt;
+            &lt;td&gt;active&lt;/td&gt;
+            &lt;td&gt;active&lt;/td&gt;
+            &lt;td&gt;active&lt;/td&gt;
+            &lt;td&gt;active&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr class=&quot;primary&quot;&gt;
+            &lt;td&gt;primary&lt;/td&gt;
+            &lt;td&gt;primary&lt;/td&gt;
+            &lt;td&gt;primary&lt;/td&gt;
+            &lt;td&gt;primary&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr class=&quot;success&quot;&gt;
+            &lt;td&gt;success&lt;/td&gt;
+            &lt;td&gt;success&lt;/td&gt;
+            &lt;td&gt;success&lt;/td&gt;
+            &lt;td&gt;success&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr class=&quot;info&quot;&gt;
+            &lt;td&gt;info&lt;/td&gt;
+            &lt;td&gt;info&lt;/td&gt;
+            &lt;td&gt;info&lt;/td&gt;
+            &lt;td&gt;info&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr class=&quot;warning&quot;&gt;
+            &lt;td&gt;warning&lt;/td&gt;
+            &lt;td&gt;warning&lt;/td&gt;
+            &lt;td&gt;warning&lt;/td&gt;
+            &lt;td&gt;warning&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr class=&quot;danger&quot;&gt;
+            &lt;td&gt;danger&lt;/td&gt;
+            &lt;td&gt;danger&lt;/td&gt;
+            &lt;td&gt;danger&lt;/td&gt;
+            &lt;td&gt;danger&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+<h2 id="img">img</h2>
+
+<blockquote>
+<p>图片样式</p>
+</blockquote>
+<div class="ba-mb-15">
+    <img data-src="holder.js/100x100/gray" class="img-round ba-vt-m">
+    <span class="ba-mr-20">img-round</span>
+
+    <img data-src="holder.js/100x100/gray" class="img-circle ba-vt-m">
+    <span class="ba-mr-20">img-circle</span>
+
+    <img data-src="holder.js/100x100/gray" class="img-thumbnail ba-vt-m">
+    <span>img-thumbnail</span>
+</div>
+
+
+<pre><code>
+&lt;div&gt;
+    &lt;img data-src=&quot;holder.js/100x100/gray&quot; class=&quot;img-round ba-vt-m&quot;&gt;
+    &lt;span class=&quot;ba-mr-20&quot;&gt;img-round&lt;/span&gt;
+
+    &lt;img data-src=&quot;holder.js/100x100/gray&quot; class=&quot;img-circle ba-vt-m&quot;&gt;
+    &lt;span class=&quot;ba-mr-20&quot;&gt;img-circle&lt;/span&gt;
+
+    &lt;img data-src=&quot;holder.js/100x100/gray&quot; class=&quot;img-thumbnail ba-vt-m&quot;&gt;
+    &lt;span&gt;img-thumbnail&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+<h2 id="helper">helper</h2>
+
+<blockquote>
+<p>向下的三角</p>
+</blockquote>
+<div class="ba-mb-15">
+    <span class="trangle"></span>
+</div>    
+
+<pre><code>&lt;div class=&quot;ba-mb-15&quot;&gt;
+    &lt;span class=&quot;trangle&quot;&gt;&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+<blockquote>
+<p>关闭按钮</p>
+</blockquote>
+<div class="ba-mb-15">
+    <span class="close">x</span>
+</div>
+
+
+<pre><code>
+&lt;div class=&quot;ba-mb-15&quot;&gt;
+    &lt;span class=&quot;close&quot;&gt;&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+<h2 id="size">size</h2>
+
+
+<blockquote>
+<p>元素尺寸</p>
+</blockquote>
+<pre><code>
+宽度
+.w-50 {
+    width:50px;
+}
+.w-100 {
+    width:100px;
+} 
+
+...
+
+.w-1000 {
+    width:1000px;
+}
+
+
+高度
+
+.h-50 {
+    width:50px;
+}
+.h-100 {
+    width:100px;
+} 
+
+...
+
+.h-1000 {
+    width:1000px;
+}
+
+
+
+百分比 1 - 12
+
+.col-1 {
+  .col(1);
+}
+.col-2 {
+  .col(2);
+}
+
+
+...
+.col-12 {
+  .col(12);
+}</code></pre>
+
+      </div>
+    </div>
+
+    <!-- footer -->
+    <div class="footer" footer>
+      <!-- footer -->
+<div class="footer-inner ba-font-14 ba-tr ba-mt-20">
+	<a href="http://www.rockstars.com.cn" target="_blank">罗格斯达</a>&nbsp;&nbsp;
+	<a href="http://seajs.org" target="_blank">seajs</a>,
+	<a href="http://backbonejs.org" target="_blank">backbone</a>,
+	<a href="http://aralejs.org/class" target="_blank">class</a>,
+	<a href="https://code.csdn.net/Tencent/tmodjs" target="_blank">tmod</a>,
+	<a href="http://lab.lepture.com/nico/zh" target="_blank">nico</a>,
+	<a href="http://nodejs.org/" target="_blank">nodejs</a>,
+	<a href="http://www.expressjs.com.cn" target="_blank">express</a>,
+	<a href="http://koa.bootcss.com" target="_blank">koa</a>,
+	<a href="http://www.gruntjs.org" target="_blank">grunt</a>
+</div>
+    </div>
+  </div>
+
+<script src="../seajs/sea.js"></script>
+<script src="../seajs/config.js"></script>
+<script>
+  seajs.use('driver/R');
+</script>   
+</body>
+</html>

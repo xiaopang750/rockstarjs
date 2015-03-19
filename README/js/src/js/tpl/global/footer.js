@@ -1,0 +1,4 @@
+/*TMODJS:{"version":3,"md5":"5ec640a09249e9f4e23e7710e37b3c03"}*/
+define(function(require) {
+    return require("../templates")("global/footer", ' <div class="footer-inner ba-font-14 ba-tr ba-mt-20"> <a href="http://www.rockstars.com.cn" target="_blank">罗格斯达</a>&nbsp;&nbsp; <a href="http://seajs.org" target="_blank">seajs</a>, <a href="http://backbonejs.org" target="_blank">backbone</a>, <a href="http://aralejs.org/class" target="_blank">class</a>, <a href="https://code.csdn.net/Tencent/tmodjs" target="_blank">tmod</a>, <a href="http://lab.lepture.com/nico/zh" target="_blank">nico</a>, <a href="http://nodejs.org/" target="_blank">nodejs</a>, <a href="http://www.expressjs.com.cn" target="_blank">express</a>, <a href="http://koa.bootcss.com" target="_blank">koa</a>, <a href="http://www.gruntjs.org" target="_blank">grunt</a> </div>');
+});

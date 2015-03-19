@@ -1,0 +1,25 @@
+<!-- 内容列表 -->
+{{if list}}
+	{{each list}}
+	<tr data-list>
+		<td>{{$value.contenttopic}}</td>
+		<td class="ba-tl">
+			<a class="btn btn-normal ba-mr-5" href="{{getRoute ['content/addEdit']}}?cid={{$value.pkContent}}" edit {{if $value.contentstatus == '001'}}style="display:none"{{/if}}>
+				编辑
+			</a>
+			<a class="btn btn-normal ba-mr-5" href="{{getRoute ['content/addEdit']}}?lid={{$value.pkContent}}">详情</a>
+			<a class="btn btn-normal ba-mr-5" href="javascript:;" remove cid="{{$value.pkContent}}" isCanceled="{{$value.contentstatus}}">
+				{{if $value.contentstatus == '001'}}
+					取消发布
+				{{else}}
+					发布
+				{{/if}}
+			</a>
+		</td>
+	</tr>
+	{{/each}}
+{{else}}
+	<tr>
+		<td colspan="2">暂无数据</td>
+	</tr>
+{{/if}}	

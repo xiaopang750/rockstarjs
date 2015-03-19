@@ -24,7 +24,6 @@
 	  this.log('xxxx');
 
 */
-
 define(function(require, exports, module) {
 
 	var Class = require('../../lib/ooClass/class');
@@ -66,7 +65,20 @@ define(function(require, exports, module) {
 				var oNew = $(html);
 				oWrap.append(oNew);
 				return oNew;
-			}
+
+			} else if(way == 'after') {
+
+				var oNew = $(html);
+				oWrap.after(oNew);
+				return oNew;
+
+			} else if(way == 'before') {
+
+				var oNew = $(html);
+				oWrap.before(oNew);
+				return oNew;
+
+			}  
 
 		},
 		req: function(fnSuc, fnFail, fnError) {
@@ -108,9 +120,8 @@ define(function(require, exports, module) {
 
 		}	
 
-
 	});
-
+	
 	module.exports = Util;
 
 });

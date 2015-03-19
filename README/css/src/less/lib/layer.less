@@ -1,0 +1,218 @@
+/**
+ *description:网站布局框架
+ *author:fanwei
+ *date:2014/11/04
+ */
+
+@import "../config/config.less";
+@import "../config/func.less";
+@import "../extend/css3.less"; 
+
+html,body {
+	min-width: @base-min-width;
+	height: 100%;
+}
+
+body {
+	padding-bottom: 30px;
+}
+
+@theme: #de682a;     //主题颜色橙色
+@pink: #FBFFD7;      //主导航背景色
+@darkenPink: #FFF0B5;  //主导航border颜色
+@border-color: #ddd;   //边框颜色
+@font-color: #666;     //字体颜色
+@left-nav-hover: #f8f8f8;   //左导航移入颜色
+
+//header
+
+.header {
+
+	width: 100%;
+	height: 150px;
+	background: #fff;
+	border-bottom: 4px solid @theme;
+
+	& .inner {
+		.content-wrap();
+	}
+
+	& .title-wrap {
+		margin:40px 0 0 300px;
+	}
+
+	& .title {
+		font-size: 50px;
+		color:@theme;
+		.transition(0.6s)
+	}
+
+	& .title:hover {
+		text-shadow: 0 0 5px @theme;
+		text-decoration: none;
+	}
+
+	& .title-img {
+		width: 100px;
+		height: 100px;
+		border-radius: 50%;
+		margin-top: 20px;
+	}
+}
+
+
+//nav
+.nav {
+
+	width: 100%;
+	height: 65px;
+	background: @pink;
+	border-bottom: 1px solid @darkenPink;
+
+	& .inner {
+		.content-wrap();
+	}
+
+	& ul li {
+		float: left;
+		margin:0 18px;
+	}
+
+	& ul li a {
+		color: @theme;
+		font-size: 16px;
+		font-weight: bold;
+	}
+
+	& ul li a:hover {
+		color: @theme;
+	}
+
+}
+
+
+//content
+.content {
+
+	.bordered() {
+		border:1px solid @border-color;
+	}
+
+	.content-wrap();
+	font-size: 14px;
+	margin-top: 20px;
+
+	& .nav-left {
+		width: 218px;
+		float: left;
+		border-bottom: 1px solid @border-color;
+		position: relative;
+
+		& ul li a {
+			padding: 8px 15px;
+			border: 1px solid @border-color;
+			border-bottom: none;
+			text-shadow: 0 1px 2px #eee;
+			color: @theme;
+			display: block;
+
+			&:hover {
+				background: @left-nav-hover;
+    			text-decoration: none;
+			}
+
+			&.active {
+				background: @pink;
+				font-weight: bold;
+			}
+		}
+
+		&.active {
+			position: fixed;
+			top:0;
+		}
+
+	}
+
+	& .content-right {
+		float: right;
+		width: 840px;
+		padding: 30px;
+		padding-top:0;
+		color:@font-color;
+		line-height: 1.5;
+		.bordered();
+		.word-break();
+
+		& h2 {
+			font-size: 28px;
+			color:@theme;
+			margin:40px 0 20px 0;
+		}
+
+		& h3 {
+			font-size: 18px;
+			color:@font-color;
+			margin:30px 0;
+			text-indent: 36px;
+		}
+
+		& h4 {
+			font-weight: bold;
+		}
+
+		& p,
+		& ul,
+		& li {
+			margin: 15px 0;
+			list-style-type: decimal;
+			line-height: 30px;
+		}
+
+		& ul,
+		& ol {
+			padding-left: 24px@i;
+		}
+	
+		& pre {
+			padding: 16px;
+			overflow: auto;
+			font-size: 14px;
+			line-height: 1.45;
+			background-color: darken(@pink, 5%);
+			.b-r(3px);
+			color: @theme;
+			margin:10px 0;
+			
+			& code {
+				font-family: @base-font-family;
+				line-height: 23px;
+			}
+		}
+
+		& a.linker {
+			color:@theme;
+
+			&:hover {
+				color:@theme;
+				text-decoration: underline;
+			}
+		}
+
+	}
+
+} 
+
+
+//footer 
+.footer {
+	width: 100%;
+	padding-bottom: 40px;
+
+	& .footer-inner {
+		.content-wrap();
+	}
+}
+
+
+

@@ -1,0 +1,59 @@
+/**
+ *description:内容管理编辑添加列表
+ *author:fanwei
+ *date:2015/1/31
+ */
+
+@import "../../../config/config.less";
+@import "../../../config/func.less";
+@import "../../../extend/css3.less";
+@import "../../../widget/form/tag.less";
+
+.main-content .table {
+	width: 600px;
+	text-align: left;
+
+	& td {
+		vertical-align: top;
+	}
+}
+
+.upload-area {
+	min-height: 150px;
+}
+
+.uploadBtn {
+	display: none;
+}
+
+.editor-wrap {
+
+	min-height: 412px;
+
+	&.auto {
+		min-height: 0;
+	}
+}
+
+.loading-shadow {
+	width: 100%;
+	height: 100%;
+	background: #000;
+	position: fixed;
+	z-index: 2000;
+	left:0;
+	top:0;
+	.opa(0.7);
+}
+
+.progress-wrap {
+	position: fixed;
+	margin:-10px 0 0 -100px;
+	z-index: 2001;
+	left:50%;
+	top:50%;
+}
+
+.webuploader-view-list.desktop {
+	border: 2px solid @bar-green;
+}

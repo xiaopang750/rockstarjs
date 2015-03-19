@@ -1,0 +1,101 @@
+<!-- 首页结算单模板 -->
+<li sum-list class="ba-rel">
+    <span class="packType">
+        {{if iscombo}}
+        <span class="ba-red">
+            套餐订单
+        </span>
+        {{else}}
+        <span class="ba-qing">
+            普通订单
+        </span>
+        {{/if}}
+    </span>
+    <div>
+        <table cellpadding="0" cellspacing="0" border="0" class="ba-mb-5">
+            <tr>
+                <td width="65">
+                    姓名:
+                </td>
+                <td>
+                    {{customername}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    电话号码:
+                </td>
+                <td>
+                    {{cellphone}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    套餐:
+                </td>
+                <td>
+                    {{comboname}}
+                </td>
+            </tr>
+            <tr>
+                {{if servicemoney}}
+                <td width="65">
+                    服务金额:
+                </td>
+                <td base>
+                    {{servicemoney}}
+                </td>
+                {{else}}
+                <td width="65">
+                    套餐金额:
+                </td>
+                <td base>
+                    {{ordermoney}}
+                </td>
+                {{/if}}
+            </tr>
+            <tr>
+                <td>
+                    理发师:
+                </td>
+                <td>
+                    {{fairername}}
+                </td>
+            </tr>
+        </table>
+        <table cellpadding="0" cellspacing="0" border="0">
+            {{each addition as value2 index2}}
+            <tr>
+                <td width="100">
+                    {{value2.additionname}}:
+                </td>
+                <td>
+                    <input type="text" class="form-control" sum-item value="{{value2.additionmoney}}"
+                    pkDetail="{{value2.pkDetail}}" pkAddition="{{value2.pkAddition}}" additionname="{{value2.additionname}}">
+                </td>
+                <td width="65">
+                    <span class="ba-ml-5">
+                        提成人：
+                    </span>
+                </td>
+                <td>
+                    <input type="text" class="form-control" readonly="readonly" fairername
+                    value="{{value2.fairername}}">
+                </td>
+            </tr>
+            {{/each}}
+        </table>
+        <div class="ba-clearfix">
+            <span class="ba-fl ba-mt-5">
+                总计:
+                <span sum-all org="{{ordermoney}}">
+                    {{ordermoney}}
+                </span>
+                元
+            </span>
+        </div>
+    </div>
+    <a href="javascript:;" class="btn btn-primary sum-btn" sum-btn aid="{{pkOrder}}">
+        结算
+    </a>
+</li>

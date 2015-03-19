@@ -1,0 +1,26 @@
+/**
+ *description:表单报错样式
+ *author:fanwei
+ *date:2015/1/25
+ */
+.wrong_area {
+	background: #a40d1f;
+	border:1px solid #c0b536;
+	-border-top-color: #843534;
+	border-bottom-right-radius: 3px;
+	border-bottom-left-radius: 3px;
+	color: #fff;
+	font-size: 11px;
+	padding:5px;
+	visibility: hidden;
+}
+
+.wrong_area.wrong {
+	visibility: visible;
+}
+
+.has-error {
+	& .form-control {
+		border-color:#a40d1f;
+	}
+}

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>{{title}}</title>
+{{include '../include/meta'}}
+<link rel="stylesheet" href="{{cssPath}}core/rockstar.css">
+<link rel="stylesheet" href="{{cssPath}}main/shop/customService/index.css">
+</head>
+
+<body>
+	{{include '../include/header'}}
+	<div class="main-content">
+		{{include '../include/nav'}}
+		{{include '../include/msg'}}
+		<div class="center-bar">
+			<div class="bar-title ba-clearfix">
+				<span class="ba-intro">{{title}}</span>
+			</div>
+			<div class="main-content">
+				<div class="msg-wrap">
+					<div class="msg-history ba-mb-10" history-view>
+						<ul history-wrap>
+							<!-- customerService/msg.html -->
+						</ul>
+					</div>
+					<div class="msg-area ba-mb-10">
+						<textarea  class="form-control" send-area></textarea>
+					</div>
+					<div class="ba-clearfix">
+						<div class="ba-fr">
+							<a href="javascript:;" class="btn btn-success ba-mr-10" history-btn>查看历史消息</a>
+							<a href="javascript:;" class="btn btn-primary" send-btn>发送</a>
+						</div>
+					</div>
+				</div>
+			</div>	
+		</div>	
+	</div>
+{{include '../include/siteConfig'}}
+<script src="{{seaPath}}seajs/sea.js"></script>	
+<script src="{{seaPath}}seajs/config.js"></script>
+<script>
+	seajs.use('main/shop/customService/index');
+</script>
+</body>
+</html>

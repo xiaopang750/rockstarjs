@@ -1,0 +1,52 @@
+/**
+ *description:用户增加
+ *author:fanwei
+ *date:2015/1/25
+ */
+/**
+ *description:网站全局less变量-配置
+ *author:fanwei
+ *date:2014/10/30
+ */
+/* use-most-var */
+/* color */
+/* a-link */
+/* font-family */
+/* h-size */
+/* btn */
+/* layer */
+/* site-config */
+/**
+ *description:网站全局less函数-pc
+ *author:fanwei
+ *date:2014/10/30
+ */
+/* line-height */
+/* font-size */
+/* margin */
+/* padding */
+/* opacity */
+/* trangle */
+/**
+ *description:css3-pc
+ *author:fanwei
+ *date:2014/10/31
+ */
+.edit-box {
+  width: 550px;
+  height: 320px;
+  padding: 10px;
+  background: #fff;
+  border: 1px solid #ccc;
+  box-shadow: 1px 1px 1px #000;
+  border-radius: 5px;
+}
+.record-photo {
+  width: 440px;
+}
+.record-photo li {
+  width: 100px;
+  height: 100px;
+  margin: 0 10px 10px 0;
+  float: left;
+}

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>首页</title>
+<link rel="stylesheet" href="../src/css/core/rockstar.css">
+</head>
+<body>
+  <div class="wrap">
+
+    <!-- header -->
+    <div class="header" header>
+      <!-- header -->
+<div class="inner ba-clearfix">
+	<div class="title-wrap ba-fl ba-mr-20">
+		<a class="title" href="./">RockstarCss</a>
+		<div class="ba-gray">
+			<p>
+				写更少的样式 - for pc
+			</p>
+		</div>
+	</div>
+	<img src="../assets/lib/logo/xiaopang.jpg" class="title-img ba-fl">
+</div>
+    </div>
+
+    <!-- nav -->
+    <div class="nav" nav>
+      <!-- nav -->
+<div class="inner">
+	<ul class="ba-clearfix ba-pt-20">
+		
+			<li>
+				<a href="./index.html">
+					
+						<span class="fa fa-home ba-font-18"></span>
+					
+					首页
+				</a>
+			</li>
+		
+			<li>
+				<a href="./less.html">
+					
+					less
+				</a>
+			</li>
+		
+			<li>
+				<a href="./base.html">
+					
+					通用样式
+				</a>
+			</li>
+		
+			<li>
+				<a href="./rule.html">
+					
+					规范和最佳实践
+				</a>
+			</li>
+		
+			<li>
+				<a href="./icon.html">
+					
+					font-icon
+				</a>
+			</li>
+		
+			<li>
+				<a href="./use.html">
+					
+					使用
+				</a>
+			</li>
+		
+			<li>
+				<a href="./widget.html">
+					
+					组件
+				</a>
+			</li>
+		
+			<li>
+				<a href="./tool.html">
+					
+					工具
+				</a>
+			</li>
+		
+	</ul>
+</div>
+    </div>
+    
+    <!-- content -->
+    <div class="content ba-clearfix">
+      <div class="nav-left" nav-left-wrap>
+        <ul nav-left>
+          <!-- left-nav -->
+
+<li>
+	<a href="#RockstarCss是什么">
+		RockstarCss是什么
+	</a>
+</li>
+
+<li>
+	<a href="#特点">
+		特点
+	</a>
+</li>
+
+<li>
+	<a href="#兼容性">
+		兼容性
+	</a>
+</li>
+
+        </ul>
+      </div>
+      <div class="content-right" content-right>
+          <h2 id="RockstarCss是什么">RockstarCss是什么</h2>
+
+<blockquote>
+<p>RockstarCss是基于seajs,cmd规范为核心的样式表,以bootstrap框架为核心，提供基础，重置，网站布局,按钮，图标，表单，table, 尺寸, 背景，css3辅助类, font-icon的模块化样式表，模块化的目录结构，使开发和管理方便。一切皆为模块，我们不是builder,而是模块的组装者。</p>
+<blockquote>
+<p>目前框架只包括一套通过less合并的基础样式表，组件模块后期会加上。</p>
+</blockquote>
+</blockquote>
+<h2 id="特点">特点</h2>
+
+<ol>
+<li><p>致力于提高构建页面的开发效率。</p>
+</li>
+<li><p>做一件事只做一件事，也许我们会边写样式边切图，边写样式边写html边写样式，这样效率可能会很低，当我们拿到psd后，首先把所有的icon,button,bg,layer布局等所需要的图片切好，放入到指定的目录中。然后把button,icon这些组件当成模块，写好样式。最后我们只需把这些模块化的组件组装成一个页面即可。模块化，使目录结构更为清晰，便于管理。</p>
+</li>
+<li><p>以less为核心，利用grunt的less,watch事实的在本地把.less文件编译成.css文件，减小了上线前编译合并css的工作量，页面中不需要引入less.js。开发需要的grunt模块已经放入文件夹中，只需用grunt运行即可。</p>
+</li>
+<li><p>gruntfile.js包含快速搭建本地静态服务器的配置，使静态页面能快速的在服务器环境下预览，并且可以快速部署到常用的开发操作系统下。</p>
+</li>
+<li><p>提供livereload，自动刷新功能，不强制依赖于任何编译器插件，使得开发的文件的可移植性变强。</p>
+</li>
+<li><p>去除了bootstrap对移动端和响应式的支持，提供对ie7的支持，按照模块化的开发方式重新部署了目录结构。</p>
+</li>
+<li><p>使用holder.js站位，我们不需要到处去找站位图片。</p>
+</li>
+</ol>
+<p><h2 id="兼容性">兼容性</h2></p>
+<ol>
+<li><p>兼容到ie7，忽略ie6, bsie6。</p>
+</li>
+<li><p>采用样式降级的处理方式。高级浏览器会使用css3实现圆角，阴影...低级浏览器会在不影响功能和整体设计布局的情况下，省略这些效果，功能第一，ui第二。如果是特殊的活动页，有特殊的需求，就要弃用现在的ui基础样式，只使用重置和基础的样式表，less文件都是分开的我们可以根据情况去自由组合，重写我们需要的。</p>
+</li>
+</ol>
+
+      </div>
+    </div>
+
+    <!-- footer -->
+    <div class="footer" footer>
+      <!-- footer -->
+<div class="footer-inner ba-font-14 ba-tr ba-mt-20">
+	<a href="http://www.rockstars.com.cn" target="_blank">罗格斯达</a>&nbsp;&nbsp;
+	<a href="http://seajs.org" target="_blank">seajs</a>,
+	<a href="http://backbonejs.org" target="_blank">backbone</a>,
+	<a href="http://aralejs.org/class" target="_blank">class</a>,
+	<a href="https://code.csdn.net/Tencent/tmodjs" target="_blank">tmod</a>,
+	<a href="http://lab.lepture.com/nico/zh" target="_blank">nico</a>,
+	<a href="http://nodejs.org/" target="_blank">nodejs</a>,
+	<a href="http://www.expressjs.com.cn" target="_blank">express</a>,
+	<a href="http://koa.bootcss.com" target="_blank">koa</a>,
+	<a href="http://www.gruntjs.org" target="_blank">grunt</a>
+</div>
+    </div>
+  </div>
+
+<script src="../seajs/sea.js"></script>
+<script src="../seajs/config.js"></script>
+<script>
+  seajs.use('driver/R');
+</script>   
+</body>
+</html>

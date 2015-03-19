@@ -1,0 +1,10 @@
+<!-- 出库商品详情 -->
+{{each list}}
+	<tr list gid={{$value.pkProduct}} pkProductDeliveryB={{$value.pkProductDeliveryB}}>
+		<td>{{$value.productname}}</td>
+		<td data="productnum">{{$value.productnum}}</td>
+		<td>{{$value.productunit}}</td>
+		<td data="productprice">{{$value.productprice}}</td>
+		<td></td>
+	</tr>
+{{/each}}

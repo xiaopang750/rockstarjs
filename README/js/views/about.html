@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>关于 RockstarJs</title>
+<link rel="stylesheet" href="../src/css/core/rockstar.css">
+</head>
+<body>
+  <div class="wrap">
+
+    <!-- header -->
+    <div class="header" header>
+      <!-- header -->
+<div class="inner ba-clearfix">
+	<div class="title-wrap ba-fl ba-mr-20">
+		<a class="title" href="./">RockstarJs</a>
+		<div class="ba-gray">
+			<p>
+				构建灵活轻量的互联网应用 - for pc
+			</p>
+		</div>
+	</div>
+	<img src="../assets/lib/logo/xiaopang.jpg" class="title-img ba-fl">
+</div>
+    </div>
+
+    <!-- nav -->
+    <div class="nav" nav>
+      <!-- nav -->
+<div class="inner">
+	<ul class="ba-clearfix ba-pt-20">
+		
+			<li>
+				<a href="./index.html">
+					
+						<span class="fa fa-home ba-font-18"></span>
+					
+					首页
+				</a>
+			</li>
+		
+			<li>
+				<a href="./about.html">
+					
+					关于 RockstarJs
+				</a>
+			</li>
+		
+			<li>
+				<a href="./use.html">
+					
+					使用
+				</a>
+			</li>
+		
+			<li>
+				<a href="./rule.html">
+					
+					开发规范
+				</a>
+			</li>
+		
+			<li>
+				<a href="./organization.html">
+					
+					代码组织实践
+				</a>
+			</li>
+		
+			<li>
+				<a href="./tool.html">
+					
+					工具
+				</a>
+			</li>
+		
+	</ul>
+</div>
+    </div>
+    
+    <!-- content -->
+    <div class="content ba-clearfix">
+      <div class="nav-left" nav-left-wrap>
+        <ul nav-left>
+          <!-- left-nav -->
+
+<li>
+	<a href="#传统的开发">
+		传统的开发
+	</a>
+</li>
+
+<li>
+	<a href="#模块化开发">
+		模块化开发
+	</a>
+</li>
+
+<li>
+	<a href="#模块化的实现">
+		模块化的实现
+	</a>
+</li>
+
+<li>
+	<a href="#cmd与amd">
+		cmd与amd
+	</a>
+</li>
+
+<li>
+	<a href="#模块化的原理">
+		模块化的原理
+	</a>
+</li>
+
+<li>
+	<a href="#开发理念">
+		开发理念
+	</a>
+</li>
+
+<li>
+	<a href="#兼容性">
+		兼容性
+	</a>
+</li>
+
+<li>
+	<a href="#seajsApi">
+		seajsApi
+	</a>
+</li>
+
+        </ul>
+      </div>
+      <div class="content-right" content-right>
+          <h2 id="传统的开发">传统的开发</h2>
+
+<ol>
+<li><p>在团队开发中，随着对用户体验需求和页面数量的增加，传统的js开发和src引入的管理模式，可能已经很难满足需求。而我们希望通过一种类似php require 和 java import 的方式在代码里引入我们的js。</p>
+</li>
+<li><p>也许我们通常会引用一个jquery.js,然后再弄一个jquery ui,或者类似ext yui,那样大而全的框架。这些框架能解决一些通用的问题，但复杂的api,大量无用的代码，可能会有一些性能和使用不当导致的问题。而我们希望按需加载。</p>
+</li>
+<li><p>无法分工，团队无法配合。大量的命名空间和规范，也许可以减少一些冲突的产生，但是js并不是一个安全的语言。在某些情况下，我们还是需要担心哪里会起冲突导致bug的产生，而超长的命名空间链也不便于记忆。</p>
+</li>
+<li><p>我们技术很好，但是无法把精力集中在开发上。</p>
+</li>
+</ol>
+<h2 id="模块化开发">模块化开发</h2>
+
+<blockquote>
+<p>于是模块化开发这个词，逐渐开始流行起来,模块化的意义很明了，解决开发中的冲突。把每个功能，变量，配置，函数，模板,业务常用的组件通过define创建一个封闭空间,require加载依赖的方式联系起来，构建一个系统的，完整的生态圈。</p>
+<p>模块虽然是这几年流行起来，但它也不是一个无中生有的东西，很多语言已经有这种类似的功能。像java有import,有包，有严格的函数作用域，有public private。js一无所有，有人说它肮脏不严谨，太灵活。不过正是因为得益于js的灵活性。我们通过模拟java的import实现了require。</p>
+<p>在模块化开发中一切都是模块，小到一个按钮，大到一个聊天系统。而大模块是由小模块组成，require依赖联系着他们。
+在模块化的帮助下，js一样可以定义开发接口，比如一个带业务逻辑的弹框。我们可以定义api，去要求该弹框的入参，回参，回调函数。而使用很简单只需要require过来，实例化一次。我们再也不用在写js的时候，又去打开那个页面加一段script标签，填入src，我们还要关注其他script的位置，因为顺序颠倒可能就会产生一堆问题。模块化的开发方式使前端能在做一件的事的时候更关注这一件事。</p>
+</blockquote>
+<h2 id="模块化的实现">模块化的实现</h2>
+
+<blockquote>
+<p>现在业界有很多成熟的实现模块化的方式，作为一个有理想的前端，我们一定想自己写一个属于自己的模块化框架。其实说写，倒不如说是先模仿然后再重写。我们何不采取拿来主义，既然业界已经有很成熟的框架，而且这个框架只是为我们提供一个辅助功能，使用它并不会显得我们的技术很差。如果重写，第一可能会很不稳定，第二我们没有很大的用户群体去帮我们去验证这个模块加载的框架，第三我们很可能写出来跟这个框架差不多，但是性能却低了很多。</p>
+<p>这里我们选择seajs作为模块加载器，毕竟是国人写的支持一下，而且他的性能很高，没有明显bug。</p>
+<p>我们虽然采取拿来主义，但不代表着我们一沉不变的去使用它，我们可以把自己的业务逻辑封装到里面，加一些更多的功能。比如可以在load模块的时候加一些debug和模块配置信息的功能。</p>
+</blockquote>
+<h2 id="cmd与amd">cmd与amd</h2>
+
+<blockquote>
+<p>随着模块化的发展，以及服务端nodejs大量的应用。模块的写法自然需要一个规范，爱起名字的科学家叫他 common module define 也就是公共模块定义。cmd最早出现在服务端，因为服务端加载一个文件只是io操作，不是http请求。所以就有了:</p>
+</blockquote>
+<pre><code>
+define(function(){
+
+});
+
+这种简写方式</code></pre>
+<blockquote>
+<p>amd 异步模块定义。大家都知道动态加载的script是异步的，他更适合于客户端，走的是http请求而不是io操作。所以就有了：</p>
+</blockquote>
+<pre><code>
+define(&#39;模块路径&#39;, [&#39;所有依赖路径&#39;], function(){
+
+
+
+});</code></pre>
+<blockquote>
+<p>对比两种方式 cmd显然更简洁,最初amd和cmd一直并存，最后amd妥协也开始支持cmd的写法。而cmd通过transport方式也能编译成amd。</p>
+</blockquote>
+<h2 id="模块化的原理">模块化的原理</h2>
+
+<blockquote>
+<p>先看一段代码:</p>
+</blockquote>
+<pre><code>
+main.js
+
+define(function(require,exports,module){
+
+    var dialog = require(&#39;./dialog&#39;);
+
+});</code></pre>
+<blockquote>
+<p>假如有一个main.js, 首先看到最外层的就是一个define,这也可以看作为一个模块化js文件的标志。seajs提供了define,seajs这两个全局对象，并且读取这个main.js用正则提取define内所有的所有的require。</p>
+</blockquote>
+<pre><code>    我们拿到require里面的 &#39;./dialog&#39;
+    这个路径，
+    创建一个动态的script标签，
+    而动态的script标签和写在页面上的script标签
+    有个很大的区别
+    动态的script标签是异步的,我们发出请求
+    却不知道什么时候加载完成。
+
+    var oScript = document.createElement(&#39;script&#39;);
+
+    oScript.src = &#39;./dialog&#39;;
+
+    oScript.onload = oScript.onreadystatechange = function() {
+
+        //todo 当模块加载完我们就做一些事情
+        ...
+
+    }
+
+    原理很简单其实很简单...但是要写的很完整却很麻烦...
+
+    而当有多个require的时候，我们提取所有依赖
+
+    当所有模块都加载完时
+
+    输出模块
+
+    这样就不会有顺序问题
+
+    define是模块的定义
+
+    包在里面的就是一个模块
+
+    也可以理解为一个封闭的空间
+
+    define和其他define之间的内容不会冲突
+
+    而module和exports两个参数就作为输出模块所用
+
+    开发时，一个页面只能有一个define,和合并后则会有很多
+
+    关于合并，工具页面里会详细说明。</code></pre>
+<blockquote>
+<p>关于模块化也可以看下这篇文章:&nbsp;&nbsp;<a href="http://hi.baidu.com/xiaopangdun/item/8fc70b2c351cf03b2b0f1cf4">关于seajs搭建一个前端自动化的流程</a></p>
+</blockquote>
+<h2 id="开发理念">开发理念</h2>
+
+<blockquote>
+<p>我们不需要大而全的框架，因为他们笨重，不灵活,我们需要用大量时间去熟悉他的api。我们何不海纳百川，通过模块加载器去load一些小而美的框架以及组件。我们可以引用或者开发一些我们用的顺手的一套库，去打造一个灵活得互联网应用。YUI的停止更新，应该也标志着大而全框架时代的结束。    </p>
+</blockquote>
+<p><h2 id="兼容性">兼容性</h2></p>
+<blockquote>
+<p>seajs能兼容到ie6，所以我们可以放心使用。</p>
+</blockquote>
+<p><h2 id="seajsApi">seajsApi</h2></p>
+<blockquote>
+<p> 看api猛戳这里 <a href="http://seajs.org/docs/"><a href="http://seajs.org/docs/">http://seajs.org/docs/</a></a></p>
+</blockquote>
+
+      </div>
+    </div>
+
+    <!-- footer -->
+    <div class="footer" footer>
+      <!-- footer -->
+<div class="footer-inner ba-font-14 ba-tr ba-mt-20">
+	<a href="http://www.rockstars.com.cn" target="_blank">罗格斯达</a>&nbsp;&nbsp;
+	<a href="http://seajs.org" target="_blank">seajs</a>,
+	<a href="http://backbonejs.org" target="_blank">backbone</a>,
+	<a href="http://aralejs.org/class" target="_blank">class</a>,
+	<a href="https://code.csdn.net/Tencent/tmodjs" target="_blank">tmod</a>,
+	<a href="http://lab.lepture.com/nico/zh" target="_blank">nico</a>,
+	<a href="http://nodejs.org/" target="_blank">nodejs</a>,
+	<a href="http://www.expressjs.com.cn" target="_blank">express</a>,
+	<a href="http://koa.bootcss.com" target="_blank">koa</a>,
+	<a href="http://www.gruntjs.org" target="_blank">grunt</a>
+</div>
+    </div>
+  </div>
+
+<script src="../seajs/sea.js"></script>
+<script src="../seajs/config.js"></script>
+<script>
+  seajs.use('driver/R');
+</script>   
+</body>
+</html>

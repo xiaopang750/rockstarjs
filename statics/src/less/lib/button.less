@@ -67,6 +67,10 @@
 	.button-variant(@btn-danger-color,@btn-danger-bg,@btn-danger-border)
 }
 
+.btn-normal {
+	.button-variant(@btn-normal-color,@btn-normal-bg,@btn-normal-border)
+}
+
 //size
 .btn-lg {
 	.button-size(@btn-padding-vertical-base; @btn-padding-horizontal-lg; @btn-font-size-lg; @btn-border-radius-lg)
@@ -100,7 +104,6 @@
 	border-color:@border;
 
 	&:hover,
-	&:focus,
 	&:active,
 	&.active {
 		color: @color;
@@ -113,7 +116,6 @@
 	&[disabled] {
 	    &,
 	    &:hover,
-	    &:focus,
 	    &:active,
 	    &.active {
 	      background-color: @bg;

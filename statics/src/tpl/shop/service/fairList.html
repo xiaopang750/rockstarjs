@@ -1,0 +1,23 @@
+<!-- 理发师模板 -->
+{{if list}}
+	{{each list}}
+	<tr>
+		<td>{{$value.fairername}}</td>
+		<td>{{$value.nickname}}</td>
+		<td>{{$value.cellphone}}</td>
+		<td class="ba-tl">
+			<a class="btn btn-normal ba-mr-5" href="{{getRoute 'service/addEdit'}}?cid={{$value.pkFairer}}">编辑</a>
+			<a class="btn btn-normal ba-mr-5" href="{{getRoute 'service/addEdit'}}?lid={{$value.pkFairer}}">详情</a>
+			{{if $value.pkUser == 0}}
+			<a class="btn btn-normal ba-mr-5" href="javascript:;" reguid="{{$value.pkFairer}}">注册App</a>
+			{{else}}
+			<span>已注册App</span>
+			{{/if}}
+		</td>
+	</tr>
+	{{/each}}
+{{else}}
+	<tr>
+		<td colspan="4">暂无数据</td>
+	</tr>
+{{/if}}

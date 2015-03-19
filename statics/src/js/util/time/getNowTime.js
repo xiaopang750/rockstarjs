@@ -5,12 +5,11 @@
  */
 define(function(require, exports, module){
 	
-	var toDouble = require('./toDouble');
+	var toDouble = require('../string/toDouble');
 
-	function getNowTime(detail, dot) {
+	function getNowTime(oDate, detail, dot) {
 
-		var oDate,
-	        y,
+		var y,
 	        m,
 	        d,
 	        h,
@@ -20,7 +19,6 @@ define(function(require, exports, module){
 	        timer;
 
 	    dot = dot || "-";
-	    oDate = new Date();
 	    y = oDate.getFullYear();
 	    month = oDate.getMonth() + 1;
 	    d = oDate.getDate();

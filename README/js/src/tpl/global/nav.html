@@ -1,0 +1,16 @@
+<!-- nav -->
+<div class="inner">
+	<ul class="ba-clearfix ba-pt-20">
+		{{each data}}
+			<li>
+				<a href="{{$value.link}}">
+					{{if $index == 0}}
+						<span class="fa fa-home ba-font-18"></span>
+					{{/if}}
+					{{$value.name}}
+				</a>
+			</li>
+
+		{{/each}}
+	</ul>
+</div>

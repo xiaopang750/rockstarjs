@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>{{title}}</title>
+{{include '../include/meta'}}
+<link rel="stylesheet" href="{{cssPath}}core/rockstar.css">
+<link rel="stylesheet" href="{{cssPath}}main/shop/service/addEdit.css">
+<link rel="stylesheet" href="{{cssPath}}widget/upload/webuploader.css">
+</head>
+
+<body>
+	{{include '../include/header'}}
+	<div class="main-content">
+		{{include '../include/nav'}}
+		{{include '../include/msg'}}
+		<div class="center-bar">
+			<div class="bar-title ba-clearfix">
+				<span class="ba-intro">{{title}}</span>
+				<a href="{{views['service/list'].url}}" class="btn btn-primary back-btn">返回</a>
+			</div>
+			<div class="main-content" script-bound="form-check">
+				<table class="table no-border no-bg">
+					<!-- 姓名 -->
+					<tr>
+						<td width="100">姓名：</td>
+						<td>
+							{{if nowAction != 'detail'}}
+								<div script-role="check-wrap" class="ba-fl col-6 ba-mr-10">
+									<input type="text" class="form-control" form_check="sys" ischeck="true" name="fairername" tip="此项为必填" wrong="姓名为10个字符以内" re="(.{1,10})" value="{{pageInfo.fairername}}">
+								</div>
+								<label class="ba-fl col-3 ba-mt-5 ba-pointer" for="isDisableLogin">
+									<input type="checkbox" isDisableLogin {{if pageInfo.isvalidate == 'N'}}checked="checked"{{/if}} id="isDisableLogin">
+									<span>禁止登录</span>
+								</label>
+							{{else}}
+								{{pageInfo.fairername}}
+							{{/if}}
+						</td>
+					</tr>
+
+					<!-- 服务次数 -->
+					{{if nowAction == 'detail'}}
+					<tr>
+						<td width="100">服务次数：</td>
+						<td>
+							{{pageInfo.servicenum}}
+						</td>
+					</tr>	
+					{{/if}}
+
+					<!-- 服务金额 -->
+					{{if nowAction == 'detail'}}
+					<tr>
+						<td width="100">服务金额：</td>
+						<td>
+							{{pageInfo.servicemoney}}
+						</td>
+					</tr>	
+					{{/if}}
+
+					<!-- 提成金额 -->
+					{{if nowAction == 'detail'}}
+					<tr>
+						<td width="100">提成金额：</td>
+						<td>
+							{{pageInfo.accountmoney}}
+						</td>
+					</tr>	
+					{{/if}}
+
+					<!-- 是否禁止登录 -->
+					{{if nowAction == 'detail'}}
+					<tr>
+						<td>是否禁止登录：</td>
+						<td>
+							{{if pageInfo.isvalidate == 'N'}}
+							是
+							{{else}}
+							否
+							{{/if}}
+						</td>
+					</tr>
+					{{/if}}
+					<!-- 性别 -->
+					<tr>
+						<td>性别：</td>
+						<td>
+							{{if nowAction != 'detail'}}
+							<div class="ba-mb-15" radio_group="true" name="sex" form_check="sys" ischeck="true" tip="请选择性别">
+							    <label class="form-item ba-pointer" for="male">
+							        <input type="radio" name="sex" value="1" {{if pageInfo.sex == "1"}}checked="checked"{{/if}} id="male">
+							        男
+							    </label>
+							    <label class="form-item ba-pointer" for="female">
+							        <input type="radio" name="sex" value="2" {{if pageInfo.sex == "2"}}checked="checked"{{/if}} id="female">
+							        女
+							    </label>
+							</div>
+							{{else}}
+								{{if pageInfo.sex == '1'}}
+								男
+								{{else}}
+								女
+								{{/if}}
+							{{/if}}
+						</td>
+					</tr>
+
+					<!-- 昵称 -->
+					<tr>
+						<td>昵称：</td>
+						<td>
+							{{if nowAction != 'detail'}}
+							<div script-role="check-wrap" class="ba-fl col-6">
+								<input type="text" class="form-control" form_check="sys" ischeck="true" name="nickname" tip="此项为必填" wrong="昵称为10个字符以内" re="(.{1,10})" value="{{pageInfo.nickname}}">
+							</div>
+							{{else}}
+								{{pageInfo.nickname}}
+							{{/if}}
+						</td>
+					</tr>
+
+					<!-- 身份证号 -->
+					<tr>
+						<td width="100">身份证号：</td>
+						<td>
+							{{if nowAction != 'detail'}}
+							<div script-role="check-wrap">
+								<input type="text" class="form-control col-6" form_check="sys" ischeck="true" name="identityid" tip="此项为必填" wrong="身份证号格式不正确" re="(\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x))" value="{{pageInfo.identitycard}}">
+							</div>
+							{{else}}
+								{{pageInfo.identitycard}}
+							{{/if}}
+						</td>
+					</tr>
+					
+					<!-- 手机号码 -->
+					<tr>
+						<td>手机号码：</td>
+						<td>
+							{{if nowAction != 'detail'}}
+							<div script-role="check-wrap">
+								<input type="text" class="form-control col-6" form_check="sys" ischeck="true" name="cellphone" tip="此项为必填" wrong="手机号格式不正确" re="(1[3|4|5|8][0-9]\d{8})" value="{{pageInfo.cellphone}}">
+							</div>
+							{{else}}
+								{{pageInfo.cellphone}}
+							{{/if}}
+						</td>
+					</tr>
+					<!-- 现住址 -->
+					<tr>
+						<td>现住址：</td>
+						<td>
+							{{if nowAction != 'detail'}}
+							<div class="ba-mb-10 ba-clearfix">
+								<div class="related-select" script-role="check-wrap">
+									<select class="form-control" ischeck="true" form_check="sys" tip="请选择省" wrong="" re=".+" province name="province" pkArea="{{pageInfo.pkProvince}}" areaname="{{pageInfo.province}}">
+										<option value="">请选择省</option>
+									</select>
+								</div>
+								<div class="related-select" script-role="check-wrap">
+									<select class="form-control" ischeck="true" form_check="sys" tip="请选择市" wrong="" re=".+" city name="city" pkArea="{{pageInfo.pkCity}}" areaname="{{pageInfo.city}}">
+										<option value="">请选择市</option>
+									</select>
+								</div>
+								<div class="related-select" script-role="check-wrap">
+									<select class="form-control" ischeck="true" form_check="sys" tip="请选择区" wrong="" re=".+" area name="county" pkArea="{{pageInfo.pkCounty}}" areaname="{{pageInfo.county}}">
+										<option value="">请选择区</option>
+									</select>
+								</div>
+							</div>
+							{{else}}
+								{{pageInfo.province}},
+								{{pageInfo.city}},
+								{{pageInfo.county}}
+							{{/if}}
+							<div class="ba-mb-10">
+								{{if nowAction != 'detail'}}
+								<table cellpadding="0" cellspacing="0" border="0" width="100%">
+									<tr>
+										<td width="40">
+											<label>街道：</label>
+										</td>
+										<td>
+											<div script-role="check-wrap">
+												<input type="text" class="form-control col-8" form_check="sys" ischeck="true" name="addr" tip="此项为必填" wrong="街道为100个字符以内" re="(.{1,100})" value="{{pageInfo.addr}}">
+											</div>
+										</td>
+									</tr>
+								</table>
+								{{else}}
+									<div class="ba-mt-10">
+										街道：{{pageInfo.addr}}
+									</div>
+								{{/if}}
+							</div>
+						</td>
+					</tr>
+					<!-- 家庭住址 -->
+					<tr>
+						<td width="100">家庭住址：</td>
+						<td>
+							{{if nowAction != 'detail'}}
+							<div script-role="check-wrap">
+								<input type="text" class="form-control col-11" form_check="sys" ischeck="true" name="nativeaddr" tip="此项为必填" wrong="家庭住址为50个字以内" re="(.{1,50})" value="{{pageInfo.nativeplace}}">
+							</div>
+							{{else}}
+								{{pageInfo.nativeplace}}
+							{{/if}}
+						</td>
+					</tr>
+					<!-- 紧急联系人 -->
+					{{each pageInfo.urgencypeople}}
+					<tr>
+						<td>紧急联系人{{$index + 1}}：</td>
+						<td>
+							<div class="form-inline" emergency-list>
+							    <div class="form-group col-3" script-role="check-wrap">
+							        <label class="control-label">姓名：</label>
+							        {{if nowAction != 'detail'}}
+							        <input type="text" class="form-control col-8" form_check="sys" ischeck="free" tip="此项为必填" wrong="姓名为10个字以内" re="(.{1,10})" value="{{$value.name}}" upload-namer="name">
+							        {{else}}
+							        	<label class="control-label">
+											{{$value.name}}
+										</label>
+							        {{/if}}
+							    </div>
+
+							    <div class="form-group col-5" script-role="check-wrap">
+							        <label class="control-label">电话：</label>
+							         {{if nowAction != 'detail'}}
+							        <input type="text" class="form-control col-8" form_check="sys" ischeck="free" tip="此项为必填" wrong="电话号码格式不正确" re="(1[3|4|5|8][0-9]\d{8})" value="{{$value.tel}}" upload-namer="tel">
+							        {{else}}
+							        	<label class="control-label">
+											{{$value.tel}}
+										</label>
+							        {{/if}}
+							    </div>
+
+							    <div class="form-group col-3" script-role="check-wrap">
+							        <label class="control-label">关系：</label>
+							         {{if nowAction != 'detail'}}
+							        <input type="text" class="form-control col-8" ischeck="free" tip="此项为必填" wrong="关系为10个字以内" re="(.{1,10})" value="{{$value.relate}}" upload-namer="relate">
+							        {{else}}
+							        	<label class="control-label">
+							        		{{$value.relate}}
+							        	</label>
+							        {{/if}}
+							    </div>
+							</div>    
+						</td>
+					</tr>
+					{{/each}}
+					<!-- 技能 -->
+					<tr>
+						<td>技能信息：</td>
+						<td>
+							{{if nowAction != 'detail'}}
+							<div class="tag-wrap" tag-wrap>
+								<input type="text" class="tag-input" tag-input text="请输入技能,按空格或者回车确定">
+								<div class="tag-list-wrap" tag-list-wrap>
+									{{each pageInfo.skill}}
+									<span class="tag-list" tag-list>
+										<span class="tag-name" tag-name="{{$value.skillname}}" tag-id="{{$value.pkSkill}}">{{$value.skillname}}</span>
+										<span class="tag-close" tag-close>x</span>
+									</span>
+									{{/each}}
+								</div>
+							</div>
+							{{else}}
+								<div class="tag-wrap no-border">
+									{{each pageInfo.skill}}
+										<span class="tag-list">
+											<span class="tag-name">{{$value.skillname}}</span>
+										</span>
+									{{/each}}
+								</div>
+							{{/if}}
+						</td>
+					</tr>
+					<!-- 备注 -->
+					<tr>
+						<td>备注信息：</td>
+						<td>
+							{{if nowAction != 'detail'}}
+							<div script-role="check-wrap">
+								<textarea class="form-control" form_check="sys" ischeck="true" name="note" tip="此项为必填" wrong="备注为100个字以内" re="((.|\n){1,100})">{{pageInfo.note}}</textarea>
+							</div>
+							{{else}}
+								{{pageInfo.note}}
+							{{/if}}
+						</td>
+					</tr>
+					<!-- 附件 -->
+					<tr>
+						<td>
+							<span>
+								附件：
+							</span>
+							{{if nowAction != 'detail'}}
+							<div class="ba-gray">
+								(支持gif,jpg,jpeg,png)
+							</div>
+							{{/if}}
+						</td>
+						<td>
+							<div class="ba-clearfix upload-area">
+								<div webuploader-list-wrap>
+									{{each pageInfo.attachment}}
+										<span class="webuploader-view-list" webuploader-list url="{{$value.attachmenturl}}" thumb="{{$value.attachmentshorturl}}" pk="{{$value.pkAttachment}}">
+											{{if nowAction != 'detail'}}
+											<div class="webuploader-view-list-toolbar-wrap" webuploader-view-list-toolbar-wrap>
+												<div class="webuploader-view-list-toolbar-shadow"></div>
+												<div class="webuploader-view-list-toolbar">
+													<div class="tool-detail">
+														<span class="fa fa-trash-o" upload-remove></span>
+													</div>
+												</div>
+											</div>
+											{{/if}}
+											<img src="{{$value.attachmentshorturl}}" width="100%">
+										</span>
+									{{/each}}
+								</div>
+								{{if nowAction != 'detail'}}
+								<span class="ba-fl uploadBtn" uploadBtn>
+									<span class="fa fa-plus ba-font-50"></span>
+								</span>
+								{{/if}}	
+							</div>
+						</td>
+					</tr>
+					<!-- 确定 -->
+					{{if nowAction != 'detail'}}
+					<tr>
+						<td></td>
+						<td>
+							<a href="javascript:;" class="btn btn-primary" script-role="confirm-btn">确定</a>
+							<a href="{{views['service/list'].url}}" class="btn btn-danger">取消</a>
+						</td>
+					</tr>
+					{{/if}}
+				</table>
+			</div>	
+		</div>	
+	</div>
+
+<!-- loading -->
+<div class="loading-wrap ba-none" loading-wrap>
+	<span class="progress-wrap">
+		<span class="text" loading-text></span>
+		<span class="percentage" loading-percent></span>
+	</span>
+	<div class="loading-shadow"></div>
+</div>
+
+
+{{include '../include/siteConfig'}}
+<script src="{{seaPath}}seajs/sea.js"></script>	
+<script src="{{seaPath}}seajs/config.js"></script>
+<script>
+	seajs.use('main/shop/service/addEdit');
+</script>
+</body>
+</html>

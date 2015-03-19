@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>{{title}}</title>
+{{include '../include/meta'}}
+<link rel="stylesheet" href="{{cssPath}}core/rockstar.css">
+<link rel="stylesheet" href="{{cssPath}}main/shop/goods/deliveryAddEdit.css">
+</head>
+
+<body>
+	{{include '../include/header'}}
+	<div class="main-content">
+		{{include '../include/nav'}}
+		{{include '../include/msg'}}
+		<div class="center-bar">
+			<div class="bar-title ba-clearfix">
+				<span class="ba-intro">{{title}}</span>
+				<a class="btn btn-primary back-btn" href="{{views['goods/deliveryList'].url}}">返回</a>
+			</div>
+			<div class="main-content" style="padding-bottom: 200px;">
+				<table class="table bordered striped" width="100%" list-wrap>
+					<thead>
+						<tr>
+							<td width="20%">商品名称</td>
+							<td width="20%">商品数量</td>
+							<td width="20%">单位</td>
+							<td width="20%">标准价格</td>
+							<td width="20%">管理</td>
+						</tr>
+					</thead>
+					<tbody data-ele="data-wrap">
+						<!-- tpl/shop/goods/deliveryAddEdit.html -->
+					</tbody>
+				</table>
+				<a class="ba-mt-10 btn btn-primary" href="javascript:;" goods-add>添加</a>
+				<p class="ba-mt-20 ba-font-14">总金额：<strong class="ba-red" amount-money>0</strong> 元</p>
+				<p class="ba-mt-10 ba-font-14">订货负责人：<span operatorname>{{username}}</span></p>
+				<p class="ba-mt-10 ba-font-14 ba-clearfix">
+					<span class="ba-fl">备注：</span>
+					<textarea class="ba-fl form-control delivery-note" delivery-note></textarea>
+				</p>
+				<!-- fenye -->
+				{{include '../include/fenye'}}
+				<div class="ba-mt-30 ba-tc" book-operation> 
+					<a href="javascript:;" class="btn btn-primary" delivery-confirm>确定</a> 
+					<a href="javascript:;" class="btn btn-danger" delivery-cancel>取消</a> 
+				</div>
+			</div>	
+		</div>	
+	</div>
+{{include '../include/siteConfig'}}
+<script src="{{seaPath}}seajs/sea.js"></script>	
+<script src="{{seaPath}}seajs/config.js"></script>
+<script>
+	seajs.use('main/shop/goods/deliveryAddEdit');
+</script>
+</body>
+</html>

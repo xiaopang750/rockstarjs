@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>{{title}}</title>
+{{include '../include/meta'}}
+<link rel="stylesheet" href="{{cssPath}}core/rockstar.css">
+<link rel="stylesheet" href="{{cssPath}}main/shop/user/order.css">
+</head>
+
+<body>
+	{{include '../include/header'}}
+	<div class="main-content">
+		{{include '../include/nav'}}
+		{{include '../include/msg'}}
+		<div class="center-bar" script-bound="form-check">
+			<div class="bar-title ba-clearfix">
+				<span class="ba-intro">{{title}}</span>
+				<a href="{{views['user/index'].url}}" class="btn btn-primary back-btn">返回</a>
+			</div>
+			<div class="main-content" order-wrap>
+				<table cellpadding="0" cellspacing="0" border="0">
+					<tr>
+						<td width="110">消费者姓名：</td>
+						<td width="600" colspan="3">
+							{{pageInfo.userName}}
+						</td>
+					</tr>
+					<tr>
+						<td>理发师姓名：</td>
+						<td class="ba-clearfix" colspan="3">
+							<div script-role="check-wrap" class="ba-mr-10">
+								<input type="text" class="form-control col-6" form_check="sys" ischeck="true" tip="请选择理发师" wrong="" re=".+" name="fairername" hairer readonly="readonly" fairername>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td>
+							<div class="ba-fl ba-mt-5">
+								<span class="ba-mr-20" radio_group="true" name="fairermoney" form_check="sys" ischeck="true" tip="请选择价格">
+									{{each pageInfo.price}}
+									<label for="radio{{$index}}" class="ba-pointer">
+										<input type="radio" name="fairermoney" value="{{$value.price}}" pkPrice="{{$value.pkPrice}}" fairPrice="{{$value.fairPrice}}" id="radio{{$index}}">
+										<span>{{$value.price}}元({{$value.rank}})</span>
+									</label>
+									{{/each}}
+								</span>
+								<span>
+									<input type="checkbox" sinHair id="sinHair">
+									<label for="sinHair">不包含理发</label>
+								</span>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td width="110">套餐名称：</td>
+						<td width="600" colspan="3">
+							{{pageInfo.pkName}}
+						</td>
+					</tr>
+					{{each pageInfo.other}}
+					<tr other-pay>
+						<td width="110">
+							<span other-rank>{{$value.name}}</span>：
+						</td>
+						<td>
+							<input type="text" class="form-control col-11 ba-mr-5 ba-mr-10" otherPay id="{{$value.id}}" namer="{{$value.name}}">
+						</td>
+						<td width="50">
+							提成人:
+						</td>
+						<td>
+							<input type="text" class="form-control col-11" readonly="readonly" otherFairer>
+						</td>
+					</tr>
+					{{/each}}
+					<tr>
+						<td>备注:</td>
+						<td colspan="3">
+							<div class="ba-clearfix">
+								<textarea class="form-control col-6" form_check="sys" ischeck="free" tip="" wrong="请填写100字以内的备注" re="(.|\n){1,100}" name="note">{{pageInfo.note}}</textarea>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td>总计金额:</td>
+						<td colspan="3">
+							<span all></span>元
+						</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td colspan="3">
+							<a href="javascript:;" class="btn btn-primary btn-lg ba-pl-20 ba-pr-20" script-role="confirm-btn">确定</a>
+						</td>
+					</tr>
+				</table>
+			</div>	
+		</div>	
+	</div>
+
+
+{{include '../include/siteConfig'}}
+<script src="{{seaPath}}seajs/sea.js"></script>	
+<script src="{{seaPath}}seajs/config.js"></script>
+<script>
+	seajs.use('main/shop/user/order');
+</script>
+</body>
+</html>

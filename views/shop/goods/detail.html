@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>{{title}}</title>
+{{include '../include/meta'}}
+<link rel="stylesheet" href="{{cssPath}}core/rockstar.css">
+<link rel="stylesheet" href="{{cssPath}}main/shop/goods/detail.css">
+</head>
+
+<body>
+	{{include '../include/header'}}
+	<div class="main-content">
+		{{include '../include/nav'}}
+		{{include '../include/msg'}}
+		<div class="center-bar">
+			<div class="bar-title ba-clearfix">
+				<span class="ba-intro">{{title}}</span>
+				<a href="{{views['goods/list'].url}}" class="btn btn-primary back-btn">返回</a>
+			</div>
+			<div class="main-content">
+				<table class="table bordered" width="100%">
+					<thead>
+						<tr>
+							<td>修改日期</td>
+							<td>修改人员</td>
+							<td>修改内容</td>
+							<td>原价</td>
+							<td>修改后价格</td>
+						</tr>
+					</thead>
+					<tbody>
+						{{each pageInfo.detailList}}
+						<tr>
+							<td>{{$value.edittime}}</td>
+							<td>{{$value.editor}}</td>
+							<td>{{$value.editcontent}}</td>
+							<td>{{$value.oldprice}}</td>
+							<td>{{$value.newprice}}</td>
+						</tr>
+						{{/each}}
+					</tbody>
+				</table>
+			</div>	
+		</div>	
+	</div>	
+{{include '../include/siteConfig'}}
+<script src="{{seaPath}}seajs/sea.js"></script>	
+<script src="{{seaPath}}seajs/config.js"></script>
+<script>
+	seajs.use('main/shop/goods/detail');
+</script>
+</body>
+</html>

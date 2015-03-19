@@ -17,7 +17,7 @@
 
 	backbone强制依赖underscore请不要删除underscore;
 */
-
+				
  define(function(require, exports, module){
  		
  	require('../../lib/underscore/underscore');
@@ -27,7 +27,7 @@
 		
 		param = param || {};
 
-		pName = pName || 'pageNum';
+		pName = pName || 'curpage';
 
 		this.param = param;
 
@@ -51,7 +51,7 @@
 
 		this.btnClass = 'active';
 
-		btnStr = btnStr || '<a href="#" class="r-btn fenye-btn" sc="pagebtn"></a>';
+		btnStr = btnStr || '<a href="#" class="btn btn-default" sc="pagebtn"></a>';
 
 		oFenyeWrap.hide();
 
@@ -72,6 +72,7 @@
 				this.on('change:rnd', function(model, param, b){
 					
 					_this.getData(1, b);
+					
 				});
 
 			},
@@ -106,7 +107,7 @@
 			},
 			initialize: function() {
 
-				this.listenTo(this.model, 'change:outJson', this.show);
+				this.listenTo(this.model, 'change:data', this.show);
 				this.oPrev = $('[sc = page-prev]');
 				this.oFirst = $('[sc = first]');
 				this.oNext = $('[sc = page-next]');
@@ -114,12 +115,12 @@
 
 			},
 			show: function() {
-				
+
 				var model;
 
 				model = this.model.toJSON();
-				
-				model = JSON.parse(model.outJson).data;
+
+				model = model.data;
 
 				if(!model) {
 					return;
@@ -131,7 +132,7 @@
 
 				}
 
-				this.max = Math.ceil( model.pageutil.totleNum/that.param.pageSize );
+				this.max = Math.ceil( model.total/that.param.pagesize );
 
 				this.render( model );
 

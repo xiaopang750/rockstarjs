@@ -1,0 +1,37 @@
+<!-- 理发师列表 -->
+{{if list}}
+	<ul>
+		{{each list}}
+		<li>
+			<div class="ba-mb-10">
+				<!-- <img data-src="holder.js/70x70/gray"> -->
+			</div>
+			<table cellpadding="0" cellspacing="0" border="0" width="100%">
+				<tr>
+					<td>姓名：</td>
+					<td>{{$value.fairername}}</td>
+				</tr>
+				<tr>
+					<td>排名：</td>
+					<td>{{$index + 1}}</td>
+				</tr>
+				<tr>
+					<td width="100">服务业绩：</td>
+					<td>{{$value.servicemoney}}元</td>
+				</tr>
+				<tr>
+					<td width="100">服务次数：</td>
+					<td>{{$value.accountnum}}</td>
+				</tr>
+				<tr>
+					<td>提成金额：</td>
+					<td>{{$value.accountmoney}}元</td>
+				</tr>
+				
+			</table>
+		</li>
+		{{/each}}
+	</ul>
+{{else}}
+	<div class="tc">暂无数据</div>
+{{/if}}

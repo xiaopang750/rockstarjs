@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>{{title}}</title>
+{{include '../include/meta'}}
+<link rel="stylesheet" href="{{cssPath}}core/rockstar.css">
+<link rel="stylesheet" href="{{cssPath}}main/shop/user/index.css">
+</head>
+
+<body>
+	{{include '../include/header'}}
+	
+	<div class="main-content">
+		{{include '../include/nav'}}
+		{{include '../include/msg'}}
+		<div class="center-bar">
+			<div class="bar-title ba-clearfix">
+				<span class="ba-intro">{{title}}</span>
+				<span class="ba-qing ba-fr ba-mr-10 ba-mt-12">当天订单数(<span pay-num>{{pageInfo.orderNum}}</span>)</span>
+			</div>
+			<div class="main-content">
+				<div class="ba-clearfix search-area">
+					<label class="ba-fl ba-mt-6 ba-mr-10 control-label">搜索用户:</label>
+
+					<input type="text" class="ba-fl col-3 form-control ba-mr-10 search-input" search-input>
+
+					<a href="javascript:;" class="btn btn-primary ba-fl ba-mr-10" search-btn link="{{views['user/manage'].url}}">
+						go
+					</a>
+
+					<a href="{{views['user/add'].url}}" class="btn btn-primary ba-fl">
+						注册新用户
+					</a>
+				</div>
+				<div class="pay-list" pay-wrap>
+					<!-- tpl/shop/user/list.html -->
+				</div>
+			</div>
+		</div>
+	</div>
+
+{{include '../include/siteConfig'}}
+<script src="{{seaPath}}seajs/sea.js"></script>	
+<script src="{{seaPath}}seajs/config.js"></script>
+<script>
+	seajs.use('main/shop/user/index');
+</script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>{{title}}</title>
+{{include '../include/meta'}}
+<link rel="stylesheet" href="{{cssPath}}core/rockstar.css">
+<link rel="stylesheet" href="{{cssPath}}main/shop/goods/deliveryList.css">
+</head>
+
+<body>
+	{{include '../include/header'}}
+	<div class="main-content">
+		{{include '../include/nav'}}
+		{{include '../include/msg'}}
+		<div class="center-bar">
+			<div class="bar-title ba-clearfix">
+				<span class="ba-intro">{{title}}</span>
+			</div>
+			<div class="main-content">
+				<a href="{{views['goods/deliveryAddEdit'].url}}" class="btn btn-primary">
+					新建
+				</a>
+				<div class="ba-mt-10">
+					<table class="table bordered striped" width="100%" list-wrap>
+						<thead>
+							<tr>
+								<td width="20%">编号</td>
+								<td width="20%">出库日期</td>
+								<td width="10%">出库负责人</td>
+								<td width="15%">出库总金额</td>
+								<td width="10%">状态</td>
+								<td width="25%">操作</td>
+							</tr>
+						</thead>
+						<tbody data-ele="data-wrap">
+							<!-- tpl/shop/goods/deliveryList.html -->
+						</tbody>
+					</table>
+					<!-- fenye -->
+					{{include '../include/fenye'}}
+				</div>
+			</div>	
+		</div>	
+	</div>
+{{include '../include/siteConfig'}}
+<script src="{{seaPath}}seajs/sea.js"></script>	
+<script src="{{seaPath}}seajs/config.js"></script>
+<script>
+	seajs.use('main/shop/goods/deliveryList');
+</script>
+</body>
+</html>
