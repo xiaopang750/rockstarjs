@@ -1,4 +1,4 @@
-## rockstart front-template
+## rockstar front-template
 
 ### 文档请看:
 
